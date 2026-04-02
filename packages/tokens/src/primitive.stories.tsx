@@ -11,7 +11,7 @@ import {
 } from './primitives/primitive';
 import { GridList } from './story-ui/GridList';
 import { StackList } from './story-ui/StackList';
-import styles from './story-ui/story.module.css';
+import styles from './story-ui/story.module.scss';
 
 const meta: Meta = {
   title: 'Tokens/Primitive',

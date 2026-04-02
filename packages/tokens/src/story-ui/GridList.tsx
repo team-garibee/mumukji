@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import styles from './story.module.css';
+import styles from './story.module.scss';
 
 interface GridListItem {
   key: string;
