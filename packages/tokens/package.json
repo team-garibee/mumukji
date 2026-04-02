@@ -12,6 +12,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "sideEffects": false,
   "exports": {
     "./css": "./dist/css/primitive.css"
