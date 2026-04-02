@@ -13,9 +13,14 @@
     "dist"
   ],
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    "./css": "./dist/css/primitive.css"
+    "./css": {
+      "types": "./dist/css/primitive.css.d.ts",
+      "default": "./dist/css/primitive.css"
+    }
   },
   "keywords": [
     "design-system",

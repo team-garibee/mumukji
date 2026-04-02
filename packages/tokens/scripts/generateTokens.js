@@ -129,12 +129,36 @@ const generateTokens = async () => {
       tsContent,
     );
 
+    // @font-face 선언
+    const fontFace = [100, 200, 300, 400, 500, 600, 700, 800, 900]
+      .map((weight) => {
+        const names = {
+          100: '1Thin',
+          200: '2ExtraLight',
+          300: '3Light',
+          400: '4Regular',
+          500: '5Medium',
+          600: '6SemiBold',
+          700: '7Bold',
+          800: '8ExtraBold',
+          900: '9Black',
+        };
+        return `@font-face {\n  font-family: 'A2z';\n  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-${names[weight]}.woff2') format('woff2');\n  font-weight: ${weight};\n  font-display: swap;\n}`;
+      })
+      .join('\n');
+
     // dist/css/ 경로로 primitive.css 저장
-    const cssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
+    const cssContent = `${fontFace}\n:root {\n${cssVars.join('\n')}\n}\n`;
     const minified = await postcss([cssnano]).process(cssContent, {
       from: undefined,
     });
     await fs.writeFile(path.join(PATHS.CSS_DIR, 'primitive.css'), minified.css);
+
+    // CSS 타입 선언 파일 생성
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'primitive.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
 
     const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
     console.log(`✅ ${tokenName} 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);

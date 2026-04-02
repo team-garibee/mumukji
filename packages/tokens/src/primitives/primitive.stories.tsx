@@ -6,7 +6,6 @@ import {
   color,
   spacing,
   fontSize,
-  fontWeight,
   fontFamily,
   lineHeight,
   opacity,
@@ -82,15 +81,12 @@ export const Typography: StoryObj = {
         <div className={styles.fontSizeList}>
           {Object.entries(fontSize).map(([key, value]) => (
             <div key={key} className={styles.fontSizeRow}>
-              <span className={styles.tokenKey}>{key}</span>
+              <span className={styles.tokenKey}>{value}px</span>
               <span
-                style={{
-                  fontSize: value as number,
-                  fontFamily: fontFamily.default as string,
-                }}>
+                className={styles.sampleText}
+                style={{ fontSize: value as number, fontWeight: 600 }}>
                 머먹지 디자인 시스템
               </span>
-              <span className={styles.tokenMeta}>{value}px</span>
             </div>
           ))}
         </div>
@@ -98,12 +94,13 @@ export const Typography: StoryObj = {
 
       <StackList title='Font Weight'>
         <div className={styles.fontWeightList}>
-          {Object.entries(fontWeight).map(([key, value]) => (
-            <span
-              key={key}
-              style={{ fontWeight: value as number, fontSize: 16 }}>
-              {key} ({value})
-            </span>
+          {[100, 200, 300, 400, 500, 600, 700, 800, 900].map((weight) => (
+            <div key={weight} className={styles.fontWeightRow}>
+              <span style={{ fontWeight: weight, fontSize: 28 }}>
+                머먹지 디자인 시스템
+              </span>
+              <span style={{ fontWeight: weight }}>{weight}</span>
+            </div>
           ))}
         </div>
       </StackList>
@@ -113,7 +110,8 @@ export const Typography: StoryObj = {
           {Object.entries(fontFamily).map(([key, value]) => (
             <span
               key={key}
-              style={{ fontFamily: value as string, fontSize: 16 }}>
+              className={styles.sampleText}
+              style={{ fontSize: 16 }}>
               {key}: {value as string}
             </span>
           ))}
@@ -130,9 +128,11 @@ export const Typography: StoryObj = {
               <span className={styles.lineHeightLabel}>
                 {key} ({value})
               </span>
-              머먹지
-              <br />
-              디자인 시스템
+              <span className={styles.sampleText}>
+                머먹지
+                <br />
+                디자인 시스템
+              </span>
             </div>
           ))}
         </div>

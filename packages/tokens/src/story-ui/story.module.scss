@@ -86,6 +86,10 @@
   gap: 16px;
 }
 
+.sampleText {
+  font-family: 'A2z', sans-serif;
+}
+
 .fontSizeRow {
   display: flex;
   align-items: baseline;
@@ -94,8 +98,21 @@
 
 .fontWeightList {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-direction: column;
+  width: 540px;
+}
+
+.fontWeightRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e5e5;
+  font-family: 'A2z', sans-serif;
+
+  &:first-child {
+    border-top: 1px solid #e5e5e5;
+  }
 }
 
 .fontFamilyList {
