@@ -1,18 +1,18 @@
 import type { CSSProperties } from 'react';
 
-interface SwatchItem {
+interface GridListItem {
   key: string;
   boxStyle: CSSProperties;
   labels: string[];
 }
 
-interface SwatchSectionProps {
+interface GridListProps {
   title: string;
-  items: SwatchItem[];
+  items: GridListItem[];
   gap?: number;
 }
 
-export function SwatchSection({ title, items, gap = 8 }: SwatchSectionProps) {
+export function GridList({ title, items, gap = 8 }: GridListProps) {
   return (
     <div>
       <p style={{ marginBottom: 8, fontWeight: 600 }}>{title}</p>
