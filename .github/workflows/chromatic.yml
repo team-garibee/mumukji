@@ -7,7 +7,7 @@ on:
     paths:
         - 'apps/storybook/**'
         - 'packages/**/src/**/*.{ts,tsx,scss,json}'
-        - '**/*.stories.@(ts|tsx)'
+        - '**/*.stories.{ts,tsx}'
         - '**/*.mdx'
 
 jobs:
