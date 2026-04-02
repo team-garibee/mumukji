@@ -3,6 +3,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import postcss from 'postcss';
+import cssnano from 'cssnano';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -129,7 +131,8 @@ const generateTokens = async () => {
 
     // dist/css/ 경로로 primitive.css 저장
     const cssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
-    await fs.writeFile(path.join(PATHS.CSS_DIR, 'primitive.css'), cssContent);
+    const minified = await postcss([cssnano]).process(cssContent, { from: undefined });
+    await fs.writeFile(path.join(PATHS.CSS_DIR, 'primitive.css'), minified.css);
 
     const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
     console.log(`✅ ${tokenName} 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
