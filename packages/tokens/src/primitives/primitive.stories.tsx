@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { GridList } from '../story-ui/GridList';
+import { StackList } from '../story-ui/StackList';
+import styles from '../story-ui/story.module.scss';
 import {
   color,
   spacing,
@@ -8,10 +11,7 @@ import {
   lineHeight,
   opacity,
   radius,
-} from '../primitives/primitive';
-import { GridList } from '../story-ui/GridList';
-import { StackList } from '../story-ui/StackList';
-import styles from './story-ui/story.module.scss';
+} from './primitive';
 
 const meta: Meta = {
   title: 'Tokens/Primitive',
