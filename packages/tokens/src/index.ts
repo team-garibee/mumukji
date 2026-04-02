@@ -1,1 +1,1 @@
-export * from './primitives/primitive';
+export {};

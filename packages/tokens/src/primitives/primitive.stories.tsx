@@ -8,9 +8,9 @@ import {
   lineHeight,
   opacity,
   radius,
-} from './primitives/primitive';
-import { GridList } from './story-ui/GridList';
-import { StackList } from './story-ui/StackList';
+} from '../primitives/primitive';
+import { GridList } from '../story-ui/GridList';
+import { StackList } from '../story-ui/StackList';
 import styles from './story-ui/story.module.scss';
 
 const meta: Meta = {
