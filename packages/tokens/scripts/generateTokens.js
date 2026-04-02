@@ -131,7 +131,9 @@ const generateTokens = async () => {
 
     // dist/css/ 경로로 primitive.css 저장
     const cssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
-    const minified = await postcss([cssnano]).process(cssContent, { from: undefined });
+    const minified = await postcss([cssnano]).process(cssContent, {
+      from: undefined,
+    });
     await fs.writeFile(path.join(PATHS.CSS_DIR, 'primitive.css'), minified.css);
 
     const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
