@@ -11,6 +11,7 @@ import {
 } from './primitives/primitive';
 import { GridList } from './story-ui/GridList';
 import { StackList } from './story-ui/StackList';
+import styles from './story-ui/story.module.css';
 
 const meta: Meta = {
   title: 'Tokens/Primitive',
@@ -22,7 +23,7 @@ export default meta;
 export const Color: StoryObj = {
   name: 'Color & Opacity',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div className={styles.colorList}>
       {Object.entries(color).map(([groupName, shades]) => (
         <GridList
           key={groupName}
@@ -38,6 +39,7 @@ export const Color: StoryObj = {
           }))}
         />
       ))}
+
       <GridList
         title='Opacity'
         items={Object.entries(opacity).map(([key, value]) => ({
@@ -57,23 +59,15 @@ export const Color: StoryObj = {
 export const Spacing: StoryObj = {
   render: () => (
     <StackList title='Spacing'>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div className={styles.spacingList}>
         {Object.entries(spacing).map(([key, value]) => (
-          <div
-            key={key}
-            style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span style={{ width: 32, fontSize: 12, color: '#888' }}>
-              {key}
-            </span>
+          <div key={key} className={styles.spacingRow}>
+            <span className={styles.tokenKey}>{key}</span>
             <div
-              style={{
-                height: 16,
-                background: '#F9603E',
-                borderRadius: 2,
-                width: (value as number) * 2,
-              }}
+              className={styles.spacingBar}
+              style={{ width: (value as number) * 2 }}
             />
-            <span style={{ fontSize: 12 }}>{value}px</span>
+            <span className={styles.spacingValue}>{value}px</span>
           </div>
         ))}
       </div>
@@ -83,16 +77,12 @@ export const Spacing: StoryObj = {
 
 export const Typography: StoryObj = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div className={styles.typographyList}>
       <StackList title='Font Size'>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div className={styles.fontSizeList}>
           {Object.entries(fontSize).map(([key, value]) => (
-            <div
-              key={key}
-              style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-              <span style={{ width: 32, fontSize: 12, color: '#888' }}>
-                {key}
-              </span>
+            <div key={key} className={styles.fontSizeRow}>
+              <span className={styles.tokenKey}>{key}</span>
               <span
                 style={{
                   fontSize: value as number,
@@ -100,13 +90,14 @@ export const Typography: StoryObj = {
                 }}>
                 머먹지 디자인 시스템
               </span>
-              <span style={{ fontSize: 11, color: '#888' }}>{value}px</span>
+              <span className={styles.tokenMeta}>{value}px</span>
             </div>
           ))}
         </div>
       </StackList>
+
       <StackList title='Font Weight'>
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <div className={styles.fontWeightList}>
           {Object.entries(fontWeight).map(([key, value]) => (
             <span
               key={key}
@@ -116,8 +107,9 @@ export const Typography: StoryObj = {
           ))}
         </div>
       </StackList>
+
       <StackList title='Font Family'>
-        <div style={{ display: 'flex', gap: 16 }}>
+        <div className={styles.fontFamilyList}>
           {Object.entries(fontFamily).map(([key, value]) => (
             <span
               key={key}
@@ -127,18 +119,15 @@ export const Typography: StoryObj = {
           ))}
         </div>
       </StackList>
+
       <StackList title='Line Height'>
-        <div style={{ display: 'flex', gap: 16 }}>
+        <div className={styles.lineHeightList}>
           {Object.entries(lineHeight).map(([key, value]) => (
             <div
               key={key}
-              style={{
-                lineHeight: value as number,
-                border: '1px solid #eee',
-                padding: 8,
-                width: 120,
-              }}>
-              <span style={{ fontSize: 12, color: '#888', display: 'block' }}>
+              className={styles.lineHeightItem}
+              style={{ lineHeight: value as number }}>
+              <span className={styles.lineHeightLabel}>
                 {key} ({value})
               </span>
               머먹지
@@ -156,7 +145,7 @@ export const Radius: StoryObj = {
   render: () => (
     <GridList
       title='Radius'
-      gap={16}
+      wide
       items={Object.entries(radius).map(([key, value]) => ({
         key,
         boxStyle: {

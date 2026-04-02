@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import styles from './story.module.css';
 
 interface GridListItem {
   key: string;
@@ -9,43 +10,21 @@ interface GridListItem {
 interface GridListProps {
   title: string;
   items: GridListItem[];
-  gap?: number;
+  wide?: boolean;
 }
 
-export function GridList({ title, items, gap = 8 }: GridListProps) {
+export function GridList({ title, items, wide = false }: GridListProps) {
   return (
     <div>
-      <p style={{ marginBottom: 8, fontWeight: 600 }}>{title}</p>
-      <div
-        style={{
-          display: 'flex',
-          gap,
-          flexWrap: 'wrap',
-          alignItems: 'center',
-        }}>
+      <p className={styles.title}>{title}</p>
+      <div className={`${styles.grid}${wide ? ` ${styles.gridWide}` : ''}`}>
         {items.map(({ key, boxStyle, labels }) => (
-          <div
-            key={key}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 4,
-            }}>
-            <div
-              style={{
-                width: 48,
-                height: 48,
-                ...boxStyle,
-              }}
-            />
+          <div key={key} className={styles.item}>
+            <div className={styles.box} style={boxStyle} />
             {labels.map((label, i) => (
               <span
                 key={i}
-                style={{
-                  fontSize: i === 0 ? 11 : 10,
-                  color: i === 0 ? undefined : '#888',
-                }}>
+                className={i === 0 ? styles.label : styles.subLabel}>
                 {label}
               </span>
             ))}

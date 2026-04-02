@@ -1,0 +1,121 @@
+.title {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.gridWide {
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.box {
+  width: 48px;
+  height: 48px;
+}
+
+.label {
+  font-size: 11px;
+}
+
+.subLabel {
+  color: #888;
+  font-size: 10px;
+}
+
+.colorList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.typographyList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.tokenKey {
+  width: 32px;
+  color: #888;
+  font-size: 12px;
+}
+
+.tokenMeta {
+  color: #888;
+  font-size: 11px;
+}
+
+.spacingList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spacingRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spacingBar {
+  height: 16px;
+  border-radius: 2px;
+  background: #f9603e;
+}
+
+.spacingValue {
+  font-size: 12px;
+}
+
+.fontSizeList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fontSizeRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.fontWeightList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.fontFamilyList {
+  display: flex;
+  gap: 16px;
+}
+
+.lineHeightList {
+  display: flex;
+  gap: 16px;
+}
+
+.lineHeightItem {
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #eee;
+}
+
+.lineHeightLabel {
+  display: block;
+  color: #888;
+  font-size: 12px;
+}

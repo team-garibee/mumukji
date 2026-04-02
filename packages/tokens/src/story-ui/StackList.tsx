@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import styles from './story.module.css';
 
 interface StackListProps {
   title: string;
@@ -8,7 +9,7 @@ interface StackListProps {
 export function StackList({ title, children }: StackListProps) {
   return (
     <div>
-      <p style={{ marginBottom: 8, fontWeight: 600 }}>{title}</p>
+      <p className={styles.title}>{title}</p>
       {children}
     </div>
   );

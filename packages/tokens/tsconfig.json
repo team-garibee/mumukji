@@ -1,5 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["src"],
-  "exclude": ["src/**/*.stories.tsx", "src/story-ui/**"]
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable"],
+    "jsx": "react-jsx"
+  },
+  "include": ["src"]
 }
