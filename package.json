@@ -42,7 +42,8 @@
   "pnpm": {
     "overrides": {
       "flatted": ">=3.4.2",
-      "immutable": ">=5.1.5"
+      "immutable": ">=5.1.5",
+      "picomatch": ">=2.3.2"
     }
   },
   "devDependencies": {
