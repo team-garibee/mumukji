@@ -1,6 +1,7 @@
 /** @type {import("stylelint").Config} */
 
 export default {
+  ignoreFiles: ['packages/tokens/dist/**'],
   extends: [
     'stylelint-config-standard-scss',
     'stylelint-config-css-modules',
