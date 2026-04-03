@@ -12,17 +12,15 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/index.d.ts",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./css": "./dist/css/primitive.css"
+    "./css": {
+      "types": "./dist/css/primitive.css.d.ts",
+      "default": "./dist/css/primitive.css"
+    }
   },
   "keywords": [
     "design-system",
@@ -32,25 +30,19 @@
   ],
   "scripts": {
     "generate:tokens": "node scripts/generateTokens.js",
-    "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "pnpm generate:tokens && tsc -p tsconfig.build.json && rollup -c",
+    "build": "pnpm generate:tokens",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^29.0.0",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-typescript": "^12.3.0",
     "@storybook/react-vite": "^10.2.13",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "cssnano": "^7.1.4",
+    "postcss": "^8.5.8",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "rollup": "^4.59.0"
-  },
-  "dependencies": {
-    "tslib": "^2.8.1"
+    "react-dom": "^19.2.4"
   }
 }

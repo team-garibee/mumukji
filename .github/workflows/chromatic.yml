@@ -7,7 +7,7 @@ on:
     paths:
         - 'apps/storybook/**'
         - 'packages/**/src/**/*.{ts,tsx,scss,json}'
-        - '**/*.stories.@(ts|tsx)'
+        - '**/*.stories.{ts,tsx}'
         - '**/*.mdx'
 
 jobs:
@@ -38,7 +38,10 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
+      - name: Build packages
+        run: pnpm turbo run build --filter=@mumukji/storybook^...
+
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@latest
