@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PATHS = {
-  PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitive.json'),
+  PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitives.json'),
   PRIMITIVES_DIR: path.resolve(__dirname, '../src/primitives'),
   CSS_DIR: path.resolve(__dirname, '../dist/css'),
 };
