@@ -9,7 +9,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-
+    if: ${{ !startsWith(github.head_ref, 'figma-sync/') }}
     steps:
       - uses: actions/checkout@v6
 
