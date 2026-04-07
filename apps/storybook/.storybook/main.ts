@@ -33,6 +33,10 @@ const config: StorybookConfig = {
       resolve: {
         alias: {
           '@mumukji/icons': join(__dirname, '../../../packages/icons/src'),
+          '@mumukji/tokens/css': join(
+            __dirname,
+            '../../../packages/tokens/dist/css/primitive.css',
+          ),
           '@mumukji/tokens': join(__dirname, '../../../packages/tokens/src'),
           '@mumukji/ui': join(__dirname, '../../../packages/ui/src'),
         },

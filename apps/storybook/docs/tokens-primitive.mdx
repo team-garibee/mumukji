@@ -1,0 +1,96 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Tokens/Primitive' />
+
+# Primitive Tokens
+
+- 머먹지 디자인 시스템의 기초 디자인 토큰입니다.
+- CSS 변수로 제공되며, **색상/타이포그래피/간격** 등 UI의 기본 단위를 정의합니다.
+
+## 설치 Install
+
+```zsh
+# npm
+npm install @mumukji/tokens
+
+# pnpm
+pnpm add @mumukji/tokens
+```
+
+## 사용법 Usage
+
+CSS 또는 TS/JS 파일에서 import하면 `:root`에 CSS 변수와 A2z 웹폰트가 자동으로 등록됩니다.
+
+```ts
+import '@mumukji/tokens/css';
+```
+
+## 제공 토큰 Tokens
+
+<table style={{ textAlign: 'center' }}>
+  <thead>
+    <tr>
+      <th>카테고리</th>
+      <th>CSS 변수 prefix</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Color</td>
+      <td>
+        <code>{'--color-*'}</code>
+      </td>
+      <td>브랜드 컬러 및 그레이스케일</td>
+    </tr>
+    <tr>
+      <td>Opacity</td>
+      <td>
+        <code>{'--opacity-*'}</code>
+      </td>
+      <td>투명도</td>
+    </tr>
+    <tr>
+      <td>Spacing</td>
+      <td>
+        <code>{'--spacing-*'}</code>
+      </td>
+      <td>여백 단위 (px)</td>
+    </tr>
+    <tr>
+      <td>Font Size</td>
+      <td>
+        <code>{'--font-size-*'}</code>
+      </td>
+      <td>폰트 크기 (rem/px)</td>
+    </tr>
+    <tr>
+      <td>Font Weight</td>
+      <td>
+        <code>{'--font-weight-*'}</code>
+      </td>
+      <td>폰트 굵기</td>
+    </tr>
+    <tr>
+      <td>Font Family</td>
+      <td>
+        <code>{'--font-family-*'}</code>
+      </td>
+      <td>A2z 웹폰트</td>
+    </tr>
+    <tr>
+      <td>Line Height</td>
+      <td>
+        <code>{'--line-height-*'}</code>
+      </td>
+      <td>줄 간격</td>
+    </tr>
+    <tr>
+      <td>Radius</td>
+      <td>
+        <code>{'--radius-*'}</code>
+      </td>
+      <td>모서리 둥글기 (px)</td>
+    </tr>
+  </tbody>
+</table>
