@@ -2,7 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@mumukji/icons": ["../../packages/icons/src/index.ts"]
+    }
   },
   "include": [".storybook/*.ts", "css.d.ts", "components/**/*.tsx"]
 }
