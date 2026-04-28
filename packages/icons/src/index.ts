@@ -1,4 +1,5 @@
 export { IconArrowRight } from './react/IconArrowRight';
+export { IconCopy } from './react/IconCopy';
 export { IconFoodAsian } from './react/IconFoodAsian';
 export { IconFoodBunsik } from './react/IconFoodBunsik';
 export { IconFoodChicken } from './react/IconFoodChicken';
