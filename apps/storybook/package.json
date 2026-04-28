@@ -30,6 +30,7 @@
     "@vitest/browser-playwright": "^4.0.18",
     "chromatic": "^15.2.0",
     "playwright": "^1.58.2",
+    "sass-embedded": "^1.99.0",
     "storybook": "^10.2.13",
     "vite": "^7.3.2",
     "vitest": "^4.0.18"

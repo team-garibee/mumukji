@@ -69,6 +69,7 @@ import arrowRight from '@mumukji/icons/IconArrowRight';
 |                                                                  Preview                                                                  |    Component     |        SVG        |
 | :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------: | :---------------: |
 | <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-arrow-right.svg" width="24" /> | `IconArrowRight` | `arrow-right.svg` |
+|    <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-copy.svg" width="24" />     |    `IconCopy`    |    `copy.svg`     |
 
 ### 음식 아이콘
 

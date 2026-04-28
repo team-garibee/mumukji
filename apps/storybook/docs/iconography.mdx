@@ -1,5 +1,67 @@
 import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
-import { IconArrowRight } from '@mumukji/icons';
+import {
+  IconArrowRight,
+  IconCopy,
+  IconFoodAsian,
+  IconFoodBunsik,
+  IconFoodChicken,
+  IconFoodChinese,
+  IconFoodDiet,
+  IconFoodFastfood,
+  IconFoodJapanese,
+  IconFoodKorean,
+  IconFoodWestern,
+} from '@mumukji/icons';
+import Copy from '../components/copy/Copy';
+
+export const basicIcons = [
+  {
+    name: 'arrow-right',
+    componentName: 'IconArrowRight',
+    Icon: IconArrowRight,
+  },
+  { name: 'copy', componentName: 'IconCopy', Icon: IconCopy },
+];
+
+export const foodIcons = [
+  { name: 'food-asian', componentName: 'IconFoodAsian', Icon: IconFoodAsian },
+  {
+    name: 'food-bunsik',
+    componentName: 'IconFoodBunsik',
+    Icon: IconFoodBunsik,
+  },
+  {
+    name: 'food-chicken',
+    componentName: 'IconFoodChicken',
+    Icon: IconFoodChicken,
+  },
+  {
+    name: 'food-chinese',
+    componentName: 'IconFoodChinese',
+    Icon: IconFoodChinese,
+  },
+  { name: 'food-diet', componentName: 'IconFoodDiet', Icon: IconFoodDiet },
+  {
+    name: 'food-fastfood',
+    componentName: 'IconFoodFastfood',
+    Icon: IconFoodFastfood,
+  },
+  {
+    name: 'food-japanese',
+    componentName: 'IconFoodJapanese',
+    Icon: IconFoodJapanese,
+  },
+  {
+    name: 'food-korean',
+    componentName: 'IconFoodKorean',
+    Icon: IconFoodKorean,
+  },
+  {
+    name: 'food-western',
+    componentName: 'IconFoodWestern',
+    Icon: IconFoodWestern,
+  },
+];
 
 <Meta title='Iconography' />
 
@@ -50,12 +112,14 @@ import ArrowSvg from '@mumukji/icons/arrow-right.svg';
 
 - 일반적인 UI 흐름에 사용되는 아이콘입니다. (기본 24px)
 
-{/* TODO: 리액트 컴포넌트명 복사 컴포넌트 추가 */}
-
 <IconGallery>
-  <IconItem name='arrow-right'>
-    <IconArrowRight />
-  </IconItem>
+  {basicIcons.map(({ name, componentName, Icon }) => (
+    <Copy key={name} copyText={componentName}>
+      <IconItem name={name}>
+        <Icon />
+      </IconItem>
+    </Copy>
+  ))}
 </IconGallery>
 
 <br />
@@ -63,12 +127,13 @@ import ArrowSvg from '@mumukji/icons/arrow-right.svg';
 ### Food Icons
 
 - 음식 카테고리에 특화된 컬러 아이콘입니다. (기본 48px)
-- 업데이트 예정
-
-{/* TODO: 푸드 아이콘 업데이트 */}
 
 <IconGallery>
-  <IconItem name='arrow-right'>
-    <IconArrowRight />
-  </IconItem>
+  {foodIcons.map(({ name, componentName, Icon }) => (
+    <Copy key={name} copyText={componentName}>
+      <IconItem name={name}>
+        <Icon />
+      </IconItem>
+    </Copy>
+  ))}
 </IconGallery>
