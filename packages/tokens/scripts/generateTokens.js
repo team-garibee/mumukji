@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import cssnano from 'cssnano';
 import postcss from 'postcss';
+import { toCamelCase, toKebabCase } from '../../../scripts/stringUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,14 +17,6 @@ const PATHS = {
 };
 
 const SKIP_KEYS = ['$themes', '$metadata'];
-
-/** camelCase → kebab-case 변환 */
-const toKebabCase = (str) =>
-  str.replace(/([A-Z])/g, (char) => `-${char.toLowerCase()}`);
-
-/** 'font-size' 같은 형식을 'fontSize'로 변환 */
-const toCamelCase = (str) =>
-  str.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
 
 /** 숫자로 변환 가능한 값은 숫자로, 아니면 문자열 그대로 반환 */
 const parseValue = (value) => {
