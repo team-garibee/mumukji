@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { transform } from '@svgr/core';
 import { optimize } from 'svgo';
 import prettierConfig from '../../../prettier.config.mjs';
+import { toPascalCase } from '../../../scripts/stringUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,13 +20,6 @@ const PATHS = {
 };
 
 const COLOR_ICON_CATEGORY = 'food';
-
-/** kebab-case → PascalCase 변환 */
-const toPascalCase = (str) => {
-  return str.replace(/(^\w|-\w)/g, (text) =>
-    text.replace(/-/, '').toUpperCase(),
-  );
-};
 
 /** 파일명 생성 유틸 */
 const getIconNames = (file, category) => {
