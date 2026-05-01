@@ -10,8 +10,6 @@
 - **Optimized**: SVGO를 통해 최적화된 SVG 파일
 - **Dual Format**: React 컴포넌트 및 원본 SVG 파일 지원
 
----
-
 ## 설치
 
 ```bash
@@ -21,8 +19,6 @@ npm install @mumukji/icons
 # pnpm 사용 시
 pnpm add @mumukji/icons
 ```
-
----
 
 ## 사용
 
@@ -59,8 +55,6 @@ export default function Example() {
 ```tsx
 import arrowRight from '@mumukji/icons/IconArrowRight';
 ```
-
----
 
 ## 아이콘 목록
 
