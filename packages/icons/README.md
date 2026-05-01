@@ -66,10 +66,30 @@ import arrowRight from '@mumukji/icons/IconArrowRight';
 
 ### 일반 아이콘
 
-|                                                                  Preview                                                                  |    Component     |        SVG        |
-| :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------: | :---------------: |
-| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-arrow-right.svg" width="24" /> | `IconArrowRight` | `arrow-right.svg` |
-|    <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-copy.svg" width="24" />     |    `IconCopy`    |    `copy.svg`     |
+|                                                                       Preview                                                                       |         Component         |             SVG             |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: | :-------------------------: |
+|   <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-add-circle-filled.svg" width="24" />   |   `IconAddCircleFilled`   |   `add-circle-filled.svg`   |
+|  <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-add-circle-outlined.svg" width="24" />  |  `IconAddCircleOutlined`  |  `add-circle-outlined.svg`  |
+|          <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-add.svg" width="24" />          |         `IconAdd`         |          `add.svg`          |
+|      <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-arrow-down.svg" width="24" />       |      `IconArrowDown`      |      `arrow-down.svg`       |
+|      <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-arrow-left.svg" width="24" />       |      `IconArrowLeft`      |      `arrow-left.svg`       |
+|      <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-arrow-right.svg" width="24" />      |     `IconArrowRight`      |      `arrow-right.svg`      |
+|       <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-arrow-up.svg" width="24" />        |       `IconArrowUp`       |       `arrow-up.svg`        |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-check.svg" width="24" />         |        `IconCheck`        |         `check.svg`         |
+|  <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-close-circle-filled.svg" width="24" />  |  `IconCloseCircleFilled`  |  `close-circle-filled.svg`  |
+| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-close-circle-outlined.svg" width="24" /> | `IconCloseCircleOutlined` | `close-circle-outlined.svg` |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-close.svg" width="24" />         |        `IconClose`        |         `close.svg`         |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-copy.svg" width="24" />          |        `IconCopy`         |         `copy.svg`          |
+|      <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-edit-group.svg" width="24" />       |      `IconEditGroup`      |      `edit-group.svg`       |
+|       <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-edit-list.svg" width="24" />       |      `IconEditList`       |       `edit-list.svg`       |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-edit.svg" width="24" />          |        `IconEdit`         |         `edit.svg`          |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-home.svg" width="24" />          |        `IconHome`         |         `home.svg`          |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-rice.svg" width="24" />          |        `IconRice`         |         `rice.svg`          |
+|        <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-setting.svg" width="24" />        |       `IconSetting`       |        `setting.svg`        |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-share.svg" width="24" />         |        `IconShare`        |         `share.svg`         |
+|      <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-star-filled.svg" width="24" />      |     `IconStarFilled`      |      `star-filled.svg`      |
+|     <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-star-outlined.svg" width="24" />     |    `IconStarOutlined`     |     `star-outlined.svg`     |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-trash.svg" width="24" />         |        `IconTrash`        |         `trash.svg`         |
 
 ### 음식 아이콘
 
