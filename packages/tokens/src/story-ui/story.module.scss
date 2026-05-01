@@ -1,0 +1,142 @@
+// 공통 클래스
+.title {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.sampleText {
+  font-family: 'A2z', sans-serif;
+}
+
+.tokenKey {
+  width: 32px;
+  color: #888;
+  font-size: 12px;
+}
+
+.tokenMeta {
+  color: #888;
+  font-size: 11px;
+}
+
+// Color, Radius에 사용
+.colorList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  &.gridWide {
+    gap: 16px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    .box {
+      width: 48px;
+      height: 48px;
+    }
+
+    .label {
+      font-size: 11px;
+    }
+
+    .subLabel {
+      color: #888;
+      font-size: 10px;
+    }
+  }
+}
+
+// Spacing에서 사용
+.spacingList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .spacingRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .spacingBar {
+      height: 16px;
+      border-radius: 2px;
+      background: #f9603e;
+    }
+
+    .spacingValue {
+      font-size: 12px;
+    }
+  }
+}
+
+// Typography에서 사용
+.typographyList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.fontSizeList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .fontSizeRow {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+}
+
+.fontWeightList {
+  display: flex;
+  flex-direction: column;
+  width: 540px;
+
+  .fontWeightRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 'A2z', sans-serif;
+
+    &:first-child {
+      border-top: 1px solid #e5e5e5;
+    }
+  }
+}
+
+.fontFamilyList {
+  display: flex;
+  gap: 16px;
+}
+
+.lineHeightList {
+  display: flex;
+  gap: 16px;
+
+  .lineHeightItem {
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #eee;
+
+    .lineHeightLabel {
+      display: block;
+      color: #888;
+      font-size: 12px;
+    }
+  }
+}

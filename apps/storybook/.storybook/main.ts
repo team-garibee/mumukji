@@ -17,6 +17,7 @@ function getAbsolutePath(value: string) {
 const config: StorybookConfig = {
   stories: [
     '../docs/*.mdx',
+    '../components/**/*.stories.@(ts|tsx)',
     '../../../packages/**/src/**/*.stories.@(ts|tsx|mdx)',
     '../../../packages/**/src/**/*.mdx',
   ],
@@ -33,6 +34,10 @@ const config: StorybookConfig = {
       resolve: {
         alias: {
           '@mumukji/icons': join(__dirname, '../../../packages/icons/src'),
+          '@mumukji/tokens/css': join(
+            __dirname,
+            '../../../packages/tokens/dist/css/primitive.css',
+          ),
           '@mumukji/tokens': join(__dirname, '../../../packages/tokens/src'),
           '@mumukji/ui': join(__dirname, '../../../packages/ui/src'),
         },

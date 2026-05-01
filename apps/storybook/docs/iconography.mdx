@@ -1,5 +1,131 @@
 import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
-import { IconArrowRight } from '@mumukji/icons';
+import {
+  IconAdd,
+  IconAddCircleFilled,
+  IconAddCircleOutlined,
+  IconArrowDown,
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowUp,
+  IconCheck,
+  IconClose,
+  IconCloseCircleFilled,
+  IconCloseCircleOutlined,
+  IconCopy,
+  IconEdit,
+  IconEditGroup,
+  IconEditList,
+  IconHome,
+  IconRice,
+  IconSetting,
+  IconShare,
+  IconStarFilled,
+  IconStarOutlined,
+  IconTrash,
+  IconFoodAsian,
+  IconFoodBunsik,
+  IconFoodChicken,
+  IconFoodChinese,
+  IconFoodDiet,
+  IconFoodFastfood,
+  IconFoodJapanese,
+  IconFoodKorean,
+  IconFoodWestern,
+} from '@mumukji/icons';
+import Copy from '../components/copy/Copy';
+
+export const basicIcons = [
+  { name: 'add', componentName: 'IconAdd', Icon: IconAdd },
+  {
+    name: 'add-circle-filled',
+    componentName: 'IconAddCircleFilled',
+    Icon: IconAddCircleFilled,
+  },
+  {
+    name: 'add-circle-outlined',
+    componentName: 'IconAddCircleOutlined',
+    Icon: IconAddCircleOutlined,
+  },
+  { name: 'arrow-down', componentName: 'IconArrowDown', Icon: IconArrowDown },
+  { name: 'arrow-left', componentName: 'IconArrowLeft', Icon: IconArrowLeft },
+  {
+    name: 'arrow-right',
+    componentName: 'IconArrowRight',
+    Icon: IconArrowRight,
+  },
+  { name: 'arrow-up', componentName: 'IconArrowUp', Icon: IconArrowUp },
+  { name: 'check', componentName: 'IconCheck', Icon: IconCheck },
+  { name: 'close', componentName: 'IconClose', Icon: IconClose },
+  {
+    name: 'close-circle-filled',
+    componentName: 'IconCloseCircleFilled',
+    Icon: IconCloseCircleFilled,
+  },
+  {
+    name: 'close-circle-outlined',
+    componentName: 'IconCloseCircleOutlined',
+    Icon: IconCloseCircleOutlined,
+  },
+  { name: 'copy', componentName: 'IconCopy', Icon: IconCopy },
+  { name: 'edit', componentName: 'IconEdit', Icon: IconEdit },
+  { name: 'edit-group', componentName: 'IconEditGroup', Icon: IconEditGroup },
+  { name: 'edit-list', componentName: 'IconEditList', Icon: IconEditList },
+  { name: 'home', componentName: 'IconHome', Icon: IconHome },
+  { name: 'rice', componentName: 'IconRice', Icon: IconRice },
+  { name: 'setting', componentName: 'IconSetting', Icon: IconSetting },
+  { name: 'share', componentName: 'IconShare', Icon: IconShare },
+  {
+    name: 'star-filled',
+    componentName: 'IconStarFilled',
+    Icon: IconStarFilled,
+  },
+  {
+    name: 'star-outlined',
+    componentName: 'IconStarOutlined',
+    Icon: IconStarOutlined,
+  },
+  { name: 'trash', componentName: 'IconTrash', Icon: IconTrash },
+];
+
+export const foodIcons = [
+  { name: 'food-asian', componentName: 'IconFoodAsian', Icon: IconFoodAsian },
+  {
+    name: 'food-bunsik',
+    componentName: 'IconFoodBunsik',
+    Icon: IconFoodBunsik,
+  },
+  {
+    name: 'food-chicken',
+    componentName: 'IconFoodChicken',
+    Icon: IconFoodChicken,
+  },
+  {
+    name: 'food-chinese',
+    componentName: 'IconFoodChinese',
+    Icon: IconFoodChinese,
+  },
+  { name: 'food-diet', componentName: 'IconFoodDiet', Icon: IconFoodDiet },
+  {
+    name: 'food-fastfood',
+    componentName: 'IconFoodFastfood',
+    Icon: IconFoodFastfood,
+  },
+  {
+    name: 'food-japanese',
+    componentName: 'IconFoodJapanese',
+    Icon: IconFoodJapanese,
+  },
+  {
+    name: 'food-korean',
+    componentName: 'IconFoodKorean',
+    Icon: IconFoodKorean,
+  },
+  {
+    name: 'food-western',
+    componentName: 'IconFoodWestern',
+    Icon: IconFoodWestern,
+  },
+];
 
 <Meta title='Iconography' />
 
@@ -48,27 +174,30 @@ import ArrowSvg from '@mumukji/icons/arrow-right.svg';
 
 ### Basic Icons
 
-- 일반적인 UI 흐름에 사용되는 아이콘입니다. (기본 24px)
-
-{/* TODO: 리액트 컴포넌트명 복사 컴포넌트 추가 */}
+- 일반적인 UI 흐름에 사용되는 아이콘입니다. (기본 `24px`)
 
 <IconGallery>
-  <IconItem name='arrow-right'>
-    <IconArrowRight />
-  </IconItem>
+  {basicIcons.map(({ name, componentName, Icon }) => (
+    <Copy key={name} copyText={componentName}>
+      <IconItem name={name}>
+        <Icon />
+      </IconItem>
+    </Copy>
+  ))}
 </IconGallery>
 
 <br />
 
 ### Food Icons
 
-- 음식 카테고리에 특화된 컬러 아이콘입니다. (기본 48px)
-- 업데이트 예정
-
-{/* TODO: 푸드 아이콘 업데이트 */}
+- 음식 카테고리에 특화된 컬러 아이콘입니다. (기본 `48px`)
 
 <IconGallery>
-  <IconItem name='arrow-right'>
-    <IconArrowRight />
-  </IconItem>
+  {foodIcons.map(({ name, componentName, Icon }) => (
+    <Copy key={name} copyText={componentName}>
+      <IconItem name={name}>
+        <Icon />
+      </IconItem>
+    </Copy>
+  ))}
 </IconGallery>
