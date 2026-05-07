@@ -1,7 +1,27 @@
 import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
 import {
+  IconAdd,
+  IconAddCircleFilled,
+  IconAddCircleOutlined,
+  IconArrowDown,
+  IconArrowLeft,
   IconArrowRight,
+  IconArrowUp,
+  IconCheck,
+  IconClose,
+  IconCloseCircleFilled,
+  IconCloseCircleOutlined,
   IconCopy,
+  IconEdit,
+  IconEditGroup,
+  IconEditList,
+  IconHome,
+  IconRice,
+  IconSetting,
+  IconShare,
+  IconStarFilled,
+  IconStarOutlined,
+  IconTrash,
   IconFoodAsian,
   IconFoodBunsik,
   IconFoodChicken,
@@ -15,12 +35,56 @@ import {
 import Copy from '../components/copy/Copy';
 
 export const basicIcons = [
+  { name: 'add', componentName: 'IconAdd', Icon: IconAdd },
+  {
+    name: 'add-circle-filled',
+    componentName: 'IconAddCircleFilled',
+    Icon: IconAddCircleFilled,
+  },
+  {
+    name: 'add-circle-outlined',
+    componentName: 'IconAddCircleOutlined',
+    Icon: IconAddCircleOutlined,
+  },
+  { name: 'arrow-down', componentName: 'IconArrowDown', Icon: IconArrowDown },
+  { name: 'arrow-left', componentName: 'IconArrowLeft', Icon: IconArrowLeft },
   {
     name: 'arrow-right',
     componentName: 'IconArrowRight',
     Icon: IconArrowRight,
   },
+  { name: 'arrow-up', componentName: 'IconArrowUp', Icon: IconArrowUp },
+  { name: 'check', componentName: 'IconCheck', Icon: IconCheck },
+  { name: 'close', componentName: 'IconClose', Icon: IconClose },
+  {
+    name: 'close-circle-filled',
+    componentName: 'IconCloseCircleFilled',
+    Icon: IconCloseCircleFilled,
+  },
+  {
+    name: 'close-circle-outlined',
+    componentName: 'IconCloseCircleOutlined',
+    Icon: IconCloseCircleOutlined,
+  },
   { name: 'copy', componentName: 'IconCopy', Icon: IconCopy },
+  { name: 'edit', componentName: 'IconEdit', Icon: IconEdit },
+  { name: 'edit-group', componentName: 'IconEditGroup', Icon: IconEditGroup },
+  { name: 'edit-list', componentName: 'IconEditList', Icon: IconEditList },
+  { name: 'home', componentName: 'IconHome', Icon: IconHome },
+  { name: 'rice', componentName: 'IconRice', Icon: IconRice },
+  { name: 'setting', componentName: 'IconSetting', Icon: IconSetting },
+  { name: 'share', componentName: 'IconShare', Icon: IconShare },
+  {
+    name: 'star-filled',
+    componentName: 'IconStarFilled',
+    Icon: IconStarFilled,
+  },
+  {
+    name: 'star-outlined',
+    componentName: 'IconStarOutlined',
+    Icon: IconStarOutlined,
+  },
+  { name: 'trash', componentName: 'IconTrash', Icon: IconTrash },
 ];
 
 export const foodIcons = [
@@ -110,7 +174,7 @@ import ArrowSvg from '@mumukji/icons/arrow-right.svg';
 
 ### Basic Icons
 
-- 일반적인 UI 흐름에 사용되는 아이콘입니다. (기본 24px)
+- 일반적인 UI 흐름에 사용되는 아이콘입니다. (기본 `24px`)
 
 <IconGallery>
   {basicIcons.map(({ name, componentName, Icon }) => (
@@ -126,7 +190,7 @@ import ArrowSvg from '@mumukji/icons/arrow-right.svg';
 
 ### Food Icons
 
-- 음식 카테고리에 특화된 컬러 아이콘입니다. (기본 48px)
+- 음식 카테고리에 특화된 컬러 아이콘입니다. (기본 `48px`)
 
 <IconGallery>
   {foodIcons.map(({ name, componentName, Icon }) => (
