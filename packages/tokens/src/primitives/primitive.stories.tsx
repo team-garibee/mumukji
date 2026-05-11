@@ -10,7 +10,7 @@ import {
   lineHeight,
   opacity,
   radius,
-} from './primitive';
+} from './primitives';
 
 const meta: Meta = {
   title: 'Tokens/Primitive',

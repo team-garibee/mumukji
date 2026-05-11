@@ -11,7 +11,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PATHS = {
-  PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitive.json'),
+  PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitives.json'),
+  SEMANTICS_JSON: path.resolve(__dirname, '../src/raw/semantics.json'),
   PRIMITIVES_DIR: path.resolve(__dirname, '../src/primitives'),
   CSS_DIR: path.resolve(__dirname, '../dist/css'),
 };
@@ -118,7 +119,7 @@ const generateTokens = async () => {
     // primitive.ts 저장
     const tsContent = tsLines.join('\n\n') + '\n';
     await fs.writeFile(
-      path.join(PATHS.PRIMITIVES_DIR, 'primitive.ts'),
+      path.join(PATHS.PRIMITIVES_DIR, 'primitives.ts'),
       tsContent,
     );
 
@@ -153,8 +154,45 @@ const generateTokens = async () => {
       'declare const styles: string;\nexport default styles;\n',
     );
 
-    const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
-    console.log(`✅ ${tokenName} 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
+    // semantics.json → semantic.css 생성
+    const semanticsRaw = await fs.readFile(PATHS.SEMANTICS_JSON, 'utf8');
+    const semanticsJson = JSON.parse(semanticsRaw);
+    const semanticCssVars = [];
+
+    const resolveReference = (value) => {
+      // {color.vermilion.500} → var(--color-vermilion-500)
+      return value.replace(/\{([^}]+)\}/g, (_, ref) => {
+        const varName = ref.split('.').map(toKebabCase).join('-');
+        return `var(--${varName})`;
+      });
+    };
+
+    const flattenSemanticVars = (obj, prefix) => {
+      for (const [key, val] of Object.entries(obj)) {
+        const varName = `${prefix}-${toKebabCase(String(key))}`;
+        if (typeof val === 'object' && val !== null && !('value' in val)) {
+          flattenSemanticVars(val, varName);
+        } else if ('value' in val) {
+          const cssValue = resolveReference(String(val.value));
+          semanticCssVars.push(`  ${varName}: ${cssValue};`);
+        }
+      }
+    };
+
+    for (const [key, value] of Object.entries(semanticsJson)) {
+      flattenSemanticVars(value, `--${toKebabCase(key)}`);
+    }
+
+    const semanticCssContent = `:root {\n${semanticCssVars.join('\n')}\n}\n`;
+    const minifiedSemantic = await postcss([cssnano]).process(semanticCssContent, { from: undefined });
+    await fs.writeFile(path.join(PATHS.CSS_DIR, 'semantic.css'), minifiedSemantic.css);
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'semantic.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
+    console.log(`✅ primitives 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
+    console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (CSS)`);
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
     process.exit(1);
