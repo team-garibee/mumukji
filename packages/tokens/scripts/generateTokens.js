@@ -184,8 +184,14 @@ const generateTokens = async () => {
     }
 
     const semanticCssContent = `:root {\n${semanticCssVars.join('\n')}\n}\n`;
-    const minifiedSemantic = await postcss([cssnano]).process(semanticCssContent, { from: undefined });
-    await fs.writeFile(path.join(PATHS.CSS_DIR, 'semantic.css'), minifiedSemantic.css);
+    const minifiedSemantic = await postcss([cssnano]).process(
+      semanticCssContent,
+      { from: undefined },
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'semantic.css'),
+      minifiedSemantic.css,
+    );
     await fs.writeFile(
       path.join(PATHS.CSS_DIR, 'semantic.css.d.ts'),
       'declare const styles: string;\nexport default styles;\n',
