@@ -15,6 +15,10 @@ ls:
     .dir: kebabcase
     .tsx: PascalCase
 
+  packages/brand-assets:
+    .dir: kebabcase
+    .ts: camelcase
+
 ignore:
   - node_modules
   - '**/node_modules'
