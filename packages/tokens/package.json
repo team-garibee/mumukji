@@ -20,6 +20,10 @@
     "./css": {
       "types": "./dist/css/primitive.css.d.ts",
       "default": "./dist/css/primitive.css"
+    },
+    "./semantic-css": {
+      "types": "./dist/css/semantic.css.d.ts",
+      "default": "./dist/css/semantic.css"
     }
   },
   "keywords": [
