@@ -1,0 +1,27 @@
+{
+  "name": "@mumukji/brand-assets",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mumukji branding character assets (images and Lottie animations). Internal use only.",
+  "author": "team-garibee",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-garibee/mumukji-ui.git",
+    "directory": "packages/brand-assets"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./images/*": "./src/images/*",
+    "./lotties/*": "./src/lotties/*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  }
+}
