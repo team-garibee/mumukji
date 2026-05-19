@@ -1,0 +1,172 @@
+{
+  "typo": {
+    "heading": {
+      "xl": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "7 Bold",
+          "fontSize": 48,
+          "letterSpacing": "0%",
+          "lineHeight": "139.9999976158142%"
+        },
+        "type": "typography"
+      },
+      "lg": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "7 Bold",
+          "fontSize": 36,
+          "letterSpacing": "0%",
+          "lineHeight": "139.9999976158142%"
+        },
+        "type": "typography"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "6 SemiBold",
+          "fontSize": 24,
+          "letterSpacing": "0%",
+          "lineHeight": "139.9999976158142%"
+        },
+        "type": "typography"
+      },
+      "sm": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "6 SemiBold",
+          "fontSize": 20,
+          "letterSpacing": "0%",
+          "lineHeight": "139.9999976158142%"
+        },
+        "type": "typography"
+      }
+    },
+    "body": {
+      "md-strong": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "6 SemiBold",
+          "fontSize": 16,
+          "letterSpacing": "0%",
+          "lineHeight": "160.0000023841858%"
+        },
+        "type": "typography"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "4 Regular",
+          "fontSize": 16,
+          "letterSpacing": "0%",
+          "lineHeight": "160.0000023841858%"
+        },
+        "type": "typography"
+      },
+      "sm-strong": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "6 SemiBold",
+          "fontSize": 14,
+          "letterSpacing": "0%",
+          "lineHeight": "160.0000023841858%"
+        },
+        "type": "typography"
+      },
+      "sm": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "4 Regular",
+          "fontSize": 14,
+          "letterSpacing": "0%",
+          "lineHeight": "160.0000023841858%"
+        },
+        "type": "typography"
+      }
+    },
+    "label": {
+      "lg-strong": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "7 Bold",
+          "fontSize": 16,
+          "letterSpacing": "0%",
+          "lineHeight": "100%"
+        },
+        "type": "typography"
+      },
+      "lg": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "5 Medium",
+          "fontSize": 16,
+          "letterSpacing": "0%",
+          "lineHeight": "100%"
+        },
+        "type": "typography"
+      },
+      "md-strong": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "6 SemiBold",
+          "fontSize": 14,
+          "letterSpacing": "0%",
+          "lineHeight": "100%"
+        },
+        "type": "typography"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "4 Regular",
+          "fontSize": 14,
+          "letterSpacing": "0%",
+          "lineHeight": "100%"
+        },
+        "type": "typography"
+      },
+      "sm": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "5 Medium",
+          "fontSize": 12,
+          "letterSpacing": "0%",
+          "lineHeight": "100%"
+        },
+        "type": "typography"
+      },
+      "sm-strong": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "7 Bold",
+          "fontSize": 12,
+          "letterSpacing": "0%",
+          "lineHeight": "100%"
+        },
+        "type": "typography"
+      }
+    },
+    "caption": {
+      "sm": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "4 Regular",
+          "fontSize": 10,
+          "letterSpacing": "0%",
+          "lineHeight": "139.9999976158142%"
+        },
+        "type": "typography"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "A2Z",
+          "fontStyle": "4 Regular",
+          "fontSize": 12,
+          "letterSpacing": "0%",
+          "lineHeight": "139.9999976158142%"
+        },
+        "type": "typography"
+      }
+    }
+  }
+}
