@@ -218,7 +218,9 @@ const generateTokens = async () => {
     for (const [key, value] of Object.entries(semanticsJson)) {
       const exportName = toCamelCase(key);
       const extracted = extractSemanticValues(value);
-      semanticTsLines.push(`export const ${exportName} = ${JSON.stringify(extracted, null, 2)} as const;`);
+      semanticTsLines.push(
+        `export const ${exportName} = ${JSON.stringify(extracted, null, 2)} as const;`,
+      );
     }
     await fs.writeFile(
       path.join(PATHS.SEMANTICS_DIR, 'semantics.ts'),
