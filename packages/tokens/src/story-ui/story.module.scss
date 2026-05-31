@@ -140,3 +140,201 @@
     }
   }
 }
+
+// Semantic Token 페이지
+.semanticPage {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 32px;
+  font-family: 'A2z', sans-serif;
+}
+
+.semanticPageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e5e5;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: #888;
+    font-size: 13px;
+  }
+}
+
+.semanticSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  h2 {
+    margin: 0 0 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+// TypoTokenCard
+.typoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.typoCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.typoCardName {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.typoCardDescription {
+  margin: 0;
+  color: #888;
+  font-size: 12px;
+}
+
+.typoCardBody {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.typoCardPreview {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  padding: 20px 24px;
+  border-radius: 8px;
+  background: #fffaf2;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.typoCardTable {
+  flex-shrink: 0;
+  width: 280px;
+  border-collapse: collapse;
+  font-size: 12px;
+
+  th {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f7f7f7;
+    color: #424242;
+    font-weight: 600;
+    text-align: center;
+
+    &:first-child {
+      border-radius: 4px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 4px 0 0;
+    }
+  }
+
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #f2f2f2;
+    color: #424242;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    &:first-child {
+      color: #808080;
+    }
+
+    &:nth-child(2) {
+      color: #3d5cff;
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// Semantic Color 스토리
+.colorTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  th {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f7f7f7;
+    color: #424242;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f2f2f2;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.colorSwatch {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+}
+
+.colorSwatchFg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: #fffaf2;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.colorSwatchStroke {
+  width: 40px;
+  height: 40px;
+  border: 2px solid;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.colorTokenName {
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.colorPrimitive {
+  color: #3d5cff;
+  font-size: 12px;
+}
