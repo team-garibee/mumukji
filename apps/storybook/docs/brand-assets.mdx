@@ -1,0 +1,87 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as WordmarkStories from '../stories/brand-asset/Wordmark.stories';
+import * as CharacterStories from '../stories/brand-asset/Characters.stories';
+import * as LottieStories from '../stories/brand-asset/Lotties.stories';
+
+<Meta title='Brand Assets' />
+
+# Brand Assets
+
+- 머먹지 서비스의 브랜딩 에셋을 모아둔 비공개 패키지입니다.
+- npm에 배포하지 않으며, 모노레포 내부(`workspace:*`)에서만 사용합니다.
+
+<br />
+
+## Usage
+
+```zsh
+pnpm add @mumukji/brand-assets
+```
+
+```tsx
+import { Wordmark, mongjiDefault, mukjiDancing } from '@mumukji/brand-assets';
+```
+
+<br />
+
+## 제공 파일
+
+<table>
+  <thead>
+    <tr>
+      <th>종류</th>
+      <th>경로</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Logo</td>
+      <td>
+        <code>src/svgs/logo/wordmark.tsx</code>
+      </td>
+      <td>워드마크 SVG React 컴포넌트</td>
+    </tr>
+    <tr>
+      <td>Characters</td>
+      <td>
+        <code>src/images/character/{'{mongji|mukji|mungji}/'}</code>
+      </td>
+      <td>캐릭터별 상태 이미지 (PNG)</td>
+    </tr>
+    <tr>
+      <td>Lotties</td>
+      <td>
+        <code>src/lotties/character/</code>
+      </td>
+      <td>Lottie JSON 데이터</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Logo
+
+<Canvas of={WordmarkStories.Default} />
+
+<br />
+
+## Characters
+
+<Canvas of={CharacterStories.All} />
+
+<br />
+
+## Lotties
+
+Lottie JSON 데이터만 제공합니다. 재생은 소비 측에서 원하는 라이브러리를 사용하세요.
+
+```tsx
+import Lottie from 'lottie-react';
+import { mukjiDancing } from '@mumukji/brand-assets';
+
+<Lottie animationData={mukjiDancing} loop />;
+```
+
+<Canvas of={LottieStories.All} />

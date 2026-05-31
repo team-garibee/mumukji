@@ -18,6 +18,7 @@ const config: StorybookConfig = {
   stories: [
     '../docs/*.mdx',
     '../components/**/*.stories.@(ts|tsx)',
+    '../stories/**/*.stories.@(ts|tsx)',
     '../../../packages/**/src/**/*.stories.@(ts|tsx|mdx)',
     '../../../packages/**/src/**/*.mdx',
   ],
@@ -33,6 +34,10 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       resolve: {
         alias: {
+          '@mumukji/brand-assets': join(
+            __dirname,
+            '../../../packages/brand-assets/src',
+          ),
           '@mumukji/icons': join(__dirname, '../../../packages/icons/src'),
           '@mumukji/tokens/css': join(
             __dirname,
