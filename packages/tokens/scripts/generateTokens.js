@@ -14,6 +14,7 @@ const PATHS = {
   PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitives.json'),
   SEMANTICS_JSON: path.resolve(__dirname, '../src/raw/semantics.json'),
   PRIMITIVES_DIR: path.resolve(__dirname, '../src/primitives'),
+  SEMANTICS_DIR: path.resolve(__dirname, '../src/semantics'),
   CSS_DIR: path.resolve(__dirname, '../dist/css'),
 };
 
@@ -89,6 +90,7 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
 const generateTokens = async () => {
   try {
     await fs.mkdir(PATHS.PRIMITIVES_DIR, { recursive: true });
+    await fs.mkdir(PATHS.SEMANTICS_DIR, { recursive: true });
     await fs.mkdir(PATHS.CSS_DIR, { recursive: true });
 
     const raw = await fs.readFile(PATHS.PRIMITIVE_JSON, 'utf8');
@@ -197,8 +199,34 @@ const generateTokens = async () => {
       'declare const styles: string;\nexport default styles;\n',
     );
 
+    // semantics.ts 저장
+    const extractSemanticValues = (obj) => {
+      if (typeof obj !== 'object' || obj === null) {
+        return obj;
+      }
+      if ('value' in obj) {
+        return resolveReference(String(obj.value));
+      }
+      const result = {};
+      for (const [key, val] of Object.entries(obj)) {
+        result[key] = extractSemanticValues(val);
+      }
+      return result;
+    };
+
+    const semanticTsLines = [];
+    for (const [key, value] of Object.entries(semanticsJson)) {
+      const exportName = toCamelCase(key);
+      const extracted = extractSemanticValues(value);
+      semanticTsLines.push(`export const ${exportName} = ${JSON.stringify(extracted, null, 2)} as const;`);
+    }
+    await fs.writeFile(
+      path.join(PATHS.SEMANTICS_DIR, 'semantics.ts'),
+      semanticTsLines.join('\n\n') + '\n',
+    );
+
     console.log(`✅ primitives 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
-    console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (CSS)`);
+    console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
     process.exit(1);
