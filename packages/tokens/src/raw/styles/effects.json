@@ -1,0 +1,59 @@
+{
+  "shadow": {
+    "xs": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.15)",
+        "offsetX": 0,
+        "offsetY": 0,
+        "blur": 6,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "s": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 6,
+        "blur": 12,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "m": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 12,
+        "blur": 26,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "l": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 12,
+        "blur": 40,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "xl": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 24,
+        "blur": 48,
+        "spread": 0
+      },
+      "type": "shadow"
+    }
+  }
+}
