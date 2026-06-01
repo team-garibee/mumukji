@@ -4,7 +4,7 @@
       "value": {
         "fontFamily": "{font-family.default}",
         "fontWeight": "{font-weight.700}",
-        "fontSize": "{spacing.48}",
+        "fontSize": "{font-size.48}",
         "letterSpacing": "0%",
         "lineHeight": "140%"
       },
