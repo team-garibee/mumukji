@@ -19,21 +19,15 @@ const FONT_WEIGHT_LABEL: Record<number, string> = {
   800: 'ExtraBold',
 };
 
-function fw(value: number) {
-  return {
-    primitive: `font-weight/${value}`,
-    value,
-    label: FONT_WEIGHT_LABEL[value] ?? String(value),
-  };
-}
+const fw = (value: number) => ({
+  primitive: `font-weight/${value}`,
+  value,
+  label: FONT_WEIGHT_LABEL[value] ?? String(value),
+});
 
-function fs(value: number) {
-  return { primitive: `font-size/${value}`, value };
-}
+const fs = (value: number) => ({ primitive: `font-size/${value}`, value });
 
-function lh(key: string, value: number) {
-  return { key, value };
-}
+const lh = (key: string, value: number) => ({ key, value });
 
 const HEADING_TOKENS = [
   {
@@ -169,7 +163,7 @@ const CAPTION_TOKENS = [
   },
 ];
 
-function SemanticTypographyPage() {
+const SemanticTypographyPage = () => {
   return (
     <div className={styles.semanticPage}>
       <div className={styles.semanticPageHeader}>
@@ -206,7 +200,7 @@ function SemanticTypographyPage() {
       </section>
     </div>
   );
-}
+};
 
 export const Typography: StoryObj = {
   name: 'Typography',
@@ -220,12 +214,12 @@ const COLOR_GROUPS = [
   { key: 'stroke', title: 'stroke', tokens: Object.entries(color.stroke) },
 ] as const;
 
-function extractPrimitive(value: string): string {
+const extractPrimitive = (value: string): string => {
   const match = value.match(/var\(--(.+?)\)/);
   return match ? match[1] : value;
-}
+};
 
-function ColorSwatch({ group, value }: { group: string; value: string }) {
+const ColorSwatch = ({ group, value }: { group: string; value: string }) => {
   if (group === 'fg') {
     return (
       <div className={styles.colorSwatchFg} style={{ color: value }}>
@@ -242,9 +236,9 @@ function ColorSwatch({ group, value }: { group: string; value: string }) {
     );
   }
   return <div className={styles.colorSwatch} style={{ background: value }} />;
-}
+};
 
-function SemanticColorPage() {
+const SemanticColorPage = () => {
   return (
     <div className={styles.semanticPage}>
       <div className={styles.semanticPageHeader}>
@@ -283,7 +277,7 @@ function SemanticColorPage() {
       ))}
     </div>
   );
-}
+};
 
 export const Color: StoryObj = {
   parameters: { layout: 'fullscreen' },
