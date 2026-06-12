@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
 const PATHS = {
   PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitives.json'),
   SEMANTICS_JSON: path.resolve(__dirname, '../src/raw/semantics.json'),
+  TYPOGRAPHY_JSON: path.resolve(__dirname, '../src/raw/styles/typography.json'),
   PRIMITIVES_DIR: path.resolve(__dirname, '../src/primitives'),
   SEMANTICS_DIR: path.resolve(__dirname, '../src/semantics'),
   CSS_DIR: path.resolve(__dirname, '../dist/css'),
@@ -227,8 +228,45 @@ const generateTokens = async () => {
       semanticTsLines.join('\n\n') + '\n',
     );
 
+    // typography.json → typography.css 생성
+    const typographyRaw = await fs.readFile(PATHS.TYPOGRAPHY_JSON, 'utf8');
+    const typographyJson = JSON.parse(typographyRaw);
+    const typoCssClasses = [];
+
+    const camelToKebab = (str) =>
+      str.replace(/([A-Z])/g, (m) => `-${m.toLowerCase()}`);
+
+    for (const [tokenName, tokenData] of Object.entries(typographyJson.typo)) {
+      const { value } = tokenData;
+      const props = Object.entries(value)
+        .map(([prop, val]) => {
+          const cssProp = camelToKebab(prop);
+          const cssVal =
+            typeof val === 'string' && val.match(/^\{.+\}$/)
+              ? resolveReference(val)
+              : val;
+          return `  ${cssProp}: ${cssVal};`;
+        })
+        .join('\n');
+      typoCssClasses.push(`.typo-${tokenName} {\n${props}\n}`);
+    }
+
+    const typoCssContent = typoCssClasses.join('\n') + '\n';
+    const minifiedTypo = await postcss([cssnano]).process(typoCssContent, {
+      from: undefined,
+    });
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'typography.css'),
+      minifiedTypo.css,
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'typography.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
     console.log(`✅ primitives 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
     console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
+    console.log(`✅ typography 토큰이 성공적으로 생성되었습니다! (CSS)`);
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
     process.exit(1);

@@ -203,7 +203,6 @@ const SemanticTypographyPage = () => {
 };
 
 export const Typography: StoryObj = {
-  name: 'Typography',
   parameters: { layout: 'fullscreen' },
   render: () => <SemanticTypographyPage />,
 };

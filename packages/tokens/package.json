@@ -24,6 +24,10 @@
     "./semantic-css": {
       "types": "./dist/css/semantic.css.d.ts",
       "default": "./dist/css/semantic.css"
+    },
+    "./typography-css": {
+      "types": "./dist/css/typography.css.d.ts",
+      "default": "./dist/css/typography.css"
     }
   },
   "keywords": [
