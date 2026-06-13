@@ -246,6 +246,11 @@ const generateTokens = async () => {
     const typographyJson = JSON.parse(typographyRaw);
     const typoCssClasses = [];
 
+    const resolveLineHeight = (val) => {
+      const match = String(val).match(/^(\d+)%$/);
+      return match ? `var(--line-height-${match[1]})` : val;
+    };
+
     for (const [tokenName, tokenData] of Object.entries(typographyJson.typo)) {
       const { value } = tokenData;
       const props = Object.entries(value)
@@ -254,7 +259,9 @@ const generateTokens = async () => {
           const cssVal =
             typeof val === 'string' && val.match(/^\{.+\}$/)
               ? resolveReference(val)
-              : val;
+              : cssProp === 'line-height'
+                ? resolveLineHeight(val)
+                : val;
           return `  ${cssProp}: ${cssVal};`;
         })
         .join('\n');
