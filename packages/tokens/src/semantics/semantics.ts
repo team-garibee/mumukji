@@ -1,63 +1,212 @@
-import { color as primitive } from '../primitives/primitives';
-
-const t = (value: string, primitive: string) => ({ value, primitive });
-
 export const color = {
   bg: {
-    'overlay-dim': t(primitive.alpha.black['60'], 'color-alpha-black-60'),
-    'layer-default': t(primitive.cream['50'], 'color-cream-50'),
-    'layer-deep': t(primitive.cream['100'], 'color-cream-100'),
-    'layer-elevated': t(primitive.gray['0'], 'color-gray-0'),
-    'brand-solid': t(primitive.vermilion['500'], 'color-vermilion-500'),
-    'brand-solid-pressed': t(primitive.vermilion['600'], 'color-vermilion-600'),
-    'brand-weak': t(primitive.vermilion['50'], 'color-vermilion-50'),
-    'brand-weak-pressed': t(primitive.vermilion['100'], 'color-vermilion-100'),
-    'interactive-solid': t(primitive.blue['500'], 'color-blue-500'),
-    'interactive-solid-pressed': t(primitive.blue['600'], 'color-blue-600'),
-    'interactive-weak': t(primitive.blue['50'], 'color-blue-50'),
-    'interactive-weak-pressed': t(primitive.blue['100'], 'color-blue-100'),
-    'informative-solid': t(primitive.blue['500'], 'color-blue-500'),
-    'informative-weak': t(primitive.blue['50'], 'color-blue-50'),
-    'negative-solid': t(primitive.pink['500'], 'color-pink-500'),
-    'negative-solid-pressed': t(primitive.pink['600'], 'color-pink-600'),
-    'negative-weak': t(primitive.pink['50'], 'color-pink-50'),
-    'negative-weak-pressed': t(primitive.pink['100'], 'color-pink-100'),
-    'highlight-weak': t(primitive.yellow['50'], 'color-yellow-50'),
-    'highlight-solid': t(primitive.yellow['500'], 'color-yellow-500'),
-    'neutral-weak': t(primitive.gray['100'], 'color-gray-100'),
-    'neutral-weak-pressed': t(primitive.gray['200'], 'color-gray-200'),
-    disabled: t(primitive.gray['50'], 'color-gray-50'),
-    'neutral-solid': t(primitive.gray['700'], 'color-gray-700'),
-    'neutral-solid-pressed': t(primitive.gray['900'], 'color-gray-900'),
-    'highlight-muted': t(primitive.yellow['100'], 'color-yellow-100'),
+    'overlay-dim': {
+      value: 'rgba(0, 0, 0, 0.6)',
+      primitive: 'rgba(0, 0, 0, 0.6)',
+    },
+    'layer-default': {
+      value: '#fffaf2',
+      primitive: 'color-cream-50',
+    },
+    'layer-deep': {
+      value: '#fff4dd',
+      primitive: 'color-cream-100',
+    },
+    'layer-elevated': {
+      value: '#ffffff',
+      primitive: 'color-gray-0',
+    },
+    'brand-solid': {
+      value: '#f9603e',
+      primitive: 'color-vermilion-500',
+    },
+    'brand-solid-pressed': {
+      value: '#f24822',
+      primitive: 'color-vermilion-600',
+    },
+    'brand-weak': {
+      value: '#fee8e3',
+      primitive: 'color-vermilion-50',
+    },
+    'brand-weak-pressed': {
+      value: '#fcbbac',
+      primitive: 'color-vermilion-100',
+    },
+    'interactive-solid': {
+      value: '#3d5cff',
+      primitive: 'color-blue-500',
+    },
+    'interactive-solid-pressed': {
+      value: '#2649f5',
+      primitive: 'color-blue-600',
+    },
+    'interactive-weak': {
+      value: '#e3e8ff',
+      primitive: 'color-blue-50',
+    },
+    'interactive-weak-pressed': {
+      value: '#acbaff',
+      primitive: 'color-blue-100',
+    },
+    'informative-solid': {
+      value: '#3d5cff',
+      primitive: 'color-blue-500',
+    },
+    'informative-weak': {
+      value: '#e3e8ff',
+      primitive: 'color-blue-50',
+    },
+    'negative-solid': {
+      value: '#ff3861',
+      primitive: 'color-pink-500',
+    },
+    'negative-solid-pressed': {
+      value: '#f12e56',
+      primitive: 'color-pink-600',
+    },
+    'negative-weak': {
+      value: '#ffe0e7',
+      primitive: 'color-pink-50',
+    },
+    'negative-weak-pressed': {
+      value: '#ffc3d0',
+      primitive: 'color-pink-100',
+    },
+    'highlight-weak': {
+      value: '#fff8db',
+      primitive: 'color-yellow-50',
+    },
+    'highlight-solid': {
+      value: '#ffc301',
+      primitive: 'color-yellow-500',
+    },
+    'neutral-weak': {
+      value: '#e5e5e5',
+      primitive: 'color-gray-100',
+    },
+    'neutral-weak-pressed': {
+      value: '#d6d6d6',
+      primitive: 'color-gray-200',
+    },
+    disabled: {
+      value: '#f2f2f2',
+      primitive: 'color-gray-50',
+    },
+    'neutral-solid': {
+      value: '#424242',
+      primitive: 'color-gray-700',
+    },
+    'neutral-solid-pressed': {
+      value: '#1a1a1a',
+      primitive: 'color-gray-900',
+    },
+    'highlight-muted': {
+      value: '#ffe992',
+      primitive: 'color-yellow-100',
+    },
   },
   fg: {
-    brand: t(primitive.vermilion['600'], 'color-vermilion-600'),
-    'brand-contrast': t(primitive.vermilion['700'], 'color-vermilion-700'),
-    interactive: t(primitive.blue['600'], 'color-blue-600'),
-    'interactive-contrast': t(primitive.blue['700'], 'color-blue-700'),
-    informative: t(primitive.blue['600'], 'color-blue-600'),
-    'informative-subtle': t(primitive.gray['300'], 'color-gray-300'),
-    'informative-contrast': t(primitive.blue['700'], 'color-blue-700'),
-    negative: t(primitive.pink['700'], 'color-pink-700'),
-    highlight: t(primitive.yellow['700'], 'color-yellow-700'),
-    neutral: t(primitive.gray['900'], 'color-gray-900'),
-    'neutral-muted': t(primitive.gray['700'], 'color-gray-700'),
-    'neutral-subtle': t(primitive.gray['500'], 'color-gray-500'),
-    'neutral-faint': t(primitive.gray['300'], 'color-gray-300'),
-    placeholder: t(primitive.gray['300'], 'color-gray-300'),
-    disabled: t(primitive.gray['300'], 'color-gray-300'),
-    'on-solid': t(primitive.static.white, 'color-static-white'),
+    brand: {
+      value: '#f24822',
+      primitive: 'color-vermilion-600',
+    },
+    'brand-contrast': {
+      value: '#d82d07',
+      primitive: 'color-vermilion-700',
+    },
+    interactive: {
+      value: '#2649f5',
+      primitive: 'color-blue-600',
+    },
+    'interactive-contrast': {
+      value: '#1038ff',
+      primitive: 'color-blue-700',
+    },
+    informative: {
+      value: '#2649f5',
+      primitive: 'color-blue-600',
+    },
+    'informative-subtle': {
+      value: '#bdbdbd',
+      primitive: 'color-gray-300',
+    },
+    'informative-contrast': {
+      value: '#1038ff',
+      primitive: 'color-blue-700',
+    },
+    negative: {
+      value: '#e51742',
+      primitive: 'color-pink-700',
+    },
+    highlight: {
+      value: '#ffa100',
+      primitive: 'color-yellow-700',
+    },
+    neutral: {
+      value: '#1a1a1a',
+      primitive: 'color-gray-900',
+    },
+    'neutral-muted': {
+      value: '#424242',
+      primitive: 'color-gray-700',
+    },
+    'neutral-subtle': {
+      value: '#808080',
+      primitive: 'color-gray-500',
+    },
+    'neutral-faint': {
+      value: '#bdbdbd',
+      primitive: 'color-gray-300',
+    },
+    placeholder: {
+      value: '#bdbdbd',
+      primitive: 'color-gray-300',
+    },
+    disabled: {
+      value: '#bdbdbd',
+      primitive: 'color-gray-300',
+    },
+    'on-solid': {
+      value: '#ffffff',
+      primitive: 'color-static-white',
+    },
   },
   stroke: {
-    'neutral-weak': t(primitive.gray['200'], 'color-gray-200'),
-    'neutral-solid': t(primitive.gray['600'], 'color-gray-600'),
-    'neutral-subtle': t(primitive.gray['100'], 'color-gray-100'),
-    'brand-solid': t(primitive.vermilion['500'], 'color-vermilion-500'),
-    'brand-weak': t(primitive.vermilion['200'], 'color-vermilion-200'),
-    'interactive-solid': t(primitive.blue['500'], 'color-blue-500'),
-    'negative-solid': t(primitive.pink['500'], 'color-pink-500'),
-    'interactive-weak': t(primitive.blue['200'], 'color-blue-200'),
-    'negative-weak': t(primitive.pink['200'], 'color-pink-200'),
+    'neutral-weak': {
+      value: '#d6d6d6',
+      primitive: 'color-gray-200',
+    },
+    'neutral-solid': {
+      value: '#616161',
+      primitive: 'color-gray-600',
+    },
+    'neutral-subtle': {
+      value: '#e5e5e5',
+      primitive: 'color-gray-100',
+    },
+    'brand-solid': {
+      value: '#f9603e',
+      primitive: 'color-vermilion-500',
+    },
+    'brand-weak': {
+      value: '#fca491',
+      primitive: 'color-vermilion-200',
+    },
+    'interactive-solid': {
+      value: '#3d5cff',
+      primitive: 'color-blue-500',
+    },
+    'negative-solid': {
+      value: '#ff3861',
+      primitive: 'color-pink-500',
+    },
+    'interactive-weak': {
+      value: '#90a3ff',
+      primitive: 'color-blue-200',
+    },
+    'negative-weak': {
+      value: '#ffa0b5',
+      primitive: 'color-pink-200',
+    },
   },
 } as const;

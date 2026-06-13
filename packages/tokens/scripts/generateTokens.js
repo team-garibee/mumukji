@@ -213,17 +213,50 @@ const generateTokens = async () => {
       'declare const styles: string;\nexport default styles;\n',
     );
 
-    // semantics.ts 저장
-    const extractSemanticValues = (obj) => {
+    // semantics.ts 저장 — { value, primitive } 구조로 생성
+    const buildPrimitiveLookup = (obj, prefix = '') => {
+      const lookup = {};
+      for (const [key, val] of Object.entries(obj)) {
+        const refPath = prefix ? `${prefix}.${key}` : key;
+        if (
+          typeof val === 'object' &&
+          val !== null &&
+          'value' in val &&
+          'type' in val
+        ) {
+          lookup[refPath] = String(val.value);
+        } else if (typeof val === 'object' && val !== null) {
+          Object.assign(lookup, buildPrimitiveLookup(val, refPath));
+        }
+      }
+      return lookup;
+    };
+
+    const primitiveLookup = buildPrimitiveLookup(json);
+
+    const isRef = (v) => /^\{.+\}$/.test(v);
+
+    const resolveSemanticToken = (rawValue) => {
+      const str = String(rawValue);
+      if (isRef(str)) {
+        const ref = str.slice(1, -1);
+        const primitive = ref.split('.').map(toKebabCase).join('-');
+        const value = primitiveLookup[ref] ?? str;
+        return { value, primitive };
+      }
+      return { value: str, primitive: str };
+    };
+
+    const extractSemanticTokenValues = (obj) => {
       if (typeof obj !== 'object' || obj === null) {
         return obj;
       }
       if ('value' in obj) {
-        return resolveReference(String(obj.value));
+        return resolveSemanticToken(obj.value);
       }
       const result = {};
       for (const [key, val] of Object.entries(obj)) {
-        result[key] = extractSemanticValues(val);
+        result[key] = extractSemanticTokenValues(val);
       }
       return result;
     };
@@ -231,7 +264,7 @@ const generateTokens = async () => {
     const semanticTsLines = [];
     for (const [key, value] of Object.entries(semanticsJson)) {
       const exportName = toCamelCase(key);
-      const extracted = extractSemanticValues(value);
+      const extracted = extractSemanticTokenValues(value);
       semanticTsLines.push(
         `export const ${exportName} = ${JSON.stringify(extracted, null, 2)} as const;`,
       );
