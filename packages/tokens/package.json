@@ -17,6 +17,10 @@
     "**/*.css"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/css/index.css.d.ts",
+      "default": "./dist/css/index.css"
+    },
     "./css": {
       "types": "./dist/css/primitive.css.d.ts",
       "default": "./dist/css/primitive.css"

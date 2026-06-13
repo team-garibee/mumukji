@@ -1,4 +1,4 @@
-import '@mumukji/tokens/css';
+import '@mumukji/tokens';
 import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {

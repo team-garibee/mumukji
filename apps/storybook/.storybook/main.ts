@@ -43,7 +43,18 @@ const config: StorybookConfig = {
             __dirname,
             '../../../packages/tokens/dist/css/primitive.css',
           ),
-          '@mumukji/tokens': join(__dirname, '../../../packages/tokens/src'),
+          '@mumukji/tokens/semantic-css': join(
+            __dirname,
+            '../../../packages/tokens/dist/css/semantic.css',
+          ),
+          '@mumukji/tokens/typography-css': join(
+            __dirname,
+            '../../../packages/tokens/dist/css/typography.css',
+          ),
+          '@mumukji/tokens': join(
+            __dirname,
+            '../../../packages/tokens/dist/css/index.css',
+          ),
           '@mumukji/ui': join(__dirname, '../../../packages/ui/src'),
         },
       },

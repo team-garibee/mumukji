@@ -233,14 +233,11 @@ const generateTokens = async () => {
     const typographyJson = JSON.parse(typographyRaw);
     const typoCssClasses = [];
 
-    const camelToKebab = (str) =>
-      str.replace(/([A-Z])/g, (m) => `-${m.toLowerCase()}`);
-
     for (const [tokenName, tokenData] of Object.entries(typographyJson.typo)) {
       const { value } = tokenData;
       const props = Object.entries(value)
         .map(([prop, val]) => {
-          const cssProp = camelToKebab(prop);
+          const cssProp = toKebabCase(prop);
           const cssVal =
             typeof val === 'string' && val.match(/^\{.+\}$/)
               ? resolveReference(val)
@@ -264,9 +261,19 @@ const generateTokens = async () => {
       'declare const styles: string;\nexport default styles;\n',
     );
 
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'index.css'),
+      `@import './primitive.css';\n@import './semantic.css';\n@import './typography.css';\n`,
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'index.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
     console.log(`✅ primitives 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
     console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
     console.log(`✅ typography 토큰이 성공적으로 생성되었습니다! (CSS)`);
+    console.log(`✅ index.css가 성공적으로 생성되었습니다!`);
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
     process.exit(1);
