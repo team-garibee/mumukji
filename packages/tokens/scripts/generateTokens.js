@@ -126,26 +126,39 @@ const generateTokens = async () => {
       tsContent,
     );
 
-    // @font-face 선언
+    // @font-face 선언 → font-cdn.css로 분리
+    const fontFaceNames = {
+      100: '1Thin',
+      200: '2ExtraLight',
+      300: '3Light',
+      400: '4Regular',
+      500: '5Medium',
+      600: '6SemiBold',
+      700: '7Bold',
+      800: '8ExtraBold',
+      900: '9Black',
+    };
     const fontFace = [100, 200, 300, 400, 500, 600, 700, 800, 900]
-      .map((weight) => {
-        const names = {
-          100: '1Thin',
-          200: '2ExtraLight',
-          300: '3Light',
-          400: '4Regular',
-          500: '5Medium',
-          600: '6SemiBold',
-          700: '7Bold',
-          800: '8ExtraBold',
-          900: '9Black',
-        };
-        return `@font-face {\n  font-family: 'A2z';\n  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-${names[weight]}.woff2') format('woff2');\n  font-weight: ${weight};\n  font-display: swap;\n}`;
-      })
+      .map(
+        (weight) =>
+          `@font-face {\n  font-family: 'A2z';\n  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-${fontFaceNames[weight]}.woff2') format('woff2');\n  font-weight: ${weight};\n  font-display: swap;\n}`,
+      )
       .join('\n');
 
-    // dist/css/ 경로로 primitive.css 저장
-    const cssContent = `${fontFace}\n:root {\n${cssVars.join('\n')}\n}\n`;
+    const minifiedFontCdn = await postcss([cssnano]).process(fontFace, {
+      from: undefined,
+    });
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'font-cdn.css'),
+      minifiedFontCdn.css,
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'font-cdn.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
+    // dist/css/ 경로로 primitive.css 저장 (@font-face 제외)
+    const cssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
     const minified = await postcss([cssnano]).process(cssContent, {
       from: undefined,
     });
@@ -263,7 +276,7 @@ const generateTokens = async () => {
 
     await fs.writeFile(
       path.join(PATHS.CSS_DIR, 'index.css'),
-      `@import './primitive.css';\n@import './semantic.css';\n@import './typography.css';\n`,
+      `@import './font-cdn.css';\n@import './primitive.css';\n@import './semantic.css';\n@import './typography.css';\n`,
     );
     await fs.writeFile(
       path.join(PATHS.CSS_DIR, 'index.css.d.ts'),
@@ -273,6 +286,7 @@ const generateTokens = async () => {
     console.log(`✅ primitives 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
     console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
     console.log(`✅ typography 토큰이 성공적으로 생성되었습니다! (CSS)`);
+    console.log(`✅ font-cdn.css가 성공적으로 생성되었습니다!`);
     console.log(`✅ index.css가 성공적으로 생성되었습니다!`);
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);

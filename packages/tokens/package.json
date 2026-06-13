@@ -32,6 +32,10 @@
     "./typography-css": {
       "types": "./dist/css/typography.css.d.ts",
       "default": "./dist/css/typography.css"
+    },
+    "./font-cdn": {
+      "types": "./dist/css/font-cdn.css.d.ts",
+      "default": "./dist/css/font-cdn.css"
     }
   },
   "keywords": [
