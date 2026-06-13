@@ -207,10 +207,64 @@ export const Typography: StoryObj = {
   render: () => <SemanticTypographyPage />,
 };
 
+const CATEGORY_ORDER = [
+  'overlay',
+  'layer',
+  'brand',
+  'interactive',
+  'informative',
+  'negative',
+  'highlight',
+  'neutral',
+  'on',
+  'placeholder',
+  'disabled',
+];
+
+const getCategory = (key: string) => {
+  const match = CATEGORY_ORDER.find(
+    (c) => key === c || key.startsWith(`${c}-`),
+  );
+  return match ?? key;
+};
+
+const primitiveNumber = (value: string): number => {
+  const match = value.match(/-(\d+)\)$/);
+  return match ? parseInt(match[1]) : 0;
+};
+
+const sortTokenEntries = (entries: [string, string][]) =>
+  [...entries].sort(([aKey, aVal], [bKey, bVal]) => {
+    const catScore = (key: string) => {
+      const i = CATEGORY_ORDER.findIndex(
+        (c) => key === c || key.startsWith(`${c}-`),
+      );
+      return i === -1 ? CATEGORY_ORDER.length : i;
+    };
+    const catDiff = catScore(aKey) - catScore(bKey);
+    if (catDiff !== 0) {
+      return catDiff;
+    }
+
+    return primitiveNumber(aVal) - primitiveNumber(bVal);
+  });
+
 const COLOR_GROUPS = [
-  { key: 'bg', title: 'bg', tokens: Object.entries(color.bg) },
-  { key: 'fg', title: 'fg', tokens: Object.entries(color.fg) },
-  { key: 'stroke', title: 'stroke', tokens: Object.entries(color.stroke) },
+  {
+    key: 'bg',
+    title: 'bg',
+    tokens: sortTokenEntries(Object.entries(color.bg)),
+  },
+  {
+    key: 'fg',
+    title: 'fg',
+    tokens: sortTokenEntries(Object.entries(color.fg)),
+  },
+  {
+    key: 'stroke',
+    title: 'stroke',
+    tokens: sortTokenEntries(Object.entries(color.stroke)),
+  },
 ] as const;
 
 const extractPrimitive = (value: string): string => {
@@ -257,19 +311,25 @@ const SemanticColorPage = () => {
               </tr>
             </thead>
             <tbody>
-              {tokens.map(([name, value]) => (
-                <tr key={name}>
-                  <td>
-                    <ColorSwatch group={key} value={value} />
-                  </td>
-                  <td className={styles.colorTokenName}>
-                    color/{title}/{name}
-                  </td>
-                  <td className={styles.colorPrimitive}>
-                    {extractPrimitive(value)}
-                  </td>
-                </tr>
-              ))}
+              {tokens.map(([name, value], i) => {
+                const isGroupStart =
+                  i > 0 && getCategory(name) !== getCategory(tokens[i - 1][0]);
+                return (
+                  <tr
+                    key={name}
+                    className={isGroupStart ? styles.groupDivider : undefined}>
+                    <td>
+                      <ColorSwatch group={key} value={value} />
+                    </td>
+                    <td className={styles.colorTokenName}>
+                      color/{title}/{name}
+                    </td>
+                    <td className={styles.colorPrimitive}>
+                      {extractPrimitive(value)}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </section>

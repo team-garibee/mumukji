@@ -302,6 +302,10 @@
   tr:last-child td {
     border-bottom: none;
   }
+
+  .groupDivider td {
+    border-top: 2px solid #d0d0d0;
+  }
 }
 
 .colorSwatch {
