@@ -4,6 +4,7 @@ import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import {
   borderWidth,
+  breakpoint,
   color,
   spacing,
   fontSize,
@@ -260,5 +261,74 @@ export const Radius: StoryObj = {
         }))}
       />
     </div>
+  ),
+};
+
+export const Breakpoint: StoryObj = {
+  render: () => (
+    <StackList title='Breakpoint'>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32 }}>
+        {Object.entries(breakpoint).map(([key, value]) => {
+          const scale = 0.35;
+          const w = (value as number) * scale;
+          const h = w * 2;
+          return (
+            <div
+              key={key}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 12,
+              }}>
+              <div
+                style={{
+                  width: w,
+                  height: h,
+                  border: '2px solid #1a1a1a',
+                  borderRadius: 12,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative',
+                }}>
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <svg
+                    width='100%'
+                    height='100%'
+                    style={{ position: 'absolute' }}>
+                    <line
+                      x1='0'
+                      y1='0'
+                      x2='100%'
+                      y2='100%'
+                      stroke='#e5e5e5'
+                      strokeWidth='1'
+                    />
+                  </svg>
+                </div>
+                <span
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: '#1a1a1a',
+                    zIndex: 1,
+                  }}>
+                  {value}px
+                </span>
+              </div>
+              <span style={{ fontSize: 12, color: '#888' }}>{key}</span>
+            </div>
+          );
+        })}
+      </div>
+    </StackList>
   ),
 };
