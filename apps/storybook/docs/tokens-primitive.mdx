@@ -22,7 +22,14 @@ pnpm add @mumukji/tokens
 CSS 또는 TS/JS 파일에서 import하면 `:root`에 CSS 변수와 A2z 웹폰트가 자동으로 등록됩니다.
 
 ```ts
-import '@mumukji/tokens/css';
+// 전체 토큰 (프리미티브 + 시맨틱 + 타이포그래피 + 웹폰트)
+import '@mumukji/tokens';
+
+// 개별 import
+import '@mumukji/tokens/css'; // 프리미티브 토큰만
+import '@mumukji/tokens/semantic-css'; // 시맨틱 토큰만
+import '@mumukji/tokens/typography-css'; // 타이포그래피 클래스만
+import '@mumukji/tokens/font-cdn'; // A2z 웹폰트만
 ```
 
 ## 제공 토큰 Tokens
@@ -62,7 +69,7 @@ import '@mumukji/tokens/css';
       <td>
         <code>{'--font-size-*'}</code>
       </td>
-      <td>폰트 크기 (rem/px)</td>
+      <td>폰트 크기 (rem / px)</td>
     </tr>
     <tr>
       <td>Font Weight</td>
@@ -91,6 +98,34 @@ import '@mumukji/tokens/css';
         <code>{'--radius-*'}</code>
       </td>
       <td>모서리 둥글기 (px)</td>
+    </tr>
+    <tr>
+      <td>Border Width</td>
+      <td>
+        <code>{'--border-width-*'}</code>
+      </td>
+      <td>테두리 두께</td>
+    </tr>
+    <tr>
+      <td>Shadow</td>
+      <td>
+        <code>{'--shadow-*'}</code>
+      </td>
+      <td>그림자</td>
+    </tr>
+    <tr>
+      <td>Z-index</td>
+      <td>
+        <code>{'--z-index-*'}</code>
+      </td>
+      <td>레이어 순서</td>
+    </tr>
+    <tr>
+      <td>Breakpoint</td>
+      <td>
+        <code>{'breakpoint'}</code>
+      </td>
+      <td>반응형 기준점 (360 / 480px)</td>
     </tr>
   </tbody>
 </table>
