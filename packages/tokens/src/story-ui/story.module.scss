@@ -154,26 +154,6 @@
   font-family: 'A2z', sans-serif;
 }
 
-.semanticPageHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e5e5e5;
-
-  h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-  }
-
-  p {
-    margin: 0;
-    color: #888;
-    font-size: 13px;
-  }
-}
-
 .semanticSection {
   display: flex;
   flex-direction: column;

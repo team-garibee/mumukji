@@ -27,7 +27,10 @@ const fw = (value: number) => ({
 
 const fs = (value: number) => ({ primitive: `font-size/${value}`, value });
 
-const lh = (key: string, value: number) => ({ key, value });
+const lh = (key: string, value: number) => ({
+  key: `line-height/${key}`,
+  value,
+});
 
 const HEADING_TOKENS = [
   {
@@ -166,11 +169,6 @@ const CAPTION_TOKENS = [
 const SemanticTypographyPage = () => {
   return (
     <div className={styles.semanticPage}>
-      <div className={styles.semanticPageHeader}>
-        <h1>Semantics Token</h1>
-        <p>꾸밈요소 등의 매우 큰 강조에 사용됩니다.</p>
-      </div>
-
       <section className={styles.semanticSection}>
         <h2>Heading</h2>
         {HEADING_TOKENS.map((token) => (
@@ -294,11 +292,6 @@ const ColorSwatch = ({ group, value }: { group: string; value: string }) => {
 const SemanticColorPage = () => {
   return (
     <div className={styles.semanticPage}>
-      <div className={styles.semanticPageHeader}>
-        <h1>Semantics Token</h1>
-        <p>Color</p>
-      </div>
-
       {COLOR_GROUPS.map(({ key, title, tokens }) => (
         <section key={key} className={styles.semanticSection}>
           <h2>{title}</h2>
