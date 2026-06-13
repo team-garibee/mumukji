@@ -10,6 +10,7 @@ import {
   lineHeight,
   opacity,
   radius,
+  shadow,
 } from './primitives';
 
 const meta: Meta = {
@@ -169,6 +170,24 @@ export const Typography: StoryObj = {
         </div>
       </StackList>
     </div>
+  ),
+};
+
+export const Shadow: StoryObj = {
+  render: () => (
+    <GridList
+      title='Shadow'
+      wide
+      items={Object.entries(shadow).map(([key, value]) => ({
+        key,
+        boxStyle: {
+          background: '#ffffff',
+          borderRadius: 8,
+          boxShadow: value as string,
+        },
+        labels: [key],
+      }))}
+    />
   ),
 };
 
