@@ -7,6 +7,7 @@ import {
   spacing,
   fontSize,
   fontFamily,
+  fontWeight,
   lineHeight,
   opacity,
   radius,
@@ -129,12 +130,12 @@ export const Typography: StoryObj = {
 
       <StackList title='Font Weight'>
         <div className={styles.fontWeightList}>
-          {[100, 200, 300, 400, 500, 600, 700, 800, 900].map((weight) => (
-            <div key={weight} className={styles.fontWeightRow}>
-              <span style={{ fontWeight: weight, fontSize: 28 }}>
+          {Object.entries(fontWeight).map(([key, value]) => (
+            <div key={key} className={styles.fontWeightRow}>
+              <span style={{ fontWeight: value, fontSize: 28 }}>
                 머먹지 디자인 시스템
               </span>
-              <span style={{ fontWeight: weight }}>{weight}</span>
+              <span style={{ fontWeight: value }}>{value}</span>
             </div>
           ))}
         </div>
