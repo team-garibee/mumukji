@@ -3,6 +3,7 @@ import { GridList } from '../story-ui/GridList';
 import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import {
+  borderWidth,
   color,
   spacing,
   fontSize,
@@ -230,18 +231,34 @@ export const Shadow: StoryObj = {
 };
 
 export const Radius: StoryObj = {
+  name: 'Border',
   render: () => (
-    <GridList
-      title='Radius'
-      wide
-      items={Object.entries(radius).map(([key, value]) => ({
-        key,
-        boxStyle: {
-          background: '#F9603E',
-          borderRadius: value as number,
-        },
-        labels: [key],
-      }))}
-    />
+    <div className={styles.colorList}>
+      <GridList
+        title='Radius'
+        wide
+        items={Object.entries(radius).map(([key, value]) => ({
+          key,
+          boxStyle: {
+            background: '#F9603E',
+            borderRadius: value as number,
+          },
+          labels: [key],
+        }))}
+      />
+      <GridList
+        title='Width'
+        wide
+        items={Object.entries(borderWidth).map(([key, value]) => ({
+          key,
+          boxStyle: {
+            background: '#ffffff',
+            borderRadius: 8,
+            border: `${value}px solid #F9603E`,
+          },
+          labels: [key, `${value}px`],
+        }))}
+      />
+    </div>
   ),
 };
