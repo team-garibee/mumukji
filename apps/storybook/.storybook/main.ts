@@ -39,21 +39,9 @@ const config: StorybookConfig = {
             '../../../packages/brand-assets/src',
           ),
           '@mumukji/icons': join(__dirname, '../../../packages/icons/src'),
-          '@mumukji/tokens/css': join(
+          '@mumukji/tokens/font-cdn': join(
             __dirname,
-            '../../../packages/tokens/dist/css/primitive.css',
-          ),
-          '@mumukji/tokens/semantic-css': join(
-            __dirname,
-            '../../../packages/tokens/dist/css/semantic.css',
-          ),
-          '@mumukji/tokens/typography-css': join(
-            __dirname,
-            '../../../packages/tokens/dist/css/typography.css',
-          ),
-          '@mumukji/tokens': join(
-            __dirname,
-            '../../../packages/tokens/dist/css/index.css',
+            '../../../packages/tokens/dist/css/font-cdn.css',
           ),
           '@mumukji/ui': join(__dirname, '../../../packages/ui/src'),
         },

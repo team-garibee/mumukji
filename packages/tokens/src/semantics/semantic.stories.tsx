@@ -226,12 +226,14 @@ const getCategory = (key: string) => {
   return match ?? key;
 };
 
-const primitiveNumber = (value: string): number => {
-  const match = value.match(/-(\d+)\)$/);
+type TokenValue = { value: string; primitive: string };
+
+const primitiveNumber = (token: TokenValue): number => {
+  const match = token.primitive.match(/-(\d+)$/);
   return match ? parseInt(match[1]) : 0;
 };
 
-const sortTokenEntries = (entries: [string, string][]) =>
+const sortTokenEntries = (entries: [string, TokenValue][]) =>
   [...entries].sort(([aKey, aVal], [bKey, bVal]) => {
     const catScore = (key: string) => {
       const i = CATEGORY_ORDER.findIndex(
@@ -264,11 +266,6 @@ const COLOR_GROUPS = [
     tokens: sortTokenEntries(Object.entries(color.stroke)),
   },
 ] as const;
-
-const extractPrimitive = (value: string): string => {
-  const match = value.match(/var\(--(.+?)\)/);
-  return match ? match[1] : value;
-};
 
 const ColorSwatch = ({ group, value }: { group: string; value: string }) => {
   if (group === 'fg') {
@@ -304,7 +301,7 @@ const SemanticColorPage = () => {
               </tr>
             </thead>
             <tbody>
-              {tokens.map(([name, value], i) => {
+              {tokens.map(([name, token], i) => {
                 const isGroupStart =
                   i > 0 && getCategory(name) !== getCategory(tokens[i - 1][0]);
                 return (
@@ -312,14 +309,12 @@ const SemanticColorPage = () => {
                     key={name}
                     className={isGroupStart ? styles.groupDivider : undefined}>
                     <td>
-                      <ColorSwatch group={key} value={value} />
+                      <ColorSwatch group={key} value={token.value} />
                     </td>
                     <td className={styles.colorTokenName}>
                       color/{title}/{name}
                     </td>
-                    <td className={styles.colorPrimitive}>
-                      {extractPrimitive(value)}
-                    </td>
+                    <td className={styles.colorPrimitive}>{token.primitive}</td>
                   </tr>
                 );
               })}
