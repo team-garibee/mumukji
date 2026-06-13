@@ -21,7 +21,6 @@ const meta: Meta = {
 export default meta;
 
 export const Color: StoryObj = {
-  name: 'Color & Opacity',
   render: () => (
     <div className={styles.colorList}>
       {Object.entries(color).flatMap(([groupName, shades]) => {
@@ -70,20 +69,24 @@ export const Color: StoryObj = {
           />,
         ];
       })}
-
-      <GridList
-        title='Opacity'
-        items={Object.entries(opacity).map(([key, value]) => ({
-          key,
-          boxStyle: {
-            background: '#F9603E',
-            borderRadius: 8,
-            opacity: value as number,
-          },
-          labels: [key],
-        }))}
-      />
     </div>
+  ),
+};
+
+export const Opacity: StoryObj = {
+  render: () => (
+    <GridList
+      title='Opacity'
+      items={Object.entries(opacity).map(([key, value]) => ({
+        key,
+        boxStyle: {
+          background: '#F9603E',
+          borderRadius: 8,
+          opacity: value as number,
+        },
+        labels: [key],
+      }))}
+    />
   ),
 };
 
