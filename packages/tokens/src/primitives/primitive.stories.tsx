@@ -23,21 +23,52 @@ export const Color: StoryObj = {
   name: 'Color & Opacity',
   render: () => (
     <div className={styles.colorList}>
-      {Object.entries(color).map(([groupName, shades]) => (
-        <GridList
-          key={groupName}
-          title={groupName}
-          items={Object.entries(shades).map(([shade, value]) => ({
-            key: shade,
-            boxStyle: {
-              background: value as string,
-              borderRadius: 8,
-              border: '1px solid #eee',
-            },
-            labels: [shade, value as string],
-          }))}
-        />
-      ))}
+      {Object.entries(color).flatMap(([groupName, shades]) => {
+        const firstValue = Object.values(shades)[0];
+        if (typeof firstValue === 'object' && firstValue !== null) {
+          return Object.entries(
+            shades as Record<string, Record<string, string>>,
+          ).map(([subName, subShades]) => {
+            const firstColor = Object.values(subShades)[0] ?? '';
+            const isDarkBg = firstColor.includes('255, 255, 255');
+            return (
+              <GridList
+                key={`${groupName}-${subName}`}
+                title={`${groupName} / ${subName}`}
+                items={Object.entries(subShades).map(([shade, value]) => ({
+                  key: shade,
+                  boxStyle: {
+                    backgroundImage: isDarkBg
+                      ? `linear-gradient(${value}, ${value})`
+                      : undefined,
+                    backgroundColor: isDarkBg ? '#1a1a1a' : value,
+                    borderRadius: 8,
+                    border: '1px solid #eee',
+                  },
+                  labels: [shade, value],
+                }))}
+              />
+            );
+          });
+        }
+        return [
+          <GridList
+            key={groupName}
+            title={groupName}
+            items={Object.entries(shades as Record<string, string>).map(
+              ([shade, value]) => ({
+                key: shade,
+                boxStyle: {
+                  background: value,
+                  borderRadius: 8,
+                  border: '1px solid #eee',
+                },
+                labels: [shade, value],
+              }),
+            )}
+          />,
+        ];
+      })}
 
       <GridList
         title='Opacity'

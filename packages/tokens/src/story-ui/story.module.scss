@@ -41,6 +41,7 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    width: 56px;
 
     .box {
       width: 48px;
@@ -52,8 +53,11 @@
     }
 
     .subLabel {
+      width: 100%;
       color: #888;
       font-size: 10px;
+      text-align: center;
+      word-break: break-all;
     }
   }
 }
