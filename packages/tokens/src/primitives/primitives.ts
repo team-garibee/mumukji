@@ -81,6 +81,32 @@ export const color = {
     white: '#ffffff',
     black: '#000000',
   },
+  alpha: {
+    black: {
+      '0': 'rgba(0, 0, 0, 0)',
+      '10': 'rgba(0, 0, 0, 0.1)',
+      '20': 'rgba(0, 0, 0, 0.2)',
+      '30': 'rgba(0, 0, 0, 0.3)',
+      '40': 'rgba(0, 0, 0, 0.4)',
+      '50': 'rgba(0, 0, 0, 0.5)',
+      '60': 'rgba(0, 0, 0, 0.6)',
+      '70': 'rgba(0, 0, 0, 0.7)',
+      '80': 'rgba(0, 0, 0, 0.8)',
+      '90': 'rgba(0, 0, 0, 0.9)',
+    },
+    white: {
+      '0': 'rgba(255, 255, 255, 0)',
+      '10': 'rgba(255, 255, 255, 0.1)',
+      '20': 'rgba(255, 255, 255, 0.2)',
+      '30': 'rgba(255, 255, 255, 0.3)',
+      '40': 'rgba(255, 255, 255, 0.4)',
+      '50': 'rgba(255, 255, 255, 0.5)',
+      '60': 'rgba(255, 255, 255, 0.6)',
+      '70': 'rgba(255, 255, 255, 0.7)',
+      '80': 'rgba(255, 255, 255, 0.8)',
+      '90': 'rgba(255, 255, 255, 0.9)',
+    },
+  },
 } as const;
 
 export const spacing = {
@@ -165,10 +191,10 @@ export const opacity = {
 } as const;
 
 export const shadow = {
-  xs: '0px 0px 10px rgba(0,0,0,0.1)',
-  s: '0px 6px 12px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
-  m: '0px 12px 26px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
-  l: '0px 12px 40px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
+  '100': '0px 0px 10px rgba(0,0,0,0.1)',
+  '200': '0px 6px 12px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
+  '300': '0px 12px 26px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
+  '400': '0px 12px 40px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
 } as const;
 
 export const zIndex = {
@@ -179,14 +205,12 @@ export const zIndex = {
   '500': 500,
 } as const;
 
-export const borderWidth = {
-  s: 1,
-  l: 2,
-  m: 1.5,
-  none: 0,
+export const breakpoint = {
+  '360': 360,
+  '480': 480,
 } as const;
 
-export const breakpoint = {
-  'min-width': 360,
-  'max-width': 480,
+export const borderWidth = {
+  '1': 1,
+  '2': 2,
 } as const;
