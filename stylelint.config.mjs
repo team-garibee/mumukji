@@ -1,7 +1,10 @@
 /** @type {import("stylelint").Config} */
 
 export default {
-  ignoreFiles: ['packages/tokens/dist/**'],
+  ignoreFiles: [
+    'packages/tokens/dist/**',
+    'apps/storybook/storybook-static/**',
+  ],
   extends: [
     'stylelint-config-standard-scss',
     'stylelint-config-css-modules',

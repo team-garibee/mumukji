@@ -12,9 +12,11 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@mumukji/brand-assets": "workspace:*",
     "@mumukji/icons": "workspace:*",
     "@mumukji/tokens": "workspace:*",
     "@mumukji/ui": "workspace:*",
+    "lottie-react": "^2.4.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },

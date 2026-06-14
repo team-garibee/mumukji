@@ -13,7 +13,9 @@ const __dirname = path.dirname(__filename);
 const PATHS = {
   PRIMITIVE_JSON: path.resolve(__dirname, '../src/raw/primitives.json'),
   SEMANTICS_JSON: path.resolve(__dirname, '../src/raw/semantics.json'),
+  TYPOGRAPHY_JSON: path.resolve(__dirname, '../src/raw/styles/typography.json'),
   PRIMITIVES_DIR: path.resolve(__dirname, '../src/primitives'),
+  SEMANTICS_DIR: path.resolve(__dirname, '../src/semantics'),
   CSS_DIR: path.resolve(__dirname, '../dist/css'),
 };
 
@@ -89,6 +91,7 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
 const generateTokens = async () => {
   try {
     await fs.mkdir(PATHS.PRIMITIVES_DIR, { recursive: true });
+    await fs.mkdir(PATHS.SEMANTICS_DIR, { recursive: true });
     await fs.mkdir(PATHS.CSS_DIR, { recursive: true });
 
     const raw = await fs.readFile(PATHS.PRIMITIVE_JSON, 'utf8');
@@ -123,26 +126,39 @@ const generateTokens = async () => {
       tsContent,
     );
 
-    // @font-face 선언
+    // @font-face 선언 → font-cdn.css로 분리
+    const fontFaceNames = {
+      100: '1Thin',
+      200: '2ExtraLight',
+      300: '3Light',
+      400: '4Regular',
+      500: '5Medium',
+      600: '6SemiBold',
+      700: '7Bold',
+      800: '8ExtraBold',
+      900: '9Black',
+    };
     const fontFace = [100, 200, 300, 400, 500, 600, 700, 800, 900]
-      .map((weight) => {
-        const names = {
-          100: '1Thin',
-          200: '2ExtraLight',
-          300: '3Light',
-          400: '4Regular',
-          500: '5Medium',
-          600: '6SemiBold',
-          700: '7Bold',
-          800: '8ExtraBold',
-          900: '9Black',
-        };
-        return `@font-face {\n  font-family: 'A2z';\n  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-${names[weight]}.woff2') format('woff2');\n  font-weight: ${weight};\n  font-display: swap;\n}`;
-      })
+      .map(
+        (weight) =>
+          `@font-face {\n  font-family: 'A2z';\n  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-${fontFaceNames[weight]}.woff2') format('woff2');\n  font-weight: ${weight};\n  font-display: swap;\n}`,
+      )
       .join('\n');
 
-    // dist/css/ 경로로 primitive.css 저장
-    const cssContent = `${fontFace}\n:root {\n${cssVars.join('\n')}\n}\n`;
+    const minifiedFontCdn = await postcss([cssnano]).process(fontFace, {
+      from: undefined,
+    });
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'font-cdn.css'),
+      minifiedFontCdn.css,
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'font-cdn.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
+    // dist/css/ 경로로 primitive.css 저장 (@font-face 제외)
+    const cssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
     const minified = await postcss([cssnano]).process(cssContent, {
       from: undefined,
     });
@@ -197,8 +213,121 @@ const generateTokens = async () => {
       'declare const styles: string;\nexport default styles;\n',
     );
 
+    // semantics.ts 저장 — { value, primitive } 구조로 생성
+    const buildPrimitiveLookup = (obj, prefix = '') => {
+      const lookup = {};
+      for (const [key, val] of Object.entries(obj)) {
+        const refPath = prefix ? `${prefix}.${key}` : key;
+        if (
+          typeof val === 'object' &&
+          val !== null &&
+          'value' in val &&
+          'type' in val
+        ) {
+          lookup[refPath] = String(val.value);
+        } else if (typeof val === 'object' && val !== null) {
+          Object.assign(lookup, buildPrimitiveLookup(val, refPath));
+        }
+      }
+      return lookup;
+    };
+
+    const primitiveLookup = buildPrimitiveLookup(json);
+
+    const isRef = (v) => /^\{.+\}$/.test(v);
+
+    const resolveSemanticToken = (rawValue) => {
+      const str = String(rawValue);
+      if (isRef(str)) {
+        const ref = str.slice(1, -1);
+        const primitive = ref.split('.').map(toKebabCase).join('-');
+        const value = primitiveLookup[ref] ?? str;
+        return { value, primitive };
+      }
+      return { value: str, primitive: str };
+    };
+
+    const extractSemanticTokenValues = (obj) => {
+      if (typeof obj !== 'object' || obj === null) {
+        return obj;
+      }
+      if ('value' in obj) {
+        return resolveSemanticToken(obj.value);
+      }
+      const result = {};
+      for (const [key, val] of Object.entries(obj)) {
+        result[key] = extractSemanticTokenValues(val);
+      }
+      return result;
+    };
+
+    const semanticTsLines = [];
+    for (const [key, value] of Object.entries(semanticsJson)) {
+      const exportName = toCamelCase(key);
+      const extracted = extractSemanticTokenValues(value);
+      semanticTsLines.push(
+        `export const ${exportName} = ${JSON.stringify(extracted, null, 2)} as const;`,
+      );
+    }
+    await fs.writeFile(
+      path.join(PATHS.SEMANTICS_DIR, 'semantics.ts'),
+      semanticTsLines.join('\n\n') + '\n',
+    );
+
+    // typography.json → typography.css 생성
+    const typographyRaw = await fs.readFile(PATHS.TYPOGRAPHY_JSON, 'utf8');
+    const typographyJson = JSON.parse(typographyRaw);
+    const typoCssClasses = [];
+
+    const resolveLineHeight = (val) => {
+      const match = String(val).match(/^(\d+)%$/);
+      return match ? `var(--line-height-${match[1]})` : val;
+    };
+
+    for (const [tokenName, tokenData] of Object.entries(typographyJson.typo)) {
+      const { value } = tokenData;
+      const props = Object.entries(value)
+        .map(([prop, val]) => {
+          const cssProp = toKebabCase(prop);
+          const cssVal =
+            typeof val === 'string' && val.match(/^\{.+\}$/)
+              ? resolveReference(val)
+              : cssProp === 'line-height'
+                ? resolveLineHeight(val)
+                : val;
+          return `  ${cssProp}: ${cssVal};`;
+        })
+        .join('\n');
+      typoCssClasses.push(`.typo-${tokenName} {\n${props}\n}`);
+    }
+
+    const typoCssContent = typoCssClasses.join('\n') + '\n';
+    const minifiedTypo = await postcss([cssnano]).process(typoCssContent, {
+      from: undefined,
+    });
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'typography.css'),
+      minifiedTypo.css,
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'typography.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'index.css'),
+      `@import './font-cdn.css';\n@import './primitive.css';\n@import './semantic.css';\n@import './typography.css';\n`,
+    );
+    await fs.writeFile(
+      path.join(PATHS.CSS_DIR, 'index.css.d.ts'),
+      'declare const styles: string;\nexport default styles;\n',
+    );
+
     console.log(`✅ primitives 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
-    console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (CSS)`);
+    console.log(`✅ semantics 토큰이 성공적으로 생성되었습니다! (TS + CSS)`);
+    console.log(`✅ typography 토큰이 성공적으로 생성되었습니다! (CSS)`);
+    console.log(`✅ font-cdn.css가 성공적으로 생성되었습니다!`);
+    console.log(`✅ index.css가 성공적으로 생성되었습니다!`);
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
     process.exit(1);

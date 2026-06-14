@@ -279,6 +279,92 @@
         "value": "#000000",
         "type": "color"
       }
+    },
+    "alpha": {
+      "black": {
+        "0": {
+          "value": "rgba(0, 0, 0, 0)",
+          "type": "color"
+        },
+        "10": {
+          "value": "rgba(0, 0, 0, 0.1)",
+          "type": "color"
+        },
+        "20": {
+          "value": "rgba(0, 0, 0, 0.2)",
+          "type": "color"
+        },
+        "30": {
+          "value": "rgba(0, 0, 0, 0.3)",
+          "type": "color"
+        },
+        "40": {
+          "value": "rgba(0, 0, 0, 0.4)",
+          "type": "color"
+        },
+        "50": {
+          "value": "rgba(0, 0, 0, 0.5)",
+          "type": "color"
+        },
+        "60": {
+          "value": "rgba(0, 0, 0, 0.6)",
+          "type": "color"
+        },
+        "70": {
+          "value": "rgba(0, 0, 0, 0.7)",
+          "type": "color"
+        },
+        "80": {
+          "value": "rgba(0, 0, 0, 0.8)",
+          "type": "color"
+        },
+        "90": {
+          "value": "rgba(0, 0, 0, 0.9)",
+          "type": "color"
+        }
+      },
+      "white": {
+        "0": {
+          "value": "rgba(255, 255, 255, 0)",
+          "type": "color"
+        },
+        "10": {
+          "value": "rgba(255, 255, 255, 0.1)",
+          "type": "color"
+        },
+        "20": {
+          "value": "rgba(255, 255, 255, 0.2)",
+          "type": "color"
+        },
+        "30": {
+          "value": "rgba(255, 255, 255, 0.3)",
+          "type": "color"
+        },
+        "40": {
+          "value": "rgba(255, 255, 255, 0.4)",
+          "type": "color"
+        },
+        "50": {
+          "value": "rgba(255, 255, 255, 0.5)",
+          "type": "color"
+        },
+        "60": {
+          "value": "rgba(255, 255, 255, 0.6)",
+          "type": "color"
+        },
+        "70": {
+          "value": "rgba(255, 255, 255, 0.7)",
+          "type": "color"
+        },
+        "80": {
+          "value": "rgba(255, 255, 255, 0.8)",
+          "type": "color"
+        },
+        "90": {
+          "value": "rgba(255, 255, 255, 0.9)",
+          "type": "color"
+        }
+      }
     }
   },
   "spacing": {
@@ -536,19 +622,19 @@
     }
   },
   "shadow": {
-    "xs": {
+    "100": {
       "value": "0px 0px 10px rgba(0,0,0,0.1)",
       "type": "string"
     },
-    "s": {
+    "200": {
       "value": "0px 6px 12px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)",
       "type": "string"
     },
-    "m": {
+    "300": {
       "value": "0px 12px 26px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)",
       "type": "string"
     },
-    "l": {
+    "400": {
       "value": "0px 12px 40px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)",
       "type": "string"
     }
@@ -575,31 +661,23 @@
       "type": "number"
     }
   },
-  "border-width": {
-    "s": {
-      "value": 1,
-      "type": "number"
-    },
-    "l": {
-      "value": 2,
-      "type": "number"
-    },
-    "m": {
-      "value": 1.5,
-      "type": "number"
-    },
-    "none": {
-      "value": 0,
-      "type": "number"
-    }
-  },
   "breakpoint": {
-    "min-width": {
+    "360": {
       "value": 360,
       "type": "number"
     },
-    "max-width": {
+    "480": {
       "value": 480,
+      "type": "number"
+    }
+  },
+  "border-width": {
+    "1": {
+      "value": 1,
+      "type": "number"
+    },
+    "2": {
+      "value": 2,
       "type": "number"
     }
   }

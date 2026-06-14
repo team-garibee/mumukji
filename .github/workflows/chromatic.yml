@@ -1,13 +1,18 @@
 name: "🎨 Chromatic"
 
 on:
-  pull_request: 
+  workflow_dispatch:
+  pull_request:
     branches:
       - dev
     paths:
         - 'apps/storybook/**'
-        - 'packages/**/src/**/*.{ts,tsx,scss,json}'
-        - '**/*.stories.{ts,tsx}'
+        - 'packages/**/src/**/*.ts'
+        - 'packages/**/src/**/*.tsx'
+        - 'packages/**/src/**/*.scss'
+        - 'packages/**/src/**/*.json'
+        - '**/*.stories.ts'
+        - '**/*.stories.tsx'
         - '**/*.mdx'
 
 jobs:
@@ -52,6 +57,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR with Storybook link
+        if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |

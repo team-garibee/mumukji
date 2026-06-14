@@ -1,0 +1,164 @@
+{
+  "typo": {
+    "heading-xl": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.700}",
+        "fontSize": "{font-size.48}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    },
+    "heading-lg": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.700}",
+        "fontSize": "{font-size.36}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    },
+    "heading-md": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.600}",
+        "fontSize": "{font-size.24}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    },
+    "heading-sm": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.600}",
+        "fontSize": "{font-size.20}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    },
+    "body-md-strong": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.600}",
+        "fontSize": "{font-size.16}",
+        "letterSpacing": "0%",
+        "lineHeight": "160%"
+      },
+      "type": "typography"
+    },
+    "body-md": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.400}",
+        "fontSize": "{font-size.16}",
+        "letterSpacing": "0%",
+        "lineHeight": "160%"
+      },
+      "type": "typography"
+    },
+    "body-sm-strong": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.600}",
+        "fontSize": "{font-size.14}",
+        "letterSpacing": "0%",
+        "lineHeight": "160%"
+      },
+      "type": "typography"
+    },
+    "body-sm": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.400}",
+        "fontSize": "{font-size.14}",
+        "letterSpacing": "0%",
+        "lineHeight": "160%"
+      },
+      "type": "typography"
+    },
+    "label-lg-strong": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.700}",
+        "fontSize": "{font-size.16}",
+        "letterSpacing": "0%",
+        "lineHeight": "100%"
+      },
+      "type": "typography"
+    },
+    "label-lg": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.500}",
+        "fontSize": "{font-size.16}",
+        "letterSpacing": "0%",
+        "lineHeight": "100%"
+      },
+      "type": "typography"
+    },
+    "label-md-strong": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.600}",
+        "fontSize": "{font-size.14}",
+        "letterSpacing": "0%",
+        "lineHeight": "100%"
+      },
+      "type": "typography"
+    },
+    "label-md": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.400}",
+        "fontSize": "{font-size.14}",
+        "letterSpacing": "0%",
+        "lineHeight": "100%"
+      },
+      "type": "typography"
+    },
+    "label-sm": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.500}",
+        "fontSize": "{font-size.12}",
+        "letterSpacing": "0%",
+        "lineHeight": "100%"
+      },
+      "type": "typography"
+    },
+    "label-sm-strong": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.700}",
+        "fontSize": "{font-size.12}",
+        "letterSpacing": "0%",
+        "lineHeight": "100%"
+      },
+      "type": "typography"
+    },
+    "caption-sm": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.400}",
+        "fontSize": "{font-size.10}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    },
+    "caption-md": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.400}",
+        "fontSize": "{font-size.12}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    }
+  }
+}
