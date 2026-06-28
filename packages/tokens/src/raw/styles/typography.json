@@ -40,6 +40,16 @@
       },
       "type": "typography"
     },
+    "heading-xs": {
+      "value": {
+        "fontFamily": "{font-family.default}",
+        "fontWeight": "{font-weight.600}",
+        "fontSize": "{font-size.18}",
+        "letterSpacing": "0%",
+        "lineHeight": "140%"
+      },
+      "type": "typography"
+    },
     "body-md-strong": {
       "value": {
         "fontFamily": "{font-family.default}",
