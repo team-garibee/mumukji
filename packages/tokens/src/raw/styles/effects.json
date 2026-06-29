@@ -1,0 +1,48 @@
+{
+  "shadow": {
+    "s1": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 0,
+        "blur": 10,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "s2": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 6,
+        "blur": 12,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "s3": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 12,
+        "blur": 26,
+        "spread": 0
+      },
+      "type": "shadow"
+    },
+    "s4": {
+      "value": {
+        "type": "drop",
+        "color": "rgba(0, 0, 0, 0.1)",
+        "offsetX": 0,
+        "offsetY": 12,
+        "blur": 26,
+        "spread": 0
+      },
+      "type": "shadow"
+    }
+  }
+}
