@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { GridList } from '../story-ui/GridList';
 import styles from '../story-ui/story.module.scss';
 import { TypoTokenCard } from '../story-ui/TypoTokenCard';
-import { color } from './semantics';
+import { color, shadow } from './semantics';
 
 const meta: Meta = {
   title: 'Tokens/Semantic',
@@ -329,4 +330,24 @@ const SemanticColorPage = () => {
 export const Color: StoryObj = {
   parameters: { layout: 'fullscreen' },
   render: () => <SemanticColorPage />,
+};
+
+export const Shadow: StoryObj = {
+  render: () => (
+    <div className={styles.colorList}>
+      <GridList
+        title='Shadow'
+        wide
+        items={Object.entries(shadow).map(([key, token]) => ({
+          key,
+          boxStyle: {
+            background: '#ffffff',
+            borderRadius: 8,
+            boxShadow: token.value,
+          },
+          labels: [key, token.primitive],
+        }))}
+      />
+    </div>
+  ),
 };
