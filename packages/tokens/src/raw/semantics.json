@@ -231,7 +231,7 @@
       "type": "number"
     },
     "m": {
-      "value": "{spacing.16}",
+      "value": "{radius.16}",
       "type": "number"
     },
     "l": {

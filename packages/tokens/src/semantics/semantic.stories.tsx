@@ -3,7 +3,7 @@ import { GridList } from '../story-ui/GridList';
 import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import { TypoTokenCard } from '../story-ui/TypoTokenCard';
-import { color, shadow, spacing } from './semantics';
+import { color, radius, shadow, spacing } from './semantics';
 
 const meta: Meta = {
   title: 'Tokens/Semantic',
@@ -365,6 +365,27 @@ const SemanticSpacingPage = () => {
 export const Spacing: StoryObj = {
   parameters: { layout: 'fullscreen' },
   render: () => <SemanticSpacingPage />,
+};
+
+export const Radius: StoryObj = {
+  render: () => (
+    <div className={styles.colorList}>
+      <GridList
+        title='Radius'
+        wide
+        itemWidth={72}
+        noWrapLabels
+        items={Object.entries(radius).map(([key, token]) => ({
+          key,
+          boxStyle: {
+            background: '#F9603E',
+            borderRadius: Number(token.value),
+          },
+          labels: [key, `${token.primitive} (${token.value}px)`],
+        }))}
+      />
+    </div>
+  ),
 };
 
 export const Shadow: StoryObj = {

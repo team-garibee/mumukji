@@ -233,7 +233,7 @@ export const radius = {
   },
   m: {
     value: '16',
-    primitive: 'spacing-16',
+    primitive: 'radius-16',
   },
   l: {
     value: '24',
