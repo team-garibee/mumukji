@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { GridList } from '../story-ui/GridList';
+import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import { TypoTokenCard } from '../story-ui/TypoTokenCard';
-import { color, shadow } from './semantics';
+import { color, shadow, spacing } from './semantics';
 
 const meta: Meta = {
   title: 'Tokens/Semantic',
@@ -330,6 +331,40 @@ const SemanticColorPage = () => {
 export const Color: StoryObj = {
   parameters: { layout: 'fullscreen' },
   render: () => <SemanticColorPage />,
+};
+
+const SPACING_TOKENS = [...Object.entries(spacing)].sort(
+  ([, a], [, b]) => Number(a.value) - Number(b.value),
+);
+
+const SemanticSpacingPage = () => {
+  return (
+    <div className={styles.semanticPage}>
+      <div style={{ width: 'fit-content', margin: '0 auto' }}>
+        <StackList title='Spacing'>
+          <div className={styles.spacingList}>
+            {SPACING_TOKENS.map(([key, token]) => (
+              <div key={key} className={styles.spacingRow}>
+                <span className={styles.tokenKey}>{key}</span>
+                <div
+                  className={styles.spacingBar}
+                  style={{ width: Number(token.value) * 2 }}
+                />
+                <span className={styles.spacingValue}>
+                  {token.primitive} ({token.value}px)
+                </span>
+              </div>
+            ))}
+          </div>
+        </StackList>
+      </div>
+    </div>
+  );
+};
+
+export const Spacing: StoryObj = {
+  parameters: { layout: 'fullscreen' },
+  render: () => <SemanticSpacingPage />,
 };
 
 export const Shadow: StoryObj = {
