@@ -3,7 +3,7 @@ import { GridList } from '../story-ui/GridList';
 import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import { TypoTokenCard } from '../story-ui/TypoTokenCard';
-import { color, radius, shadow, spacing } from './semantics';
+import { borderWidth, color, radius, shadow, spacing } from './semantics';
 
 const meta: Meta = {
   title: 'Tokens/Semantic',
@@ -368,6 +368,7 @@ export const Spacing: StoryObj = {
 };
 
 export const Radius: StoryObj = {
+  name: 'Border',
   render: () => (
     <div className={styles.colorList}>
       <GridList
@@ -375,11 +376,28 @@ export const Radius: StoryObj = {
         wide
         itemWidth={72}
         noWrapLabels
+        gap={18}
         items={Object.entries(radius).map(([key, token]) => ({
           key,
           boxStyle: {
             background: '#F9603E',
             borderRadius: Number(token.value),
+          },
+          labels: [key, `${token.primitive} (${token.value}px)`],
+        }))}
+      />
+      <GridList
+        title='Width'
+        wide
+        itemWidth={72}
+        noWrapLabels
+        gap={18}
+        items={Object.entries(borderWidth).map(([key, token]) => ({
+          key,
+          boxStyle: {
+            background: '#ffffff',
+            borderRadius: 8,
+            border: `${token.value}px solid #F9603E`,
           },
           labels: [key, `${token.primitive} (${token.value}px)`],
         }))}

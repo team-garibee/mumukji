@@ -13,6 +13,7 @@ interface GridListProps {
   wide?: boolean;
   itemWidth?: number;
   noWrapLabels?: boolean;
+  gap?: number;
 }
 
 export function GridList({
@@ -21,11 +22,14 @@ export function GridList({
   wide = false,
   itemWidth,
   noWrapLabels = false,
+  gap,
 }: GridListProps) {
   return (
     <div>
       <p className={styles.title}>{title}</p>
-      <div className={`${styles.grid}${wide ? ` ${styles.gridWide}` : ''}`}>
+      <div
+        className={`${styles.grid}${wide ? ` ${styles.gridWide}` : ''}`}
+        style={gap !== undefined ? { gap } : undefined}>
         {items.map(({ key, boxStyle, labels }) => (
           <div
             key={key}
