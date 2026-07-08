@@ -22,7 +22,7 @@ export default [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        modules: true,
+        autoModules: true,
         extract: true,
         use: ['sass'],
       }),
@@ -45,7 +45,7 @@ export default [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        modules: true,
+        autoModules: true,
         extract: false,
         inject: false,
         use: ['sass'],
@@ -54,6 +54,7 @@ export default [
   },
   {
     input: 'dist/types/index.d.ts',
+    external: [/\.s?css$/, '@mumukji/tokens/semantic-css'],
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
   },
