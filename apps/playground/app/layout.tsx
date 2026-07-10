@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
-import '@mumukji/tokens';
-import '@mumukji/tokens/font-cdn';
 import '@mumukji/ui/style.css';
 
 export const metadata: Metadata = {
