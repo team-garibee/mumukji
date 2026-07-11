@@ -4,6 +4,8 @@ import '@mumukji/tokens/typography-css';
 import '@mumukji/tokens/font-cdn';
 import './styles/index.scss';
 
+export { Box } from './components/box/Box';
+export type { BoxAs, BoxProps } from './components/box/Box';
 export { Section } from './components/section/Section';
 export type { SectionAs, SectionProps } from './components/section/Section';
 
