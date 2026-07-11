@@ -11,7 +11,8 @@
     "directory": "packages/ui"
   },
   "files": [
-    "dist"
+    "dist",
+    "style.css.d.ts"
   ],
   "sideEffects": [
     "*.css",
@@ -27,7 +28,10 @@
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/index.css",
+    "./style.css": {
+      "types": "./style.css.d.ts",
+      "default": "./dist/index.css"
+    },
     "./*": {
       "import": "./dist/esm/*.js",
       "require": "./dist/cjs/*.js",
