@@ -8,7 +8,7 @@ export { Section } from './components/section/Section';
 export type { SectionAs, SectionProps } from './components/section/Section';
 
 export { SPACING_TOKENS } from './types';
-export { getSpacingClassName } from './utils';
+export { getSpacingClassName, getSpacingPropsClassNames } from './utils';
 export type {
   GapProps,
   MarginProps,

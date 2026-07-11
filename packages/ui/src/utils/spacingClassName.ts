@@ -1,4 +1,4 @@
-import type { Spacing } from '../types';
+import type { Spacing, SpacingProps } from '../types';
 
 export type SpacingClassPrefix =
   | 'SpacingP'
@@ -29,3 +29,35 @@ export const getSpacingClassName = (
 
   return `${prefix}-${spacing}`;
 };
+
+export const getSpacingPropsClassNames = ({
+  p,
+  px,
+  py,
+  pt,
+  pr,
+  pb,
+  pl,
+  m,
+  mx,
+  my,
+  mt,
+  mr,
+  mb,
+  ml,
+}: SpacingProps) => [
+  getSpacingClassName('SpacingP', p),
+  getSpacingClassName('SpacingPx', px),
+  getSpacingClassName('SpacingPy', py),
+  getSpacingClassName('SpacingPt', pt),
+  getSpacingClassName('SpacingPr', pr),
+  getSpacingClassName('SpacingPb', pb),
+  getSpacingClassName('SpacingPl', pl),
+  getSpacingClassName('SpacingM', m),
+  getSpacingClassName('SpacingMx', mx),
+  getSpacingClassName('SpacingMy', my),
+  getSpacingClassName('SpacingMt', mt),
+  getSpacingClassName('SpacingMr', mr),
+  getSpacingClassName('SpacingMb', mb),
+  getSpacingClassName('SpacingMl', ml),
+];

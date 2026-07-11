@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { SpacingProps } from '../../types';
-import { getSpacingClassName } from '../../utils';
+import { getSpacingPropsClassNames } from '../../utils';
 
 export type SectionAs = 'section' | 'article';
 
@@ -38,29 +38,27 @@ export const Section = ({
   mr,
   mb,
   ml,
-  gap,
-  columnGap,
-  rowGap,
+
   ...rest
 }: SectionProps) => {
+  const spacingProps = {
+    p,
+    px,
+    py,
+    pt,
+    pr,
+    pb,
+    pl,
+    m,
+    mx,
+    my,
+    mt,
+    mr,
+    mb,
+    ml,
+  };
   const sectionClassName = clsx(
-    getSpacingClassName('SpacingP', p),
-    getSpacingClassName('SpacingPx', px),
-    getSpacingClassName('SpacingPy', py),
-    getSpacingClassName('SpacingPt', pt),
-    getSpacingClassName('SpacingPr', pr),
-    getSpacingClassName('SpacingPb', pb),
-    getSpacingClassName('SpacingPl', pl),
-    getSpacingClassName('SpacingM', m),
-    getSpacingClassName('SpacingMx', mx),
-    getSpacingClassName('SpacingMy', my),
-    getSpacingClassName('SpacingMt', mt),
-    getSpacingClassName('SpacingMr', mr),
-    getSpacingClassName('SpacingMb', mb),
-    getSpacingClassName('SpacingMl', ml),
-    getSpacingClassName('SpacingGap', gap),
-    getSpacingClassName('SpacingColumnGap', columnGap),
-    getSpacingClassName('SpacingRowGap', rowGap),
+    getSpacingPropsClassNames(spacingProps),
     className,
   );
 

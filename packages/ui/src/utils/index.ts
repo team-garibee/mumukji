@@ -1,3 +1,5 @@
-export { getSpacingClassName } from './spacingClassName';
-
+export {
+  getSpacingClassName,
+  getSpacingPropsClassNames,
+} from './spacingClassName';
 export type { SpacingClassPrefix } from './spacingClassName';
