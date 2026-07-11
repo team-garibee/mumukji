@@ -1,3 +1,4 @@
+export { getRadiusClassName } from './radiusClassName';
 export {
   getSpacingClassName,
   getSpacingPropsClassNames,
