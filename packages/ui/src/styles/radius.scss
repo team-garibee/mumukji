@@ -1,7 +1,0 @@
-$radii: ('xs', 's', 'm', 'l', 'full');
-
-@each $name in $radii {
-  .Radius-#{$name} {
-    border-radius: var(--radius-#{$name});
-  }
-}
