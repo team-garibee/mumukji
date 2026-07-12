@@ -1,21 +1,6 @@
 import { Section } from '@mumukji/ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-const SPACING_OPTIONS = [
-  'null',
-  '2xs',
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-] as const;
-
-const spacingControl = {
-  control: 'select',
-  options: SPACING_OPTIONS,
-} as const;
+import { spacingControl } from '../constants/spacing';
 
 const meta: Meta<typeof Section> = {
   title: 'UI/Section',
@@ -46,9 +31,6 @@ const meta: Meta<typeof Section> = {
     mr: spacingControl,
     mb: spacingControl,
     ml: spacingControl,
-    gap: spacingControl,
-    columnGap: spacingControl,
-    rowGap: spacingControl,
   },
 };
 
@@ -68,7 +50,21 @@ export const Default: Story = {
   },
 };
 
-export const Article: Story = {
+export const Spacing: Story = {
+  args: {
+    p: 'md',
+    mt: 'lg',
+    'aria-labelledby': 'section-spacing-title',
+    children: (
+      <>
+        <h2 id='section-spacing-title'>스페이싱 적용</h2>
+        <p>padding, margin props를 함께 적용한 예시입니다.</p>
+      </>
+    ),
+  },
+};
+
+export const AsArticle: Story = {
   args: {
     as: 'article',
     p: 'lg',
@@ -80,21 +76,6 @@ export const Article: Story = {
           독립적으로 배포되거나 재사용될 수 있는 콘텐츠는 article로
           렌더링합니다.
         </p>
-      </>
-    ),
-  },
-};
-
-export const WithSpacing: Story = {
-  args: {
-    p: 'md',
-    mt: 'lg',
-    gap: 'sm',
-    'aria-labelledby': 'section-spacing-title',
-    children: (
-      <>
-        <h2 id='section-spacing-title'>스페이싱 적용</h2>
-        <p>padding, margin, gap props를 함께 적용한 예시입니다.</p>
       </>
     ),
   },

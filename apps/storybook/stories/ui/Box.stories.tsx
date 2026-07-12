@@ -1,21 +1,6 @@
 import { Box } from '@mumukji/ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-const SPACING_OPTIONS = [
-  'null',
-  '2xs',
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-] as const;
-
-const spacingControl = {
-  control: 'select',
-  options: SPACING_OPTIONS,
-} as const;
+import { spacingControl } from '../constants/spacing';
 
 const meta: Meta<typeof Box> = {
   title: 'UI/Box',
