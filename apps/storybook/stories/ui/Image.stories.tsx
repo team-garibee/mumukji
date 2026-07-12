@@ -3,11 +3,8 @@ import type { ImageProps } from '@mumukji/ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ComponentType } from 'react';
 
-const RADIUS_OPTIONS = ['xs', 's', 'm', 'l', 'full'] as const;
-
 // as prop으로 커스텀 컴포넌트를 주입하는 예시를 위한 데모용 컴포넌트.
-// next/image 대신, src/alt 외에 고유 prop(objectFit)을 갖는
-// 이미지 래퍼 컴포넌트로 가정.
+// next/image 대신, src/alt 외에 고유 prop(objectFit)을 갖는 이미지 래퍼 컴포넌트로 가정.
 type DemoPolymorphicImageProps = {
   src: string;
   alt: string;
@@ -31,12 +28,6 @@ const meta: Meta<typeof Image> = {
     alt: '맛있는 비빔밥',
     height: 200,
   },
-  argTypes: {
-    radius: {
-      control: 'select',
-      options: RADIUS_OPTIONS,
-    },
-  },
 };
 
 export default meta;
@@ -45,9 +36,18 @@ type Story = StoryObj<typeof Image>;
 
 export const Default: Story = {};
 
-export const WithRadius: Story = {
+// radius는 Image의 전용 prop이 아님(Visual → SCSS/className 정책).
+// 필요하면 이렇게 className으로 `Radius-*` 유틸리티 클래스를 직접 전달한다.
+export const WithClassNameRadius: Story = {
   args: {
-    radius: 'm',
+    className: 'Radius-m',
+  },
+};
+
+// margin은 Layout 속성이라 Image가 직접 prop으로 받는다.
+export const WithMargin: Story = {
+  args: {
+    m: 4,
   },
 };
 
