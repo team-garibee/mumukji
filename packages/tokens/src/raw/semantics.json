@@ -231,7 +231,7 @@
       "type": "number"
     },
     "m": {
-      "value": "{radius.16}",
+      "value": "{spacing.16}",
       "type": "number"
     },
     "l": {
@@ -240,6 +240,10 @@
     },
     "full": {
       "value": "{radius.full}",
+      "type": "number"
+    },
+    "none": {
+      "value": "{radius.0}",
       "type": "number"
     }
   },
@@ -329,6 +333,12 @@
     "s4": {
       "value": "{shadow.400}",
       "type": "string"
+    }
+  },
+  "opacity": {
+    "disabled": {
+      "value": "{opacity.40}",
+      "type": "number"
     }
   }
 }
