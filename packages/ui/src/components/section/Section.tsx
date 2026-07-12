@@ -9,7 +9,7 @@ export type SectionProps = SpacingProps &
   Omit<ComponentPropsWithoutRef<SectionAs>, keyof SpacingProps | 'as'> & {
     as?: SectionAs;
     className?: string;
-    children?: ReactNode;
+    children: ReactNode;
   };
 
 /**
