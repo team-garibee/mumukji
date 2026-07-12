@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
+import preserveDirectives from 'rollup-preserve-directives';
 
 export default [
   {
@@ -26,6 +27,7 @@ export default [
         extract: true,
         use: ['sass'],
       }),
+      preserveDirectives(),
     ],
   },
   {
@@ -50,6 +52,7 @@ export default [
         inject: false,
         use: ['sass'],
       }),
+      preserveDirectives(),
     ],
   },
   {
