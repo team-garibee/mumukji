@@ -46,4 +46,4 @@ export interface GapProps {
   rowGap?: Spacing;
 }
 
-export type SpacingProps = PaddingProps & MarginProps & GapProps;
+export type SpacingProps = PaddingProps & MarginProps;
