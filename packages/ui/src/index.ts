@@ -13,6 +13,8 @@ export type {
   FlexProps,
   FlexWrap,
 } from './components/flex/Flex';
+export { Grid } from './components/grid/Grid';
+export type { GridProps } from './components/grid/Grid';
 export { Section } from './components/section/Section';
 export type { SectionAs, SectionProps } from './components/section/Section';
 
