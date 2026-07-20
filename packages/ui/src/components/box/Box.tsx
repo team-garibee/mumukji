@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { MarginProps, PaddingProps } from '../../types';
+import type { SpacingProps } from '../../types';
 import { getSpacingPropsClassNames } from '../../utils';
 
 export type BoxAs =
@@ -12,12 +12,8 @@ export type BoxAs =
   | 'aside'
   | 'nav';
 
-export type BoxProps = PaddingProps &
-  MarginProps &
-  Omit<
-    ComponentPropsWithoutRef<BoxAs>,
-    keyof PaddingProps | keyof MarginProps | 'as'
-  > & {
+export type BoxProps = SpacingProps &
+  Omit<ComponentPropsWithoutRef<BoxAs>, keyof SpacingProps | 'as'> & {
     as?: BoxAs;
     className?: string;
     children?: ReactNode;
