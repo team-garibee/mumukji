@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import type { GapProps } from '../../types';
 import { getGapPropsClassNames } from '../../utils';
 import { Box, type BoxProps } from '../box/Box';
+import './Flex.scss';
 
 export type FlexJustify =
   | 'flex-start'
