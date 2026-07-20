@@ -54,10 +54,10 @@ export const Flex = ({
   const wrapValue = getFlexWrapValue(wrap);
 
   const flexClassName = clsx(
-    'flex',
-    justify && `flex--justify-${justify}`,
-    align && `flex--align-${align}`,
-    wrapValue && `flex--wrap-${wrapValue}`,
+    'Flex',
+    justify && `FlexJustify-${justify}`,
+    align && `FlexAlign-${align}`,
+    wrapValue && `FlexWrap-${wrapValue}`,
     getGapPropsClassNames({ gap, columnGap, rowGap }),
     className,
   );
