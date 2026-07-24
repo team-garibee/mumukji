@@ -29,7 +29,7 @@ export const Grid = ({
   ...rest
 }: GridProps) => {
   const gridClassName = clsx(
-    'grid',
+    'Grid',
     getGapPropsClassNames({ gap, columnGap, rowGap }),
     className,
   );
