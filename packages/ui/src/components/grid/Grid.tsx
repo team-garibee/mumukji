@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import type { GapProps } from '../../types';
 import { getGapPropsClassNames } from '../../utils';
 import { Box, type BoxProps } from '../box/Box';
+import './Grid.scss';
 
 export type GridProps = BoxProps &
   GapProps & {
