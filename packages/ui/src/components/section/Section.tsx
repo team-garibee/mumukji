@@ -38,7 +38,6 @@ export const Section = ({
   mr,
   mb,
   ml,
-
   ...rest
 }: SectionProps) => {
   const spacingProps = {
