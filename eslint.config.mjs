@@ -10,6 +10,8 @@ export default defineConfig([
       '**/build/**',
       '**/coverage/**',
       '**/.turbo/**',
+      '**/.next/**',
+      '**/next-env.d.ts',
       '**/.storybook-static/**',
       '**/node_modules/**',
     ],

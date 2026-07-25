@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { GridList } from '../story-ui/GridList';
+import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import { TypoTokenCard } from '../story-ui/TypoTokenCard';
-import { color } from './semantics';
+import { borderWidth, color, radius, shadow, spacing } from './semantics';
 
 const meta: Meta = {
   title: 'Tokens/Semantic',
@@ -329,4 +331,97 @@ const SemanticColorPage = () => {
 export const Color: StoryObj = {
   parameters: { layout: 'fullscreen' },
   render: () => <SemanticColorPage />,
+};
+
+const SPACING_TOKENS = [...Object.entries(spacing)].sort(
+  ([, a], [, b]) => Number(a.value) - Number(b.value),
+);
+
+const SemanticSpacingPage = () => {
+  return (
+    <div className={styles.semanticPage}>
+      <div style={{ width: 'fit-content', margin: '0 auto' }}>
+        <StackList title='Spacing'>
+          <div className={styles.spacingList}>
+            {SPACING_TOKENS.map(([key, token]) => (
+              <div key={key} className={styles.spacingRow}>
+                <span className={styles.tokenKey}>{key}</span>
+                <div
+                  className={styles.spacingBar}
+                  style={{ width: Number(token.value) * 2 }}
+                />
+                <span className={styles.spacingValue}>
+                  {token.primitive} ({token.value}px)
+                </span>
+              </div>
+            ))}
+          </div>
+        </StackList>
+      </div>
+    </div>
+  );
+};
+
+export const Spacing: StoryObj = {
+  parameters: { layout: 'fullscreen' },
+  render: () => <SemanticSpacingPage />,
+};
+
+export const Radius: StoryObj = {
+  name: 'Border',
+  render: () => (
+    <div className={styles.colorList}>
+      <GridList
+        title='Radius'
+        wide
+        itemWidth={72}
+        noWrapLabels
+        gap={18}
+        items={Object.entries(radius).map(([key, token]) => ({
+          key,
+          boxStyle: {
+            background: '#F9603E',
+            borderRadius: Number(token.value),
+          },
+          labels: [key, `${token.primitive} (${token.value}px)`],
+        }))}
+      />
+      <GridList
+        title='Width'
+        wide
+        itemWidth={72}
+        noWrapLabels
+        gap={18}
+        items={Object.entries(borderWidth).map(([key, token]) => ({
+          key,
+          boxStyle: {
+            background: '#ffffff',
+            borderRadius: 8,
+            border: `${token.value}px solid #F9603E`,
+          },
+          labels: [key, `${token.primitive} (${token.value}px)`],
+        }))}
+      />
+    </div>
+  ),
+};
+
+export const Shadow: StoryObj = {
+  render: () => (
+    <div className={styles.colorList}>
+      <GridList
+        title='Shadow'
+        wide
+        items={Object.entries(shadow).map(([key, token]) => ({
+          key,
+          boxStyle: {
+            background: '#ffffff',
+            borderRadius: 8,
+            boxShadow: token.value,
+          },
+          labels: [key, token.primitive],
+        }))}
+      />
+    </div>
+  ),
 };

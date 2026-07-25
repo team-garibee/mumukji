@@ -1,0 +1,93 @@
+$spacings: (
+  'null',
+  '2xs',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  '3xl',
+  '4xl',
+  '5xl',
+  '6xl',
+  '7xl',
+  '8xl',
+  '9xl',
+  '10xl',
+  '11xl'
+);
+
+@each $name in $spacings {
+  .SpacingP-#{$name} {
+    padding: var(--spacing-#{$name});
+  }
+
+  .SpacingPx-#{$name} {
+    padding-right: var(--spacing-#{$name});
+    padding-left: var(--spacing-#{$name});
+  }
+
+  .SpacingPy-#{$name} {
+    padding-top: var(--spacing-#{$name});
+    padding-bottom: var(--spacing-#{$name});
+  }
+
+  .SpacingPt-#{$name} {
+    padding-top: var(--spacing-#{$name});
+  }
+
+  .SpacingPr-#{$name} {
+    padding-right: var(--spacing-#{$name});
+  }
+
+  .SpacingPb-#{$name} {
+    padding-bottom: var(--spacing-#{$name});
+  }
+
+  .SpacingPl-#{$name} {
+    padding-left: var(--spacing-#{$name});
+  }
+
+  .SpacingM-#{$name} {
+    margin: var(--spacing-#{$name});
+  }
+
+  .SpacingMx-#{$name} {
+    margin-right: var(--spacing-#{$name});
+    margin-left: var(--spacing-#{$name});
+  }
+
+  .SpacingMy-#{$name} {
+    margin-top: var(--spacing-#{$name});
+    margin-bottom: var(--spacing-#{$name});
+  }
+
+  .SpacingMt-#{$name} {
+    margin-top: var(--spacing-#{$name});
+  }
+
+  .SpacingMr-#{$name} {
+    margin-right: var(--spacing-#{$name});
+  }
+
+  .SpacingMb-#{$name} {
+    margin-bottom: var(--spacing-#{$name});
+  }
+
+  .SpacingMl-#{$name} {
+    margin-left: var(--spacing-#{$name});
+  }
+
+  .SpacingGap-#{$name} {
+    gap: var(--spacing-#{$name});
+  }
+
+  .SpacingColumnGap-#{$name} {
+    column-gap: var(--spacing-#{$name});
+  }
+
+  .SpacingRowGap-#{$name} {
+    row-gap: var(--spacing-#{$name});
+  }
+}
