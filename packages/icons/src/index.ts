@@ -23,6 +23,7 @@ export { IconFoodJapanese } from './react/IconFoodJapanese';
 export { IconFoodKorean } from './react/IconFoodKorean';
 export { IconFoodWestern } from './react/IconFoodWestern';
 export { IconHome } from './react/IconHome';
+export { IconImage } from './react/IconImage';
 export { IconRice } from './react/IconRice';
 export { IconSetting } from './react/IconSetting';
 export { IconShare } from './react/IconShare';
