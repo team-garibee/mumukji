@@ -1,5 +1,11 @@
 # @mumukji/icons
 
+## 1.0.1
+
+### Patch Changes
+
+- 7e87d8e: `IconImage` 아이콘 에셋 추가
+
 ## 1.0.0
 
 ### Major Changes
