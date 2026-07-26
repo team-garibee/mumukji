@@ -29,6 +29,9 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-vitest'),
   ],
   framework: getAbsolutePath('@storybook/react-vite'),
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+  },
 
   async viteFinal(config) {
     return mergeConfig(config, {
