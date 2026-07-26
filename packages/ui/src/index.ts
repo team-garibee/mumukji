@@ -4,18 +4,6 @@ import '@mumukji/tokens/typography-css';
 import '@mumukji/tokens/font-cdn';
 import './styles/index.scss';
 
-export { Box } from './components/box/Box';
-export type { BoxAs, BoxProps } from './components/box/Box';
-export { Flex } from './components/flex/Flex';
-export type {
-  FlexAlign,
-  FlexJustify,
-  FlexProps,
-  FlexWrap,
-} from './components/flex/Flex';
-export { Section } from './components/section/Section';
-export type { SectionAs, SectionProps } from './components/section/Section';
-
 export { SPACING_TOKENS } from './types';
 export {
   getGapPropsClassNames,
@@ -30,3 +18,17 @@ export type {
   SpacingProps,
 } from './types';
 export type { SpacingClassPrefix } from './utils';
+
+export type { BoxAs, BoxProps } from './components/box/Box';
+export { Box } from './components/box/Box';
+export type {
+  FlexAlign,
+  FlexJustify,
+  FlexProps,
+  FlexWrap,
+} from './components/flex/Flex';
+export { Flex } from './components/flex/Flex';
+export type { SectionAs, SectionProps } from './components/section/Section';
+export { Section } from './components/section/Section';
+export type { ListAs, ListProps, ListItemProps } from './components/list/List';
+export { List, ListItem } from './components/list/List';
