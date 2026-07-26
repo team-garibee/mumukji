@@ -127,3 +127,55 @@ const UnnamedInputDemo = () => {
 export const UnnamedInputExcluded: Story = {
   render: () => <UnnamedInputDemo />,
 };
+
+const FileInputDemo = () => {
+  const [result, setResult] = useState<{
+    values: Record<string, string>;
+    fileName: string | null;
+  } | null>(null);
+
+  return (
+    <Form
+      style={formStyle}
+      onSubmit={(values, event) => {
+        const formData = new FormData(event.currentTarget);
+        const file = formData.get('avatar');
+        setResult({
+          values,
+          fileName: file instanceof File ? file.name : null,
+        });
+      }}>
+      <p style={noticeStyle}>
+        `values`의 타입은 `Record&lt;string, string&gt;`으로 고정되어 있어
+        `type="file"` input의 값은 자동으로 수집되지 않습니다. file input을 함께
+        다뤄야 한다면 `event.currentTarget`에서 `FormData`를 직접 생성해 꺼내
+        쓰세요.
+      </p>
+      <label style={fieldStyle}>
+        이름
+        <input style={inputStyle} name='username' />
+      </label>
+      <label style={fieldStyle}>
+        프로필 사진
+        <input style={inputStyle} name='avatar' type='file' />
+      </label>
+      <button style={buttonStyle} type='submit'>
+        제출
+      </button>
+
+      {result && (
+        <pre style={resultStyle}>
+          {JSON.stringify(
+            { ...result.values, avatar: result.fileName },
+            null,
+            2,
+          )}
+        </pre>
+      )}
+    </Form>
+  );
+};
+
+export const FileInputWorkaround: Story = {
+  render: () => <FileInputDemo />,
+};
