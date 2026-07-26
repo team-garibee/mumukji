@@ -30,5 +30,11 @@ export type {
 export { Flex } from './components/flex/Flex';
 export type { SectionAs, SectionProps } from './components/section/Section';
 export { Section } from './components/section/Section';
-export type { ListAs, ListProps, ListItemProps } from './components/list/List';
+export type {
+  ListAs,
+  ListProps,
+  ListItemProps,
+  OrderedListProps,
+  UnorderedListProps,
+} from './components/list/List';
 export { List, ListItem } from './components/list/List';

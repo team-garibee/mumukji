@@ -5,12 +5,22 @@ import { getSpacingPropsClassNames } from '../../utils';
 
 export type ListAs = 'ul' | 'ol';
 
-export type ListProps = SpacingProps &
-  ComponentPropsWithoutRef<ListAs> & {
-    as?: ListAs;
-    className?: string;
-    children: ReactNode;
+type ListBaseProps = SpacingProps & {
+  className?: string;
+  children: ReactNode;
+};
+
+export type UnorderedListProps = ListBaseProps &
+  ComponentPropsWithoutRef<'ul'> & {
+    as?: 'ul';
   };
+
+export type OrderedListProps = ListBaseProps &
+  ComponentPropsWithoutRef<'ol'> & {
+    as: 'ol';
+  };
+
+export type ListProps = UnorderedListProps | OrderedListProps;
 
 export type ListItemProps = SpacingProps &
   ComponentPropsWithoutRef<'li'> & {
