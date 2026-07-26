@@ -28,6 +28,8 @@ export type {
   FlexWrap,
 } from './components/flex/Flex';
 export { Flex } from './components/flex/Flex';
+export type { GridProps } from './components/grid/Grid';
+export { Grid } from './components/grid/Grid';
 export type { SectionAs, SectionProps } from './components/section/Section';
 export { Section } from './components/section/Section';
 export type {
