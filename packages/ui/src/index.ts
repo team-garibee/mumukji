@@ -40,3 +40,5 @@ export type {
   UnorderedListProps,
 } from './components/list/List';
 export { List, ListItem } from './components/list/List';
+export type { FormProps, FormValues } from './components/form/Form';
+export { Form } from './components/form/Form';
