@@ -6,7 +6,7 @@ import { getSpacingPropsClassNames } from '../../utils';
 export type SectionAs = 'section' | 'article';
 
 export type SectionProps = SpacingProps &
-  Omit<ComponentPropsWithoutRef<SectionAs>, keyof SpacingProps | 'as'> & {
+  ComponentPropsWithoutRef<SectionAs> & {
     as?: SectionAs;
     className?: string;
     children: ReactNode;
@@ -40,24 +40,23 @@ export const Section = ({
   ml,
   ...rest
 }: SectionProps) => {
-  const spacingProps = {
-    p,
-    px,
-    py,
-    pt,
-    pr,
-    pb,
-    pl,
-    m,
-    mx,
-    my,
-    mt,
-    mr,
-    mb,
-    ml,
-  };
   const sectionClassName = clsx(
-    getSpacingPropsClassNames(spacingProps),
+    getSpacingPropsClassNames({
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+    }),
     className,
   );
 
