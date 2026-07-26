@@ -78,6 +78,7 @@ import arrowRight from '@mumukji/icons/IconArrowRight';
 |       <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-edit-list.svg" width="24" />       |      `IconEditList`       |       `edit-list.svg`       |
 |         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-edit.svg" width="24" />          |        `IconEdit`         |         `edit.svg`          |
 |         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-home.svg" width="24" />          |        `IconHome`         |         `home.svg`          |
+|         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-image.svg" width="24" />         |        `IconImage`        |         `image.svg`         |
 |         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-rice.svg" width="24" />          |        `IconRice`         |         `rice.svg`          |
 |        <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-setting.svg" width="24" />        |       `IconSetting`       |        `setting.svg`        |
 |         <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/basic/icon-share.svg" width="24" />         |        `IconShare`        |         `share.svg`         |
