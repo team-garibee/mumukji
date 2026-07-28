@@ -1,6 +1,6 @@
 import { Form } from '@mumukji/ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, SubmitEventHandler } from 'react';
 import { useState } from 'react';
 
 const formStyle: CSSProperties = {
@@ -67,10 +67,21 @@ type Story = StoryObj<typeof Form>;
 const SubmitDemo = () => {
   const [values, setValues] = useState<Record<string, string> | null>(null);
 
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    setValues(Object.fromEntries(formData) as Record<string, string>);
+  };
+
   return (
-    <Form
-      onSubmit={(submittedValues) => setValues(submittedValues)}
-      style={formStyle}>
+    <Form style={formStyle} onSubmit={handleSubmit}>
+      <p style={noticeStyle}>
+        `Form`은 `preventDefault`와 값 수집을 대신 처리하지 않습니다. 사용하는
+        쪽에서 `onSubmit` 안에 원하는 방식(`FormData`, 상태 관리, 폼 라이브러리
+        등)으로 직접 구현하세요. `ref`를 넘기면 form DOM 엘리먼트에 직접 접근할
+        수 있습니다(`reset()`, `requestSubmit()` 등).
+      </p>
       <label style={fieldStyle}>
         이름
         <input style={inputStyle} name='username' />
@@ -92,90 +103,4 @@ const SubmitDemo = () => {
 
 export const Default: Story = {
   render: () => <SubmitDemo />,
-};
-
-const UnnamedInputDemo = () => {
-  const [values, setValues] = useState<Record<string, string> | null>(null);
-
-  return (
-    <Form
-      onSubmit={(submittedValues) => setValues(submittedValues)}
-      style={formStyle}>
-      <p style={noticeStyle}>
-        `name` 속성이 없는 input은 FormData에 포함되지 않으므로 수집 대상에서
-        제외됩니다.
-      </p>
-      <label style={fieldStyle}>
-        이름 (수집됨)
-        <input style={inputStyle} name='username' />
-      </label>
-      <label style={fieldStyle}>
-        메모 (name 없음 - 수집 안 됨)
-        <input style={inputStyle} />
-      </label>
-      <button style={buttonStyle} type='submit'>
-        제출
-      </button>
-
-      {values && (
-        <pre style={resultStyle}>{JSON.stringify(values, null, 2)}</pre>
-      )}
-    </Form>
-  );
-};
-
-export const UnnamedInputExcluded: Story = {
-  render: () => <UnnamedInputDemo />,
-};
-
-const FileInputDemo = () => {
-  const [result, setResult] = useState<{
-    values: Record<string, string>;
-    fileName: string | null;
-  } | null>(null);
-
-  return (
-    <Form
-      style={formStyle}
-      onSubmit={(values, event) => {
-        const formData = new FormData(event.currentTarget);
-        const file = formData.get('avatar');
-        setResult({
-          values,
-          fileName: file instanceof File ? file.name : null,
-        });
-      }}>
-      <p style={noticeStyle}>
-        `values`의 타입은 `Record&lt;string, string&gt;`으로 고정되어 있어
-        `type="file"` input의 값은 자동으로 수집되지 않습니다. file input을 함께
-        다뤄야 한다면 `event.currentTarget`에서 `FormData`를 직접 생성해 꺼내
-        쓰세요.
-      </p>
-      <label style={fieldStyle}>
-        이름
-        <input style={inputStyle} name='username' />
-      </label>
-      <label style={fieldStyle}>
-        프로필 사진
-        <input style={inputStyle} name='avatar' type='file' />
-      </label>
-      <button style={buttonStyle} type='submit'>
-        제출
-      </button>
-
-      {result && (
-        <pre style={resultStyle}>
-          {JSON.stringify(
-            { ...result.values, avatar: result.fileName },
-            null,
-            2,
-          )}
-        </pre>
-      )}
-    </Form>
-  );
-};
-
-export const FileInputWorkaround: Story = {
-  render: () => <FileInputDemo />,
 };
