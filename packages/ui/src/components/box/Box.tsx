@@ -1,5 +1,10 @@
 import clsx from 'clsx';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type Ref,
+} from 'react';
 import type { SpacingProps } from '../../types';
 import { getSpacingPropsClassNames } from '../../utils';
 
@@ -28,47 +33,58 @@ export type BoxProps = SpacingProps &
  *   이 경우 `className`으로 `display: inline-block` 등을 함께 지정하세요.
  * - spacing 값으로 `"null"`을 주면 해당 padding/margin을 명시적으로 0으로 리셋합니다.
  */
-export const Box = ({
-  as: Component = 'div',
-  className,
-  children,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}: BoxProps) => {
-  const spacingProps = {
-    p,
-    px,
-    py,
-    pt,
-    pr,
-    pb,
-    pl,
-    m,
-    mx,
-    my,
-    mt,
-    mr,
-    mb,
-    ml,
-  };
-  const boxClassName = clsx(getSpacingPropsClassNames(spacingProps), className);
+export const Box = forwardRef<HTMLElement, BoxProps>(
+  (
+    {
+      as: Component = 'div',
+      className,
+      children,
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+      ...rest
+    },
+    ref,
+  ) => {
+    const spacingProps = {
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+    };
+    const boxClassName = clsx(
+      getSpacingPropsClassNames(spacingProps),
+      className,
+    );
+    const boxRef = ref as Ref<HTMLDivElement & HTMLSpanElement>;
 
-  return (
-    <Component className={boxClassName} {...rest}>
-      {children}
-    </Component>
-  );
-};
+    return (
+      <Component ref={boxRef} className={boxClassName} {...rest}>
+        {children}
+      </Component>
+    );
+  },
+);
+
+Box.displayName = 'Box';

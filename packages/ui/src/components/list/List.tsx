@@ -1,5 +1,10 @@
 import clsx from 'clsx';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type Ref,
+} from 'react';
 import type { SpacingProps } from '../../types';
 import { getSpacingPropsClassNames } from '../../utils';
 
@@ -33,28 +38,12 @@ export type ListItemProps = SpacingProps &
  * - `as="ol"`로 순서 있는 목록을 렌더링할 수 있습니다.
  * - 그 외 스타일(list-style 등)은 `className`(SCSS)으로 처리해야 합니다.
  */
-export const List = ({
-  as: Component = 'ul',
-  className,
-  children,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}: ListProps) => {
-  const listClassName = clsx(
-    getSpacingPropsClassNames({
+export const List = forwardRef<HTMLElement, ListProps>(
+  (
+    {
+      as: Component = 'ul',
+      className,
+      children,
       p,
       px,
       py,
@@ -69,42 +58,51 @@ export const List = ({
       mr,
       mb,
       ml,
-    }),
-    className,
-  );
+      ...rest
+    },
+    ref,
+  ) => {
+    const listClassName = clsx(
+      getSpacingPropsClassNames({
+        p,
+        px,
+        py,
+        pt,
+        pr,
+        pb,
+        pl,
+        m,
+        mx,
+        my,
+        mt,
+        mr,
+        mb,
+        ml,
+      }),
+      className,
+    );
 
-  return (
-    <Component className={listClassName} {...rest}>
-      {children}
-    </Component>
-  );
-};
+    const listRef = ref as Ref<HTMLUListElement & HTMLOListElement>;
+
+    return (
+      <Component ref={listRef} className={listClassName} {...rest}>
+        {children}
+      </Component>
+    );
+  },
+);
+
+List.displayName = 'List';
 
 /**
  * - `li`를 추상화한 ListItem 컴포넌트입니다.
  * - 반드시 `List` 컴포넌트 안에서 사용해야 합니다.
  */
-export const ListItem = ({
-  className,
-  children,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}: ListItemProps) => {
-  const listItemClassName = clsx(
-    getSpacingPropsClassNames({
+export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
+  (
+    {
+      className,
+      children,
       p,
       px,
       py,
@@ -119,13 +117,36 @@ export const ListItem = ({
       mr,
       mb,
       ml,
-    }),
-    className,
-  );
+      ...rest
+    },
+    ref,
+  ) => {
+    const listItemClassName = clsx(
+      getSpacingPropsClassNames({
+        p,
+        px,
+        py,
+        pt,
+        pr,
+        pb,
+        pl,
+        m,
+        mx,
+        my,
+        mt,
+        mr,
+        mb,
+        ml,
+      }),
+      className,
+    );
 
-  return (
-    <li className={listItemClassName} {...rest}>
-      {children}
-    </li>
-  );
-};
+    return (
+      <li ref={ref} className={listItemClassName} {...rest}>
+        {children}
+      </li>
+    );
+  },
+);
+
+ListItem.displayName = 'ListItem';
