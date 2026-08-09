@@ -1,5 +1,9 @@
 import clsx from 'clsx';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from 'react';
 import type { SpacingProps } from '../../types';
 import { getSpacingPropsClassNames } from '../../utils';
 
@@ -20,28 +24,12 @@ export type SectionProps = SpacingProps &
  * 제목을 숨겨야 하는 경우 `aria-label` 또는 `aria-labelledby`로 접근 가능한 이름을
  * 제공해야 합니다.
  */
-export const Section = ({
-  as: Component = 'section',
-  className,
-  children,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}: SectionProps) => {
-  const sectionClassName = clsx(
-    getSpacingPropsClassNames({
+export const Section = forwardRef<HTMLElement, SectionProps>(
+  (
+    {
+      as: Component = 'section',
+      className,
+      children,
       p,
       px,
       py,
@@ -56,13 +44,36 @@ export const Section = ({
       mr,
       mb,
       ml,
-    }),
-    className,
-  );
+      ...rest
+    },
+    ref,
+  ) => {
+    const sectionClassName = clsx(
+      getSpacingPropsClassNames({
+        p,
+        px,
+        py,
+        pt,
+        pr,
+        pb,
+        pl,
+        m,
+        mx,
+        my,
+        mt,
+        mr,
+        mb,
+        ml,
+      }),
+      className,
+    );
 
-  return (
-    <Component className={sectionClassName} {...rest}>
-      {children}
-    </Component>
-  );
-};
+    return (
+      <Component ref={ref} className={sectionClassName} {...rest}>
+        {children}
+      </Component>
+    );
+  },
+);
+
+Section.displayName = 'Section';
