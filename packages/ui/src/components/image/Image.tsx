@@ -1,9 +1,9 @@
 'use client';
 
+import { IconImage } from '@mumukji/icons';
 import clsx from 'clsx';
 import {
   createElement,
-  useEffect,
   useState,
   type ComponentPropsWithoutRef,
   type ElementType,
@@ -23,9 +23,21 @@ export type ImageOwnProps<C extends ElementType> = {
 export type ImageProps<C extends ElementType = 'img'> = ImageOwnProps<C> &
   Omit<ComponentPropsWithoutRef<C>, keyof ImageOwnProps<C>>;
 
+// 원본 이미지가 차지하던 영역(너비/높이) 전체를 채우고, 그 안에서 아이콘은 24x24로 가운데 고정.
+// 배경색은 `color/bg/disabled` 토큰(`Bg-disabled` 유틸리티 클래스)을 사용.
 const DefaultFallback = (
-  <span role='img' aria-label='이미지를 불러오지 못했습니다'>
-    이미지를 불러오지 못했습니다
+  <span
+    role='img'
+    aria-label='이미지를 불러오지 못했습니다'
+    className={clsx('Bg-disabled')}
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: '100%',
+    }}>
+    <IconImage size={24} />
   </span>
 );
 
@@ -36,14 +48,15 @@ const DefaultFallback = (
  *   (예: `as={NextImage}` 사용 시 `next/image`의 `src`, `fill`, `sizes` 등 고유 prop 타입 안전하게 전달 가능)
  * - 이미지 로드 실패 시 실패한 요소 대신 `fallback`으로 전달된 요소로 대체.
  *   `fallback` 없으면 기본 폴백(DefaultFallback) 노출
- * - `src`가 바뀌면 이전 에러 상태를 초기화하고 새 이미지 로드를 다시 시도
+ * - `src`를 `key`로 사용해 src가 바뀌면 컴포넌트를 리마운트하고 에러 상태를 초기화한다.
+ *   (useEffect로 초기화하면 렌더링 이후에나 반영되어 한 프레임 깜빡이는 타이밍 이슈가 있어 key 방식으로 대체)
  * - `margin`(레이아웃)은 Props로 받고, 실제 값은 scss spacing 유틸리티 클래스로 주입.
  *   컴포넌트 코드에는 값 하드코딩 금지
  * - `radius` 등 Visual 속성은 prop으로 받지 않음.
  *   필요하면 `className`으로 `Radius-*` 같은 scss 유틸리티 클래스를 직접 전달할 것
  *   (Layout → Props, Visual → SCSS/className 정책)
  */
-export const Image = <C extends ElementType = 'img'>({
+const ImageInner = <C extends ElementType = 'img'>({
   as,
   fallback,
   className,
@@ -59,12 +72,6 @@ export const Image = <C extends ElementType = 'img'>({
 }: ImageProps<C>) => {
   const [hasError, setHasError] = useState(false);
   const Component = as ?? 'img';
-  const { src } = rest as { src?: unknown };
-
-  // src가 바뀌면 새 이미지이므로 이전 실패 상태를 초기화하고 다시 시도한다.
-  useEffect(() => {
-    setHasError(false);
-  }, [src]);
 
   const handleError = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     setHasError(true);
@@ -87,4 +94,12 @@ export const Image = <C extends ElementType = 'img'>({
     onError: handleError,
     ...rest,
   });
+};
+
+export const Image = <C extends ElementType = 'img'>(props: ImageProps<C>) => {
+  const { src } = props as { src?: unknown };
+
+  // src가 바뀌면 새 이미지이므로 key를 통해 컴포넌트를 리마운트하고
+  // 이전 실패(hasError) 상태를 다시 초기화한다.
+  return <ImageInner key={String(src)} {...props} />;
 };

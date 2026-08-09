@@ -47,7 +47,7 @@ export const WithClassNameRadius: Story = {
 // margin은 Layout 속성이라 Image가 직접 prop으로 받는다.
 export const WithMargin: Story = {
   args: {
-    m: 4,
+    m: 'md',
   },
 };
 
