@@ -88,6 +88,7 @@ const ImageInner = <C extends ElementType = 'img'>({
           boxSizing: 'border-box',
           backgroundColor: 'var(--color-bg-disabled)',
           border: '1px solid var(--color-stroke-neutral-subtle)',
+          borderRadius: 'var(--spacing-xs)',
           color: 'var(--color-fg-disabled)',
           width: style?.width ?? width,
           height: style?.height ?? height,
