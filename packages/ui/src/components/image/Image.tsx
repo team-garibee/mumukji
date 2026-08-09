@@ -23,31 +23,13 @@ export type ImageOwnProps<C extends ElementType> = {
 export type ImageProps<C extends ElementType = 'img'> = ImageOwnProps<C> &
   Omit<ComponentPropsWithoutRef<C>, keyof ImageOwnProps<C>>;
 
-// 원본 이미지가 차지하던 영역(너비/높이) 전체를 채우고, 그 안에서 아이콘은 24x24로 가운데 고정.
-// 배경색은 `color/bg/disabled` 토큰(`Bg-disabled` 유틸리티 클래스)을 사용.
-const DefaultFallback = (
-  <span
-    role='img'
-    aria-label='이미지를 불러오지 못했습니다'
-    className={clsx('Bg-disabled')}
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
-    }}>
-    <IconImage size={24} />
-  </span>
-);
-
 /**
  * - `img` 태그를 추상화한 폴리모픽(Polymorphic) 이미지 컴포넌트
  * - 기본적으로 `<img>` 렌더링, `as` prop으로 `next/image` 등 다른 이미지 컴포넌트 주입 가능.
  *   이때 주입된 컴포넌트의 props 타입 그대로 추론
  *   (예: `as={NextImage}` 사용 시 `next/image`의 `src`, `fill`, `sizes` 등 고유 prop 타입 안전하게 전달 가능)
  * - 이미지 로드 실패 시 실패한 요소 대신 `fallback`으로 전달된 요소로 대체.
- *   `fallback` 없으면 기본 폴백(DefaultFallback) 노출
+ *   `fallback` 없으면 기본 폴백 노출
  * - `src`를 `key`로 사용해 src가 바뀌면 컴포넌트를 리마운트하고 에러 상태를 초기화한다.
  *   (useEffect로 초기화하면 렌더링 이후에나 반영되어 한 프레임 깜빡이는 타이밍 이슈가 있어 key 방식으로 대체)
  * - `margin`(레이아웃)은 Props로 받고, 실제 값은 scss spacing 유틸리티 클래스로 주입.
@@ -84,7 +66,36 @@ const ImageInner = <C extends ElementType = 'img'>({
   );
 
   if (hasError) {
-    return fallback ?? DefaultFallback;
+    if (fallback) {
+      return fallback;
+    }
+
+    const { style, width, height } = rest as {
+      style?: React.CSSProperties;
+      width?: number | string;
+      height?: number | string;
+    };
+
+    return (
+      <span
+        role='img'
+        aria-label='이미지를 불러오지 못했습니다'
+        className={imageClassName}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxSizing: 'border-box',
+          backgroundColor: 'var(--color-bg-disabled)',
+          border: '1px solid var(--color-stroke-neutral-subtle)',
+          color: 'var(--color-fg-disabled)',
+          width: style?.width ?? width,
+          height: style?.height ?? height,
+          ...style,
+        }}>
+        <IconImage size={24} />
+      </span>
+    );
   }
 
   // `Component`를 JSX 태그로 직접 사용하면 `ElementType`이 함수/문자열 유니온이라
