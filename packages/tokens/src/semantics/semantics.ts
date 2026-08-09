@@ -84,11 +84,11 @@ export const color = {
       value: '#f2f2f2',
       primitive: 'color-gray-50',
     },
-    'neutral-solid': {
+    'neutral-subtle': {
       value: '#ffffff',
       primitive: 'color-gray-0',
     },
-    'neutral-solid-pressed': {
+    'neutral-subtle-pressed': {
       value: '#f2f2f2',
       primitive: 'color-gray-50',
     },
@@ -101,8 +101,24 @@ export const color = {
       primitive: 'color-gray-0',
     },
     'transparent-pressed': {
-      value: 'rgba(0, 0, 0, 0.1)',
-      primitive: 'color-alpha-black-10',
+      value: 'rgba(0, 0, 0, 0.05)',
+      primitive: 'color-alpha-black-5',
+    },
+    'neutral-solid': {
+      value: '#424242',
+      primitive: 'color-gray-700',
+    },
+    'neutral-solid-pressed': {
+      value: '#1a1a1a',
+      primitive: 'color-gray-900',
+    },
+    'neutral-weak': {
+      value: '#d6d6d6',
+      primitive: 'color-gray-200',
+    },
+    'neutral-weak-pressed': {
+      value: '#bdbdbd',
+      primitive: 'color-gray-300',
     },
   },
   fg: {
@@ -314,6 +330,10 @@ export const spacing = {
     value: '64',
     primitive: 'spacing-64',
   },
+  '3xs': {
+    value: '2',
+    primitive: 'spacing-2',
+  },
 } as const;
 
 export const shadow = {
@@ -332,5 +352,12 @@ export const shadow = {
   s4: {
     value: '0px 12px 40px rgba(0,0,0,0.1), 0px 0px 6px rgba(0,0,0,0.1)',
     primitive: 'shadow-400',
+  },
+} as const;
+
+export const opacity = {
+  disabled: {
+    value: '40',
+    primitive: 'opacity-40',
   },
 } as const;
