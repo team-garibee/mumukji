@@ -1,4 +1,5 @@
 export {
+  getGapPropsClassNames,
   getSpacingClassName,
   getSpacingPropsClassNames,
 } from './spacingClassName';

@@ -1,7 +1,12 @@
 import clsx from 'clsx';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { MarginProps, PaddingProps } from '../../types';
-import { getSpacingPropsClassNames } from '../../utils';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type Ref,
+} from 'react';
+import type { SpacingProps } from '@/types';
+import { getSpacingPropsClassNames } from '@/utils';
 
 export type BoxAs =
   | 'div'
@@ -12,12 +17,8 @@ export type BoxAs =
   | 'aside'
   | 'nav';
 
-export type BoxProps = PaddingProps &
-  MarginProps &
-  Omit<
-    ComponentPropsWithoutRef<BoxAs>,
-    keyof PaddingProps | keyof MarginProps | 'as'
-  > & {
+export type BoxProps = SpacingProps &
+  Omit<ComponentPropsWithoutRef<BoxAs>, keyof SpacingProps | 'as'> & {
     as?: BoxAs;
     className?: string;
     children?: ReactNode;
@@ -32,47 +33,57 @@ export type BoxProps = PaddingProps &
  *   이 경우 `className`으로 `display: inline-block` 등을 함께 지정하세요.
  * - spacing 값으로 `"null"`을 주면 해당 padding/margin을 명시적으로 0으로 리셋합니다.
  */
-export const Box = ({
-  as: Component = 'div',
-  className,
-  children,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}: BoxProps) => {
-  const spacingProps = {
-    p,
-    px,
-    py,
-    pt,
-    pr,
-    pb,
-    pl,
-    m,
-    mx,
-    my,
-    mt,
-    mr,
-    mb,
-    ml,
-  };
-  const boxClassName = clsx(getSpacingPropsClassNames(spacingProps), className);
+export const Box = forwardRef<HTMLElement, BoxProps>(
+  (
+    {
+      as: Component = 'div',
+      className,
+      children,
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+      ...rest
+    },
+    ref,
+  ) => {
+    const spacingProps = {
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+    };
+    const boxClassName = clsx(
+      getSpacingPropsClassNames(spacingProps),
+      className,
+    );
 
-  return (
-    <Component className={boxClassName} {...rest}>
-      {children}
-    </Component>
-  );
-};
+    return (
+      <Component ref={ref as Ref<never>} className={boxClassName} {...rest}>
+        {children}
+      </Component>
+    );
+  },
+);
+
+Box.displayName = 'Box';

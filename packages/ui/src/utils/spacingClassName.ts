@@ -1,4 +1,4 @@
-import type { Spacing, SpacingProps } from '../types';
+import type { GapProps, Spacing, SpacingProps } from '@/types';
 
 export type SpacingClassPrefix =
   | 'SpacingP'
@@ -60,4 +60,10 @@ export const getSpacingPropsClassNames = ({
   getSpacingClassName('SpacingMr', mr),
   getSpacingClassName('SpacingMb', mb),
   getSpacingClassName('SpacingMl', ml),
+];
+
+export const getGapPropsClassNames = ({ gap, columnGap, rowGap }: GapProps) => [
+  getSpacingClassName('SpacingGap', gap),
+  getSpacingClassName('SpacingColumnGap', columnGap),
+  getSpacingClassName('SpacingRowGap', rowGap),
 ];

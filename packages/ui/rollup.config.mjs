@@ -4,6 +4,21 @@ import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 import preserveDirectives from 'rollup-preserve-directives';
+import alias from '@rollup/plugin-alias';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const srcDir = path.resolve(__dirname, 'src');
+const typesDir = path.resolve(__dirname, 'dist/types');
+
+const sourceAliasOptions = {
+  entries: [{ find: '@', replacement: srcDir }],
+};
+
+const declarationAliasOptions = {
+  entries: [{ find: '@', replacement: typesDir }],
+};
 
 export default [
   {
@@ -19,6 +34,7 @@ export default [
       },
     ],
     plugins: [
+      alias(sourceAliasOptions),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
@@ -43,6 +59,7 @@ export default [
       },
     ],
     plugins: [
+      alias(sourceAliasOptions),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
@@ -59,6 +76,6 @@ export default [
     input: 'dist/types/index.d.ts',
     external: [/\.s?css$/, '@mumukji/tokens/semantic-css'],
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
+    plugins: [alias(declarationAliasOptions), dts()],
   },
 ];
