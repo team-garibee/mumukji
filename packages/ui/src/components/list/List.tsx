@@ -82,10 +82,8 @@ export const List = forwardRef<HTMLElement, ListProps>(
       className,
     );
 
-    const listRef = ref as Ref<HTMLUListElement & HTMLOListElement>;
-
     return (
-      <Component ref={listRef} className={listClassName} {...rest}>
+      <Component ref={ref as Ref<never>} className={listClassName} {...rest}>
         {children}
       </Component>
     );

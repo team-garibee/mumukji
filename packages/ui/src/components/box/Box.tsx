@@ -77,10 +77,9 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       getSpacingPropsClassNames(spacingProps),
       className,
     );
-    const boxRef = ref as Ref<HTMLDivElement & HTMLSpanElement>;
 
     return (
-      <Component ref={boxRef} className={boxClassName} {...rest}>
+      <Component ref={ref as Ref<never>} className={boxClassName} {...rest}>
         {children}
       </Component>
     );
