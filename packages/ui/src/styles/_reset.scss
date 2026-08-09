@@ -1,5 +1,4 @@
 @mixin reset-button {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   border: none;
@@ -11,7 +10,6 @@
 }
 
 @mixin reset-link {
-  box-sizing: border-box;
   color: inherit;
   font: inherit;
   text-decoration: none;
