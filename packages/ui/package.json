@@ -21,7 +21,7 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/index.d.ts",
-  "style": "./dist/index.css",
+  "style": "./dist/esm/index.css",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
@@ -30,7 +30,7 @@
     },
     "./style.css": {
       "types": "./style.css.d.ts",
-      "default": "./dist/index.css"
+      "default": "./dist/esm/index.css"
     },
     "./*": {
       "import": "./dist/esm/*.js",
@@ -48,8 +48,8 @@
   "scripts": {
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json && rollup -c && ([ -f dist/esm/index.css ] && mv dist/esm/index.css dist/index.css || true) && rm -rf dist/types",
-    "clean": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json && rollup -c && rimraf dist/types",
+    "clean": "rimraf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
