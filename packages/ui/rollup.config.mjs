@@ -19,6 +19,27 @@ const declarationAliasOptions = {
   entries: [{ find: '@', replacement: typesDir }],
 };
 
+const sassAliasLoader = {
+  name: 'sass-alias',
+  test: /\.(sass|scss)$/,
+  process({ code }) {
+    return {
+      code: code.replace(
+        /(['"])@\/([^'"]+)\1/g,
+        (_match, quote, importPath) => {
+          return `${quote}${path.resolve(srcDir, importPath)}${quote}`;
+        },
+      ),
+    };
+  },
+};
+
+const createPostcssOptions = () => ({
+  autoModules: true,
+  use: ['sass', 'sass-alias'],
+  loaders: [sassAliasLoader],
+});
+
 export default [
   {
     input: 'src/index.ts',
@@ -38,9 +59,8 @@ export default [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        autoModules: true,
+        ...createPostcssOptions(),
         extract: true,
-        use: ['sass'],
       }),
     ],
   },
@@ -62,10 +82,9 @@ export default [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        autoModules: true,
+        ...createPostcssOptions(),
         extract: false,
         inject: false,
-        use: ['sass'],
       }),
     ],
   },
