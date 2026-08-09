@@ -5,8 +5,8 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import type { SpacingProps } from '../../types';
-import { getSpacingPropsClassNames } from '../../utils';
+import type { SpacingProps } from '@/types';
+import { getSpacingPropsClassNames } from '@/utils';
 
 export type ListAs = 'ul' | 'ol';
 

@@ -1,4 +1,4 @@
-import type { GapProps, Spacing, SpacingProps } from '../types';
+import type { GapProps, Spacing, SpacingProps } from '@/types';
 
 export type SpacingClassPrefix =
   | 'SpacingP'

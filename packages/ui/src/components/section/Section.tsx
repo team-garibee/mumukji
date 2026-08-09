@@ -4,8 +4,8 @@ import {
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from 'react';
-import type { SpacingProps } from '../../types';
-import { getSpacingPropsClassNames } from '../../utils';
+import type { SpacingProps } from '@/types';
+import { getSpacingPropsClassNames } from '@/utils';
 
 export type SectionAs = 'section' | 'article';
 
