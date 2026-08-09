@@ -47,8 +47,8 @@ const extractValues = (obj) => {
   return result;
 };
 
-/** spacing, radius는 px 단위 적용 */
-const CATEGORIES_WITH_PX = new Set(['spacing', 'radius']);
+/** spacing, radius, border-width는 px 단위 적용 */
+const CATEGORIES_WITH_PX = new Set(['spacing', 'radius', 'border-width']);
 
 /** font-size: 36px 미만은 rem 사용, 나머지는 px 사용 */
 const BASE_FONT_SIZE = 16;
@@ -73,15 +73,18 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
       const needsQuotes = CATEGORIES_WITH_QUOTES.has(rootCategory);
       const isFontSize =
         rootCategory === 'font-size' && typeof value === 'number';
+      const isOpacity = rootCategory === 'opacity' && typeof value === 'number';
       const cssValue = needsPx
         ? `${value}px`
         : isFontSize
           ? value < REM_THRESHOLD
             ? `${value / BASE_FONT_SIZE}rem`
             : `${value}px`
-          : needsQuotes
-            ? `'${String(value)}'`
-            : String(value);
+          : isOpacity
+            ? String(value / 100)
+            : needsQuotes
+              ? `'${String(value)}'`
+              : String(value);
       vars.push(`  ${varName}: ${cssValue};`);
     }
   }
