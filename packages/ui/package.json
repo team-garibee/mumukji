@@ -30,7 +30,7 @@
     },
     "./style.css": {
       "types": "./style.css.d.ts",
-      "default": "./dist/esm/index.css"
+      "default": "./dist/index.css"
     },
     "./*": {
       "import": "./dist/esm/*.js",
@@ -48,7 +48,7 @@
   "scripts": {
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json && rollup -c && rimraf dist/types",
+    "build": "tsc -p tsconfig.build.json && rollup -c && shx mv dist/esm/index.css dist/index.css && shx rm -rf dist/types",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
