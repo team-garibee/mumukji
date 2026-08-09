@@ -73,8 +73,7 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
       const needsQuotes = CATEGORIES_WITH_QUOTES.has(rootCategory);
       const isFontSize =
         rootCategory === 'font-size' && typeof value === 'number';
-      const isOpacity =
-        rootCategory === 'opacity' && typeof value === 'number';
+      const isOpacity = rootCategory === 'opacity' && typeof value === 'number';
       const cssValue = needsPx
         ? `${value}px`
         : isFontSize
