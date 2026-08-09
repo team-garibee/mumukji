@@ -51,10 +51,20 @@ export const WithMargin: Story = {
   },
 };
 
+// 커스텀 fallback 노출 예시
 export const WithFallback: Story = {
   args: {
     src: 'https://picsum.photos/broken-url-for-fallback-demo',
     fallback: <span>이미지를 불러오지 못했습니다.</span>,
+  },
+};
+
+// fallback prop을 전달하지 않아 기본 폴백(DefaultFallback)이 노출되는 스토리
+export const WithDefaultFallback: Story = {
+  args: {
+    src: 'https://picsum.photos/broken-url-for-fallback-demo',
+    width: 200,
+    height: 200,
   },
 };
 
