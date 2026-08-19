@@ -1,9 +1,14 @@
 import clsx from 'clsx';
-import { forwardRef, type ComponentPropsWithoutRef } from 'react';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from 'react';
 import './ButtonBase.scss';
 
 export type ButtonBaseProps = ComponentPropsWithoutRef<'button'> & {
   isLoading?: boolean;
+  loadingText?: ReactNode;
 };
 
 /**
@@ -17,6 +22,8 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
       children,
       disabled = false,
       isLoading = false,
+      loadingText = '로딩 중...',
+      onClick,
       type = 'button',
       ...rest
     },
@@ -25,11 +32,13 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
     <button
       ref={ref}
       type={type}
-      disabled={disabled || isLoading}
+      disabled={disabled}
+      aria-disabled={disabled || isLoading || undefined}
       aria-busy={isLoading || undefined}
+      onClick={isLoading ? undefined : onClick}
       className={clsx('ButtonBase', className)}
       {...rest}>
-      {children}
+      {isLoading ? loadingText : children}
     </button>
   ),
 );
