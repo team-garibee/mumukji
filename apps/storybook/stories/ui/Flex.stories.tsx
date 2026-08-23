@@ -17,7 +17,7 @@ const DemoItems = () => (
 );
 
 const meta: Meta<typeof Flex> = {
-  title: 'UI/Flex',
+  title: 'UI/01. Primitive/Flex',
   component: Flex,
   parameters: {
     layout: 'padded',

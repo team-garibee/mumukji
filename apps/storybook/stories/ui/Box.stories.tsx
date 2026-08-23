@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { spacingControl } from '../constants/spacing';
 
 const meta: Meta<typeof Box> = {
-  title: 'UI/Box',
+  title: 'UI/01. Primitive/Box',
   component: Box,
   parameters: {
     layout: 'padded',
