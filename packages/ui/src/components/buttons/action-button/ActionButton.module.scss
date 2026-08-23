@@ -10,7 +10,7 @@
   border-radius: var(--action-button-border-radius, var(--radius-s));
   background-color: var(--action-button-background-color, transparent);
   color: var(--action-button-text-color, inherit);
-  gap: var(--spacing-xs);
+  gap: var(--action-button-gap, var(--spacing-xs));
 
   &:disabled {
     background-color: var(--color-bg-disabled, transition);
@@ -46,6 +46,14 @@
     --action-button-icon-size: 16px;
 
     height: 32px;
+  }
+
+  &-2xs {
+    --action-button-padding-x: var(--spacing-xs);
+    --action-button-icon-size: 12px;
+    --action-button-gap: var(--spacing-2xs);
+
+    height: 28px;
   }
 
   &-outline {

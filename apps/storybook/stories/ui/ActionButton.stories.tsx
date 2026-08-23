@@ -40,7 +40,7 @@ const meta: Meta<typeof ActionButton> = {
     },
     size: {
       control: 'inline-radio',
-      options: ['lg', 'md', 'sm', 'xs'],
+      options: ['lg', 'md', 'sm', 'xs', '2xs'],
     },
     icon: { control: 'text' },
     iconPosition: {
