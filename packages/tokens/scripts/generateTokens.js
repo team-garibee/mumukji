@@ -178,11 +178,25 @@ const generateTokens = async () => {
     const semanticsJson = JSON.parse(semanticsRaw);
     const semanticCssVars = [];
 
-    const resolveReference = (value) => {
+    /** primitive CSS 변수명 → 실제 값 (예: '--radius-full' → '9999px') */
+    const primitiveCssValueMap = new Map();
+    for (const line of cssVars) {
+      const match = line.match(/^\s*(--[\w-]+):\s*(.+);$/);
+      if (match) {
+        primitiveCssValueMap.set(match[1], match[2]);
+      }
+    }
+
+    const resolveReference = (value, currentVarName) => {
       // {color.vermilion.500} → var(--color-vermilion-500)
       return value.replace(/\{([^}]+)\}/g, (_, ref) => {
-        const varName = ref.split('.').map(toKebabCase).join('-');
-        return `var(--${varName})`;
+        const varName = `--${ref.split('.').map(toKebabCase).join('-')}`;
+        // semantic 이름이 참조 중인 primitive 이름과 우연히 같으면
+        // var()로 자기 자신을 참조하는 순환 참조가 되므로 실제 값을 그대로 인라인한다.
+        if (varName === currentVarName) {
+          return primitiveCssValueMap.get(varName) ?? `var(${varName})`;
+        }
+        return `var(${varName})`;
       });
     };
 
@@ -192,7 +206,7 @@ const generateTokens = async () => {
         if (typeof val === 'object' && val !== null && !('value' in val)) {
           flattenSemanticVars(val, varName);
         } else if ('value' in val) {
-          const cssValue = resolveReference(String(val.value));
+          const cssValue = resolveReference(String(val.value), varName);
           semanticCssVars.push(`  ${varName}: ${cssValue};`);
         }
       }
