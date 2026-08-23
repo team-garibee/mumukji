@@ -1,0 +1,40 @@
+.ReactionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full, 9999px);
+  background-color: transparent;
+  color: var(--reaction-button-color, var(--color-fg-neutral-muted));
+
+  &:not(:disabled):active,
+  &:not(:disabled):hover {
+    background-color: var(--color-bg-transparent-pressed);
+  }
+
+  &:disabled {
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  &-brand {
+    --reaction-button-color: var(--color-fg-neutral-subtle);
+    --reaction-button-active-color: var(--color-fg-brand);
+  }
+}
+
+.ReactionButtonActive {
+  color: var(--reaction-button-active-color);
+}
+
+.ReactionButtonIcon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+
+  :where(svg) {
+    width: 100%;
+    height: 100%;
+  }
+}
