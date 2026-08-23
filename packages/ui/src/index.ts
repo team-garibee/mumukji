@@ -42,5 +42,9 @@ export type {
 export { List, ListItem } from '@/components/list/List';
 export type { FormProps } from '@/components/form/Form';
 export { Form } from '@/components/form/Form';
+export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
+export { ButtonBase } from '@/components/buttons/base/ButtonBase';
+export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
+export { LinkBase } from '@/components/buttons/base/LinkBase';
 export type { ImageOwnProps, ImageProps } from '@/components/image/Image';
 export { Image } from '@/components/image/Image';

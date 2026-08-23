@@ -7,6 +7,7 @@ import {
 } from 'react';
 import type { SpacingProps } from '@/types';
 import { getSpacingPropsClassNames } from '@/utils';
+import './List.scss';
 
 export type ListAs = 'ul' | 'ol';
 
@@ -36,7 +37,7 @@ export type ListItemProps = SpacingProps &
 /**
  * - `ul`/`ol`을 추상화한 List 컴포넌트입니다.
  * - `as="ol"`로 순서 있는 목록을 렌더링할 수 있습니다.
- * - 그 외 스타일(list-style 등)은 `className`(SCSS)으로 처리해야 합니다.
+ * - 기본 브라우저 여백과 목록 마커를 제거합니다. 필요하면 `className`으로 다시 지정하세요.
  */
 export const List = forwardRef<HTMLElement, ListProps>(
   (
@@ -63,6 +64,7 @@ export const List = forwardRef<HTMLElement, ListProps>(
     ref,
   ) => {
     const listClassName = clsx(
+      'List',
       getSpacingPropsClassNames({
         p,
         px,
