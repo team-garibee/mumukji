@@ -2,8 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  padding: var(--spacing-2xs);
   border-radius: var(--radius-full, 9999px);
   background-color: transparent;
   color: var(--reaction-button-color, var(--color-fg-neutral-muted));
