@@ -59,8 +59,18 @@ export const WithFallback: Story = {
   },
 };
 
-// fallback prop을 전달하지 않아 기본 폴백(DefaultFallback)이 노출되는 스토리
+// fallback prop을 전달하지 않아 기본 폴백(DefaultFallback)이 노출되는 스토리.
+// width/height를 지정하지 않아 meta.args의 height(200)도 명시적으로 해제한다.
+// → 폴백 영역이 아이콘 크기만큼만(고정 padding 없이) 렌더링되는 것을 확인.
 export const WithDefaultFallback: Story = {
+  args: {
+    src: 'https://picsum.photos/broken-url-for-fallback-demo',
+    height: undefined,
+  },
+};
+
+// width/height를 지정한 경우, 폴백 영역도 그 크기를 그대로 따라가는 것을 확인.
+export const WithDefaultFallbackSized: Story = {
   args: {
     src: 'https://picsum.photos/broken-url-for-fallback-demo',
     width: 200,
