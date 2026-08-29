@@ -195,7 +195,13 @@ const generateTokens = async () => {
         // semantic 이름이 참조 중인 primitive 이름과 우연히 같으면
         // var()로 자기 자신을 참조하는 순환 참조가 되므로 실제 값을 그대로 인라인한다.
         if (varName === currentVarName) {
-          return primitiveCssValueMap.get(varName) ?? `var(${varName})`;
+          const inlineValue = primitiveCssValueMap.get(varName);
+          if (inlineValue === undefined) {
+            throw new Error(
+              `순환 참조를 해결할 수 없습니다: ${varName}이(가) 자기 자신을 참조하지만 인라인할 primitive 값을 찾지 못했습니다.`,
+            );
+          }
+          return inlineValue;
         }
         return `var(${varName})`;
       });
