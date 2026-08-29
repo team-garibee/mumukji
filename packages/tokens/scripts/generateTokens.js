@@ -58,8 +58,8 @@ const REM_THRESHOLD = 36;
 const CATEGORIES_WITH_QUOTES = new Set(['font-family']);
 
 /**
- * 추출된 토큰 객체를 CSS 커스텀 프로퍼티 목록으로 변환
- * { primary: { 50: '#fff' } } → ['--color-primary-50: #fff']
+ * 추출된 토큰 객체를 { name, value } 쌍 목록으로 변환
+ * { primary: { 50: '#fff' } } → [{ name: '--color-primary-50', value: '#fff' }]
  */
 const flattenToCssVars = (obj, prefix, rootCategory) => {
   const vars = [];
@@ -85,11 +85,14 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
             : needsQuotes
               ? `'${String(value)}'`
               : String(value);
-      vars.push(`  ${varName}: ${cssValue};`);
+      vars.push({ name: varName, value: cssValue });
     }
   }
   return vars;
 };
+
+/** { name, value } 쌍을 CSS 커스텀 프로퍼티 선언 문자열로 변환 */
+const formatCssVar = ({ name, value }) => `  ${name}: ${value};`;
 
 const generateTokens = async () => {
   try {
@@ -101,7 +104,10 @@ const generateTokens = async () => {
     const json = JSON.parse(raw);
 
     const tsLines = [];
-    const cssVars = [];
+    const cssVarEntries = [];
+
+    /** primitive CSS 변수명 → 실제 값 (예: '--radius-full' → '9999px') */
+    const primitiveCssValueMap = new Map();
 
     for (const [key, value] of Object.entries(json)) {
       if (SKIP_KEYS.includes(key)) {
@@ -117,10 +123,14 @@ const generateTokens = async () => {
       tsLines.push(`export const ${exportName} = ${serialized} as const;`);
 
       // CSS 변수 생성
-      cssVars.push(
-        ...flattenToCssVars(extracted, `--${rootCategory}`, rootCategory),
-      );
+      const entries = flattenToCssVars(extracted, `--${rootCategory}`, rootCategory);
+      cssVarEntries.push(...entries);
+      for (const entry of entries) {
+        primitiveCssValueMap.set(entry.name, entry.value);
+      }
     }
+
+    const cssVars = cssVarEntries.map(formatCssVar);
 
     // primitive.ts 저장
     const tsContent = tsLines.join('\n\n') + '\n';
@@ -177,15 +187,6 @@ const generateTokens = async () => {
     const semanticsRaw = await fs.readFile(PATHS.SEMANTICS_JSON, 'utf8');
     const semanticsJson = JSON.parse(semanticsRaw);
     const semanticCssVars = [];
-
-    /** primitive CSS 변수명 → 실제 값 (예: '--radius-full' → '9999px') */
-    const primitiveCssValueMap = new Map();
-    for (const line of cssVars) {
-      const match = line.match(/^\s*(--[\w-]+):\s*(.+);$/);
-      if (match) {
-        primitiveCssValueMap.set(match[1], match[2]);
-      }
-    }
 
     const resolveReference = (value, currentVarName) => {
       // {color.vermilion.500} → var(--color-vermilion-500)
