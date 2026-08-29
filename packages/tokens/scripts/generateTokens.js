@@ -123,7 +123,11 @@ const generateTokens = async () => {
       tsLines.push(`export const ${exportName} = ${serialized} as const;`);
 
       // CSS 변수 생성
-      const entries = flattenToCssVars(extracted, `--${rootCategory}`, rootCategory);
+      const entries = flattenToCssVars(
+        extracted,
+        `--${rootCategory}`,
+        rootCategory,
+      );
       cssVarEntries.push(...entries);
       for (const entry of entries) {
         primitiveCssValueMap.set(entry.name, entry.value);
