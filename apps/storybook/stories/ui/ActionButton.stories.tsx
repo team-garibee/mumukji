@@ -18,7 +18,7 @@ const meta: Meta<typeof ActionButton> = {
     docs: {
       description: {
         component:
-          '사용자 동작을 실행할 때는 ActionButton을, 페이지나 화면을 이동할 때는 동일한 스타일 API를 제공하는 ActionLink를 사용합니다.',
+          '사용자 동작을 실행할 때는 ActionButton을 페이지나 화면을 이동할 때는 동일한 스타일 API를 제공하는 ActionLink를 사용합니다.',
       },
     },
   },

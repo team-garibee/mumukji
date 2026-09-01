@@ -50,3 +50,8 @@ export type { ActionButtonProps } from '@/components/buttons/action-button/Actio
 export { ActionButton } from '@/components/buttons/action-button/ActionButton';
 export type { ActionLinkProps } from '@/components/buttons/action-button/ActionLink';
 export { ActionLink } from '@/components/buttons/action-button/ActionLink';
+export type {
+  ReactionButtonProps,
+  ReactionButtonTone,
+} from '@/components/buttons/reaction-button/ReactionButton';
+export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
