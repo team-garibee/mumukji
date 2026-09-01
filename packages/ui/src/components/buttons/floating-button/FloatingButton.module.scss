@@ -1,0 +1,89 @@
+.FloatingButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--floating-button-padding-x, 0);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+  border-radius: var(--radius-full);
+  background-color: var(--floating-button-background-color, transparent);
+  box-shadow: var(--shadow-s3);
+  color: var(--floating-button-text-color, inherit);
+  gap: var(--floating-button-gap, var(--spacing-xs));
+
+  &:disabled {
+    background-color: var(--color-bg-disabled);
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  &-lg {
+    --floating-button-padding-x: var(--spacing-3xl);
+    --floating-button-icon-size: 20px;
+
+    height: 64px;
+  }
+
+  &-md {
+    --floating-button-padding-x: var(--spacing-xl);
+    --floating-button-icon-size: 20px;
+
+    height: 56px;
+  }
+
+  &-sm {
+    --floating-button-padding-x: var(--spacing-lg);
+    --floating-button-icon-size: 16px;
+
+    height: 40px;
+  }
+
+  &-xs {
+    --floating-button-padding-x: var(--spacing-md);
+    --floating-button-icon-size: 16px;
+
+    height: 32px;
+  }
+
+  &-solid {
+    --floating-button-background-color: var(--color-bg-brand-solid);
+    --floating-button-text-color: var(--color-fg-on-solid);
+  }
+
+  &-solid:hover,
+  &-solid:active {
+    --floating-button-background-color: var(--color-bg-brand-solid-pressed);
+  }
+
+  &-outline {
+    --floating-button-background-color: var(--color-bg-layer-container);
+    --floating-button-text-color: var(--color-fg-neutral);
+
+    border: var(--border-width-1) solid var(--color-stroke-neutral-weak);
+  }
+
+  &-outline:hover,
+  &-outline:active {
+    --floating-button-background-color: var(--color-bg-neutral-subtle-pressed);
+  }
+}
+
+.FloatingButtonIcon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--floating-button-icon-size);
+  height: var(--floating-button-icon-size);
+
+  :where(svg) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.FloatingButtonLabel {
+  min-width: 0;
+}
