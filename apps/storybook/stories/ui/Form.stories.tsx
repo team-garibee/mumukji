@@ -53,7 +53,7 @@ const noticeStyle: CSSProperties = {
 };
 
 const meta: Meta<typeof Form> = {
-  title: 'UI/Form',
+  title: 'UI/01. Primitive/Form',
   component: Form,
   parameters: {
     layout: 'padded',

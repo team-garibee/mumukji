@@ -1,0 +1,160 @@
+.ActionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--action-button-padding-x, 0);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+  border-radius: var(--action-button-border-radius, var(--radius-s));
+  background-color: var(--action-button-background-color, transparent);
+  color: var(--action-button-text-color, inherit);
+  gap: var(--action-button-gap, var(--spacing-xs));
+
+  &:disabled {
+    background-color: var(--color-bg-disabled, transition);
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  &-lg {
+    --action-button-padding-x: var(--spacing-3xl);
+    --action-button-border-radius: var(--radius-l);
+    --action-button-icon-size: 20px;
+
+    height: 64px;
+  }
+
+  &-md {
+    --action-button-padding-x: var(--spacing-xl);
+    --action-button-border-radius: var(--radius-m);
+    --action-button-icon-size: 20px;
+
+    height: 56px;
+  }
+
+  &-sm {
+    --action-button-padding-x: var(--spacing-lg);
+    --action-button-icon-size: 16px;
+
+    height: 40px;
+  }
+
+  &-xs {
+    --action-button-padding-x: var(--spacing-md);
+    --action-button-icon-size: 16px;
+
+    height: 32px;
+  }
+
+  &-2xs {
+    --action-button-padding-x: var(--spacing-xs);
+    --action-button-icon-size: 12px;
+    --action-button-gap: var(--spacing-2xs);
+
+    height: 28px;
+  }
+
+  &-outline {
+    --action-button-background-color: var(--color-bg-layer-container);
+
+    &.ActionButton-interactive {
+      --action-button-background-color: var(--color-bg-layer-container);
+      --action-button-text-color: var(--color-fg-interactive);
+
+      border: 1px solid var(--color-stroke-interactive-weak);
+    }
+
+    &.ActionButton-natural {
+      --action-button-background-color: var(--color-bg-layer-container);
+      --action-button-text-color: var(--color-fg-neutral);
+
+      border: 1px solid var(--color-stroke-neutral-weak);
+    }
+
+    &.ActionButton-interactive:hover,
+    &.ActionButton-interactive:active {
+      --action-button-background-color: var(--color-bg-interactive-weak);
+    }
+
+    &.ActionButton-natural:hover,
+    &.ActionButton-natural:active {
+      --action-button-background-color: var(--color-bg-neutral-subtle-pressed);
+    }
+  }
+
+  &-brand {
+    --action-button-background-color: var(--color-bg-brand-solid);
+    --action-button-text-color: var(--color-fg-on-solid);
+  }
+
+  &-brand:hover,
+  &-brand:active {
+    --action-button-background-color: var(--color-bg-brand-solid-pressed);
+  }
+
+  &-interactive {
+    --action-button-background-color: var(--color-bg-interactive-solid);
+    --action-button-text-color: var(--color-fg-on-solid);
+    --action-button-ghost-text-color: var(--color-fg-interactive);
+  }
+
+  &-interactive:hover,
+  &-interactive:active {
+    --action-button-background-color: var(--color-bg-interactive-solid-pressed);
+  }
+
+  &-negative {
+    --action-button-background-color: var(--color-bg-negative-solid);
+    --action-button-text-color: var(--color-fg-on-solid);
+  }
+
+  &-negative:hover,
+  &-negative:active {
+    --action-button-background-color: var(--color-bg-negative-solid-pressed);
+  }
+
+  &-neutral {
+    --action-button-background-color: var(--color-bg-neutral-subtle);
+    --action-button-text-color: var(--color-fg-neutral);
+    --action-button-ghost-text-color: var(--color-fg-neutral);
+
+    border: var(--border-width-1) solid var(--color-stroke-neutral-weak);
+  }
+
+  &-neutral:hover,
+  &-neutral:active {
+    --action-button-background-color: var(--color-bg-neutral-subtle-pressed);
+  }
+
+  &-ghost {
+    --action-button-background-color: transparent;
+    --action-button-text-color: var(--action-button-ghost-text-color);
+
+    border: none;
+
+    &:hover,
+    &:active {
+      --action-button-background-color: var(--color-bg-transparent-pressed);
+    }
+  }
+}
+
+.ActionButtonIcon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--action-button-icon-size);
+  height: var(--action-button-icon-size);
+
+  :where(svg) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.ActionButtonLabel {
+  min-width: 0;
+}

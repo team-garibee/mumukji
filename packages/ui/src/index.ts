@@ -46,3 +46,7 @@ export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
 export { ButtonBase } from '@/components/buttons/base/ButtonBase';
 export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
 export { LinkBase } from '@/components/buttons/base/LinkBase';
+export type { ActionButtonProps } from '@/components/buttons/action-button/ActionButton';
+export { ActionButton } from '@/components/buttons/action-button/ActionButton';
+export type { ActionLinkProps } from '@/components/buttons/action-button/ActionLink';
+export { ActionLink } from '@/components/buttons/action-button/ActionLink';
