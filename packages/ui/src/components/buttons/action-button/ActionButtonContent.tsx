@@ -4,7 +4,7 @@ import styles from './ActionButton.module.scss';
 
 export type ActionButtonVariant = 'solid' | 'outline' | 'ghost';
 export type ActionButtonTone = 'brand' | 'interactive' | 'negative' | 'neutral';
-export type ActionButtonSize = 'xs' | 'sm' | 'md' | 'lg';
+export type ActionButtonSize = '2xs' | 'xs' | 'sm' | 'md' | 'lg';
 export type ActionButtonIconPosition = 'left' | 'right';
 
 export interface ActionButtonStyleProps {
@@ -29,7 +29,11 @@ export function getActionButtonClassName({
   size = 'lg',
 }: ActionButtonClassNameProps) {
   const typographyClassName =
-    size === 'lg' || size === 'md' ? 'typo-label-lg' : 'typo-label-md';
+    size === '2xs'
+      ? 'typo-label-sm'
+      : size === 'lg' || size === 'md'
+        ? 'typo-label-lg'
+        : 'typo-label-md';
 
   return clsx(
     styles.ActionButton,
