@@ -3,7 +3,6 @@
 import { IconImage } from '@mumukji/icons';
 import clsx from 'clsx';
 import {
-  createElement,
   forwardRef,
   useState,
   type ComponentPropsWithoutRef,
@@ -112,14 +111,14 @@ const ImageInnerRender = <C extends ElementType = 'img'>(
     );
   }
 
-  // `Component`를 JSX 태그로 직접 사용하면 `ElementType`이 함수/문자열 유니온이라
-  // "JSX element type ... is not a valid JSX element" 형태의 타입 에러(ts(2786))가 발생할 수 있어, `createElement`로 우회.
-  return createElement(Component, {
-    ref,
-    className: imageClassName,
-    onError: handleError,
-    ...rest,
-  });
+  return (
+    <Component
+      ref={ref}
+      className={imageClassName}
+      onError={handleError}
+      {...rest}
+    />
+  );
 };
 
 const ImageInner = forwardRef(
