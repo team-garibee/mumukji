@@ -19,7 +19,7 @@ const DemoItems = ({ count = 6 }: { count?: number }) => (
 );
 
 const meta: Meta<typeof Grid> = {
-  title: 'UI/Grid',
+  title: 'UI/01. Primitive/Grid',
   component: Grid,
   parameters: {
     layout: 'padded',

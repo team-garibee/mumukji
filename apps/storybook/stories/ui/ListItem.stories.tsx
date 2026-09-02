@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { spacingControl } from '../constants/spacing';
 
 const meta: Meta<typeof ListItem> = {
-  title: 'UI/List/ListItem',
+  title: 'UI/01. Primitive/List/ListItem',
   component: ListItem,
   parameters: {
     layout: 'padded',

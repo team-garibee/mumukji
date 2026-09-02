@@ -5,7 +5,7 @@ import { spacingControl } from '../constants/spacing';
 const menuItems = ['비빔밥', '된장찌개', '제육볶음'];
 
 const meta: Meta<typeof List> = {
-  title: 'UI/List',
+  title: 'UI/01. Primitive/List',
   component: List,
   subcomponents: { ListItem },
   parameters: {
