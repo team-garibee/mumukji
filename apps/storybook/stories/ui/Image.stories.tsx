@@ -18,7 +18,7 @@ const DemoPolymorphicImage: ComponentType<DemoPolymorphicImageProps> = ({
 }) => <img src={src} alt={alt} style={{ objectFit }} />;
 
 const meta: Meta<typeof Image> = {
-  title: 'UI/Image',
+  title: 'UI/01. Primitive/Image',
   component: Image,
   parameters: {
     layout: 'padded',
