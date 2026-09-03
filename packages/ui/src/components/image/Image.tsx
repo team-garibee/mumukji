@@ -51,7 +51,7 @@ type ImageComponent = {
  * - `radius` 등 Visual 속성은 prop으로 받지 않음.
  *   필요하면 `className`으로 `Radius-*` 같은 scss 유틸리티 클래스를 직접 전달할 것
  *   (Layout → Props, Visual → SCSS/className 정책)
- * - 기본 폴백의 배경/보더/컬러 등 고정 시각 값은 `Image.scss`(`.Image-fallback`)로 분리.
+ * - 기본 폴백의 배경/보더/컬러 등 고정 시각 값은 `Image.scss`(`.ImageFallback`)로 분리.
  *   `width`/`height`만 인스턴스별로 달라지는 레이아웃 값이라 `style`로 유지.
  */
 const ImageInnerRender = <C extends ElementType = 'img'>(
@@ -100,7 +100,7 @@ const ImageInnerRender = <C extends ElementType = 'img'>(
         ref={ref as Ref<never>}
         role='img'
         aria-label='이미지를 불러오지 못했습니다'
-        className={clsx('Image-fallback', imageClassName)}
+        className={clsx('ImageFallback', imageClassName)}
         style={{
           width: style?.width ?? width,
           height: style?.height ?? height,
