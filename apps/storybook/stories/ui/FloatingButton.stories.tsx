@@ -70,7 +70,7 @@ const mockTabs = [
 ];
 
 export const InContext: Story = {
-  name: '실사용 예시',
+  name: 'Usage',
   args: {
     children: '그룹추가',
     icon: <IconAdd />,
