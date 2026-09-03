@@ -10,7 +10,7 @@ export type FloatingButtonProps = FloatingButtonStyleProps & ButtonBaseProps;
 
 /**
  * 화면 위에 떠 있는 캡슐(pill) 형태의 버튼입니다.
- * 화면상 위치(fixed 등)는 컴포넌트 책임 범위 밖이며, 사용하는 쪽에서 처리해야 합니다.
+ * position: fixed로 화면 우측 하단에 고정되며, 위치는 컴포넌트가 직접 관리합니다.
  */
 export const FloatingButton = forwardRef<
   HTMLButtonElement,
