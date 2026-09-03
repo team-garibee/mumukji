@@ -63,14 +63,15 @@
       --action-button-background-color: var(--color-bg-layer-container);
       --action-button-text-color: var(--color-fg-interactive);
 
-      border: 1px solid var(--color-stroke-interactive-weak);
+      border: var(--border-width-regular) solid
+        var(--color-stroke-interactive-weak);
     }
 
     &.ActionButton-natural {
       --action-button-background-color: var(--color-bg-layer-container);
       --action-button-text-color: var(--color-fg-neutral);
 
-      border: 1px solid var(--color-stroke-neutral-weak);
+      border: var(--border-width-regular) solid var(--color-stroke-neutral-weak);
     }
 
     &.ActionButton-interactive:hover,
@@ -120,7 +121,7 @@
     --action-button-text-color: var(--color-fg-neutral);
     --action-button-ghost-text-color: var(--color-fg-neutral);
 
-    border: var(--border-width-1) solid var(--color-stroke-neutral-weak);
+    border: var(--border-width-regular) solid var(--color-stroke-neutral-weak);
   }
 
   &-neutral:hover,
