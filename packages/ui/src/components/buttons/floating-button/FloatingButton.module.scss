@@ -15,7 +15,7 @@
   background-color: var(--floating-button-background-color, transparent);
   box-shadow: var(--shadow-s3);
   color: var(--floating-button-text-color, inherit);
-  gap: var(--floating-button-gap, var(--spacing-xs));
+  gap: var(--spacing-xs);
 
   &:disabled {
     background-color: var(--color-bg-disabled);
