@@ -19,8 +19,16 @@
   &:disabled {
     border-color: transparent;
     background-color: var(--color-bg-disabled);
-    color: var(--color-fg-disabled);
     cursor: not-allowed;
+
+    .CategoryButtonIcon {
+      opacity: var(--opacity-disabled);
+    }
+
+    .CategoryButtonLabel,
+    .CategoryButtonDescription {
+      color: var(--color-fg-disabled);
+    }
   }
 }
 
