@@ -1,0 +1,11 @@
+$foreground-colors:
+  fg-brand, fg-brand-contrast, fg-interactive, fg-interactive-contrast,
+  fg-informative, fg-informative-subtle, fg-informative-contrast, fg-negative,
+  fg-highlight, fg-neutral, fg-neutral-muted, fg-neutral-subtle,
+  fg-neutral-faint, fg-placeholder, fg-disabled, fg-on-solid;
+
+@each $color in $foreground-colors {
+  .TypographyColor-#{$color} {
+    color: var(--color-#{$color});
+  }
+}
