@@ -55,3 +55,5 @@ export type {
   ReactionButtonTone,
 } from '@/components/buttons/reaction-button/ReactionButton';
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
+export type { ImageOwnProps, ImageProps } from '@/components/image/Image';
+export { Image } from '@/components/image/Image';

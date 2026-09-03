@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
+import preserveDirectives from 'rollup-preserve-directives';
 import alias from '@rollup/plugin-alias';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -62,6 +63,7 @@ export default [
         ...createPostcssOptions(),
         extract: true,
       }),
+      preserveDirectives(),
     ],
   },
   {
@@ -86,6 +88,7 @@ export default [
         extract: false,
         inject: false,
       }),
+      preserveDirectives(),
     ],
   },
   {
