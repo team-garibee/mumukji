@@ -55,3 +55,5 @@ export type {
   ReactionButtonTone,
 } from '@/components/buttons/reaction-button/ReactionButton';
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
+export type { FloatingButtonProps } from '@/components/buttons/floating-button/FloatingButton';
+export { FloatingButton } from '@/components/buttons/floating-button/FloatingButton';
