@@ -22,6 +22,14 @@ const meta: Meta<typeof Image> = {
   parameters: {
     layout: 'padded',
   },
+  argTypes: {
+    as: {
+      control: false,
+    },
+    fallback: {
+      control: false,
+    },
+  },
   args: {
     src: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b7?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D',
     alt: '맛있는 비빔밥',
@@ -77,8 +85,7 @@ export const WithDefaultFallbackSized: Story = {
   },
 };
 
-// `Meta<typeof Image>`의 args는 기본 `img` 기준으로 타입이 고정되어 있다.
-// 따라서 `as`로 바꾼 컴포넌트의 고유 props는 해당 스토리에서 직접 렌더링한다.
+// `as`는 React 컴포넌트 자체를 받으므로 Controls가 아닌 스토리에서 직접 주입한다.
 export const AsCustomComponent: Story = {
   render: () => (
     <Image
