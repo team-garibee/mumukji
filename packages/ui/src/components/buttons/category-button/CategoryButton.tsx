@@ -35,9 +35,15 @@ export const CategoryButton = forwardRef<
       <span className={styles.CategoryButtonIcon} aria-hidden='true'>
         {icon}
       </span>
-      <span className={styles.CategoryButtonLabel}>{label}</span>
+      <span
+        className={clsx(styles.CategoryButtonLabel, 'typo-label-lg-strong')}>
+        {label}
+      </span>
       {description && (
-        <span className={styles.CategoryButtonDescription}>{description}</span>
+        <span
+          className={clsx(styles.CategoryButtonDescription, 'typo-caption-md')}>
+          {description}
+        </span>
       )}
     </ButtonBase>
   ),
