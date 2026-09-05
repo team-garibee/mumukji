@@ -119,7 +119,7 @@ const captionSamples: TypographySample[] = [
     variant: 'caption-sm',
     as: 'span',
     description: '부가 메타에 사용됩니다.',
-    text: '박혜영 · 맛집탐험',
+    text: '머먹지 · 맛집탐험',
   },
 ];
 
@@ -204,6 +204,14 @@ const meta: Meta<typeof Typography> = {
         'caption-sm',
       ],
     },
+    size: {
+      control: 'select',
+      options: [10, 12, 14, 16, 18, 20, 22, 24, 28, 30, 32, 36, 40, 48, 60],
+    },
+    weight: {
+      control: 'inline-radio',
+      options: [300, 400, 500, 600, 700, 800],
+    },
     color: {
       control: 'select',
       options: [
@@ -224,6 +232,10 @@ const meta: Meta<typeof Typography> = {
         'fg-disabled',
         'fg-on-solid',
       ],
+    },
+    lineHeight: {
+      control: 'inline-radio',
+      options: [100, 140, 160],
     },
   },
 };
@@ -250,10 +262,13 @@ export const Captions: Story = {
   render: () => <TypographyList samples={captionSamples} />,
 };
 
-export const InteractiveColor: Story = {
+export const OverrideVariant: Story = {
   args: {
-    variant: 'label-lg-strong',
+    variant: 'heading-xl',
+    size: 16,
+    weight: 400,
+    lineHeight: 160,
     color: 'fg-interactive',
-    children: '메뉴 추가하기',
+    children: 'heading-xl을 개별 prop으로 재정의한 텍스트입니다.',
   },
 };

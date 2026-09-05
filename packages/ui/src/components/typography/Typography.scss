@@ -1,11 +1,32 @@
+$font-sizes: 10, 12, 14, 16, 18, 20, 22, 24, 28, 30, 32, 36, 40, 48, 60;
+$font-weights: 300, 400, 500, 600, 700, 800;
+$line-heights: 100, 140, 160;
 $foreground-colors:
   fg-brand, fg-brand-contrast, fg-interactive, fg-interactive-contrast,
   fg-informative, fg-informative-subtle, fg-informative-contrast, fg-negative,
   fg-highlight, fg-neutral, fg-neutral-muted, fg-neutral-subtle,
   fg-neutral-faint, fg-placeholder, fg-disabled, fg-on-solid;
 
+@each $size in $font-sizes {
+  .Typography.TypographySize-#{$size} {
+    font-size: var(--font-size-#{$size});
+  }
+}
+
+@each $weight in $font-weights {
+  .Typography.TypographyWeight-#{$weight} {
+    font-weight: var(--font-weight-#{$weight});
+  }
+}
+
+@each $line-height in $line-heights {
+  .Typography.TypographyLineHeight-#{$line-height} {
+    line-height: var(--line-height-#{$line-height});
+  }
+}
+
 @each $color in $foreground-colors {
-  .TypographyColor-#{$color} {
+  .Typography.TypographyColor-#{$color} {
     color: var(--color-#{$color});
   }
 }
