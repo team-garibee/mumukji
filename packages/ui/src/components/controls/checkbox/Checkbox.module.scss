@@ -1,0 +1,82 @@
+.Checkbox {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  color: var(--color-fg-neutral-muted);
+  cursor: pointer;
+  gap: var(--spacing-xs);
+
+  > input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  > input:checked + .CheckboxControl {
+    border-color: var(--color-bg-interactive-solid);
+    background-color: var(--color-bg-interactive-solid);
+    color: var(--color-fg-on-solid);
+  }
+
+  > input:not(:checked, :disabled):active + .CheckboxControl,
+  > input:not(:checked, :disabled):hover + .CheckboxControl {
+    border-color: var(--color-stroke-neutral-solid);
+    background-color: var(--color-bg-transparent-pressed);
+  }
+
+  > input:checked:not(:disabled):active + .CheckboxControl,
+  > input:checked:not(:disabled):hover + .CheckboxControl {
+    border-color: var(--color-bg-interactive-solid);
+    background-color: var(--color-bg-interactive-solid-pressed);
+  }
+
+  > input:focus-visible + .CheckboxControl {
+    outline: var(--border-width-strong) solid
+      var(--color-stroke-interactive-solid);
+    outline-offset: var(--spacing-3xs);
+  }
+
+  > input:disabled + .CheckboxControl {
+    border-color: var(--color-stroke-neutral-subtle);
+    background-color: var(--color-bg-layer-container);
+    color: transparent;
+  }
+
+  > input:disabled:checked + .CheckboxControl {
+    background-color: var(--color-bg-disabled);
+    color: var(--color-fg-disabled);
+  }
+}
+
+.CheckboxDisabled {
+  color: var(--color-fg-disabled);
+  cursor: not-allowed;
+}
+
+.CheckboxControl {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+  border: var(--border-width-regular) solid var(--color-stroke-neutral-solid);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-bg-layer-container);
+  color: transparent;
+
+  > svg {
+    width: 16px;
+    height: 16px;
+  }
+}
