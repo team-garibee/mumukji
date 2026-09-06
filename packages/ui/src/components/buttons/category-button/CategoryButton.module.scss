@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2xs);
-  width: 144px;
+  width: 100%;
+  min-width: 144px;
   height: 144px;
   border: var(--border-width-regular) solid var(--color-stroke-neutral-weak);
   border-radius: var(--radius-l);
