@@ -17,7 +17,7 @@
   }
 
   &:disabled {
-    border-color: transparent;
+    border-color: var(--color-stroke-neutral-subtle);
     background-color: var(--color-bg-disabled);
     cursor: not-allowed;
 
