@@ -247,7 +247,7 @@
       "type": "number"
     },
     "m": {
-      "value": "{radius.16}",
+      "value": "{spacing.16}",
       "type": "number"
     },
     "l": {
@@ -354,6 +354,28 @@
   "opacity": {
     "disabled": {
       "value": "{opacity.40}",
+      "type": "number"
+    }
+  },
+  "z-index": {
+    "sticky": {
+      "value": "{z-index.100}",
+      "type": "number"
+    },
+    "floating": {
+      "value": "{z-index.200}",
+      "type": "number"
+    },
+    "dim": {
+      "value": "{z-index.300}",
+      "type": "number"
+    },
+    "dialog": {
+      "value": "{z-index.400}",
+      "type": "number"
+    },
+    "toast": {
+      "value": "{z-index.500}",
       "type": "number"
     }
   }
