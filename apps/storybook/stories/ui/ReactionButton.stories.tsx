@@ -19,6 +19,8 @@ const meta: Meta<typeof ReactionButton> = {
     'aria-label': '좋아요',
     isActive: false,
     tone: 'brand',
+    onClick: () => undefined,
+    loadingText: '...',
   },
   render: ({ isActive = false, ...args }) => (
     <ReactionButton
@@ -38,6 +40,12 @@ const meta: Meta<typeof ReactionButton> = {
     tone: {
       control: 'inline-radio',
       options: ['brand'],
+    },
+    loadingText: {
+      control: 'text',
+      table: {
+        defaultValue: { summary: "'로딩 중...'" },
+      },
     },
   },
 };

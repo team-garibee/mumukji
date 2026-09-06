@@ -24,6 +24,7 @@ const meta: Meta<typeof ActionButton> = {
   },
   args: {
     children: '버튼',
+    onClick: () => undefined,
     variant: 'solid',
     tone: 'brand',
     size: 'lg',

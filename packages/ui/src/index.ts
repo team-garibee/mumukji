@@ -57,3 +57,5 @@ export type {
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
 export type { CategoryButtonProps } from '@/components/buttons/category-button/CategoryButton';
 export { CategoryButton } from '@/components/buttons/category-button/CategoryButton';
+export type { ImageOwnProps, ImageProps } from '@/components/image/Image';
+export { Image } from '@/components/image/Image';
