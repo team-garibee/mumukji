@@ -1,5 +1,5 @@
 import { IconAdd, IconEditList, IconHome, IconRice } from '@mumukji/icons';
-import { FloatingButton } from '@mumukji/ui';
+import { FloatingButton, FloatingLink } from '@mumukji/ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof FloatingButton> = {
@@ -13,6 +13,7 @@ const meta: Meta<typeof FloatingButton> = {
     variant: 'solid',
     size: 'lg',
     style: { position: 'static' },
+    onClick: () => undefined,
   },
   argTypes: {
     variant: {
@@ -61,6 +62,40 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+};
+
+export const WithLink: Story = {
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: 16,
+      }}>
+      <p style={{ margin: 0 }}>
+        새 그룹 추가처럼 즉시 실행되는 동작에는 <code>FloatingButton</code>을
+        사용합니다.
+      </p>
+      <FloatingButton
+        icon={<IconAdd />}
+        style={{ position: 'static' }}
+        onClick={() => undefined}>
+        그룹추가
+      </FloatingButton>
+
+      <p style={{ margin: '16px 0 0' }}>
+        페이지 이동에는 <code>FloatingLink</code>를 사용합니다. 두 컴포넌트는
+        variant, size, icon API를 동일하게 지원합니다.
+      </p>
+      <FloatingLink
+        href='#floating-link-example'
+        icon={<IconAdd />}
+        style={{ position: 'static' }}>
+        새 그룹 만들러 가기
+      </FloatingLink>
+    </div>
+  ),
 };
 
 const mockTabs = [
