@@ -1,0 +1,10 @@
+.ImageFallback {
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-stroke-neutral-subtle);
+  border-radius: var(--spacing-xs);
+  background-color: var(--color-bg-disabled);
+  color: var(--color-fg-disabled);
+}

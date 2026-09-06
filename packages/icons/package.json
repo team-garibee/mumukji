@@ -42,8 +42,8 @@
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
     "generate:icons": "node scripts/generateIcons.js",
-    "build": "pnpm generate:icons && tsc -p tsconfig.build.json && rollup -c && rm -rf dist/types",
-    "clean": "rm -rf dist",
+    "build": "pnpm generate:icons && tsc -p tsconfig.build.json && rollup -c && rimraf dist/types",
+    "clean": "rimraf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
