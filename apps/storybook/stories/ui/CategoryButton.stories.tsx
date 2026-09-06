@@ -37,6 +37,12 @@ const meta: Meta<typeof CategoryButton> = {
     label: { control: 'text' },
     description: { control: 'text' },
     isActive: { control: 'boolean' },
+    loadingText: {
+      control: 'text',
+      table: {
+        defaultValue: { summary: "'로딩 중...'" },
+      },
+    },
   },
 };
 
