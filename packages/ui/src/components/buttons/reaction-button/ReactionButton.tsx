@@ -22,21 +22,27 @@ export type ReactionButtonProps = ReactionButtonOwnProps & ButtonBaseProps;
 export const ReactionButton = forwardRef<
   HTMLButtonElement,
   ReactionButtonProps
->(({ className, icon, isActive = false, tone = 'brand', ...props }, ref) => (
-  <ButtonBase
-    ref={ref}
-    {...props}
-    aria-pressed={isActive}
-    className={clsx(
-      styles.ReactionButton,
-      styles[`ReactionButton-${tone}`],
-      isActive && styles.ReactionButtonActive,
-      className,
-    )}>
-    <span className={styles.ReactionButtonIcon} aria-hidden='true'>
-      {icon}
-    </span>
-  </ButtonBase>
-));
+>(
+  (
+    { className, icon, isActive = false, tone = 'brand', onClick, ...props },
+    ref,
+  ) => (
+    <ButtonBase
+      ref={ref}
+      aria-pressed={isActive}
+      className={clsx(
+        styles.ReactionButton,
+        styles[`ReactionButton-${tone}`],
+        isActive && styles.ReactionButtonActive,
+        className,
+      )}
+      onClick={onClick}
+      {...props}>
+      <span className={styles.ReactionButtonIcon} aria-hidden='true'>
+        {icon}
+      </span>
+    </ButtonBase>
+  ),
+);
 
 ReactionButton.displayName = 'ReactionButton';

@@ -22,19 +22,21 @@ export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
       size = 'lg',
       icon,
       iconPosition = 'left',
+      onClick,
       ...props
     },
     ref,
   ) => (
     <ButtonBase
       ref={ref}
-      {...props}
+      onClick={onClick}
       className={getActionButtonClassName({
         className,
         variant,
         tone,
         size,
-      })}>
+      })}
+      {...props}>
       <ActionButtonContent icon={icon} iconPosition={iconPosition}>
         {children}
       </ActionButtonContent>
