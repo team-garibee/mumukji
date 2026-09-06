@@ -50,39 +50,30 @@ export default meta;
 
 type Story = StoryObj<typeof CategoryButton>;
 
-export const Default: Story = {};
+const wrapperDecorators: NonNullable<Story['decorators']> = [
+  (Story) => (
+    <div style={{ width: 140 }}>
+      <Story />
+    </div>
+  ),
+];
+
+export const Default: Story = {
+  decorators: wrapperDecorators,
+};
 
 export const Active: Story = {
   args: {
     isActive: true,
   },
+  decorators: wrapperDecorators,
 };
 
 export const Disabled: Story = {
-  render: (args) => (
-    <div style={{ display: 'flex', gap: 16 }}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 8,
-        }}>
-        <span>isActive: false</span>
-        <CategoryButton {...args} isActive={false} disabled />
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 8,
-        }}>
-        <span>isActive: true</span>
-        <CategoryButton {...args} isActive={true} disabled />
-      </div>
-    </div>
-  ),
+  args: {
+    disabled: true,
+  },
+  decorators: wrapperDecorators,
 };
 
 const CATEGORIES = [
@@ -112,7 +103,12 @@ const MultiSelectExample = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: 16 }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(144px, 1fr))',
+          gap: 16,
+        }}>
         {CATEGORIES.map(({ label, icon }) => (
           <CategoryButton
             key={label}
