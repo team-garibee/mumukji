@@ -44,11 +44,11 @@
 
   > input:disabled + .CheckboxControl {
     border-color: var(--color-stroke-neutral-subtle);
-    background-color: var(--color-bg-layer-container);
     color: transparent;
   }
 
   > input:disabled:checked + .CheckboxControl {
+    border-color: transparent;
     background-color: var(--color-bg-disabled);
     color: var(--color-fg-disabled);
   }
