@@ -20,18 +20,27 @@ export const CategoryButton = forwardRef<
   CategoryButtonProps
 >(
   (
-    { className, icon, label, description, isActive = false, ...props },
+    {
+      className,
+      icon,
+      label,
+      description,
+      isActive = false,
+      onClick,
+      ...props
+    },
     ref,
   ) => (
     <ButtonBase
       ref={ref}
-      {...props}
       aria-pressed={isActive}
       className={clsx(
         styles.CategoryButton,
         isActive && styles.CategoryButtonActive,
         className,
-      )}>
+      )}
+      onClick={onClick}
+      {...props}>
       <span className={styles.CategoryButtonIcon} aria-hidden='true'>
         {icon}
       </span>
