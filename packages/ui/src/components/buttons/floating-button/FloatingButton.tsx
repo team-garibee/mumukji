@@ -24,18 +24,20 @@ export const FloatingButton = forwardRef<
       size = 'lg',
       icon,
       iconPosition = 'left',
+      onClick,
       ...props
     },
     ref,
   ) => (
     <ButtonBase
       ref={ref}
-      {...props}
+      onClick={onClick}
       className={getFloatingButtonClassName({
         className,
         variant,
         size,
-      })}>
+      })}
+      {...props}>
       <FloatingButtonContent icon={icon} iconPosition={iconPosition}>
         {children}
       </FloatingButtonContent>
