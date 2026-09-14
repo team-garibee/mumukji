@@ -1,0 +1,152 @@
+import clsx from 'clsx';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type Ref,
+} from 'react';
+import type { SpacingProps } from '@/types';
+import { getSpacingPropsClassNames } from '@/utils';
+import './List.scss';
+
+export type ListAs = 'ul' | 'ol';
+
+type ListBaseProps = SpacingProps & {
+  className?: string;
+  children: ReactNode;
+};
+
+export type UnorderedListProps = ListBaseProps &
+  ComponentPropsWithoutRef<'ul'> & {
+    as?: 'ul';
+  };
+
+export type OrderedListProps = ListBaseProps &
+  ComponentPropsWithoutRef<'ol'> & {
+    as: 'ol';
+  };
+
+export type ListProps = UnorderedListProps | OrderedListProps;
+
+export type ListItemProps = SpacingProps &
+  ComponentPropsWithoutRef<'li'> & {
+    className?: string;
+    children: ReactNode;
+  };
+
+/**
+ * - `ul`/`ol`을 추상화한 List 컴포넌트입니다.
+ * - `as="ol"`로 순서 있는 목록을 렌더링할 수 있습니다.
+ * - 기본 브라우저 여백과 목록 마커를 제거합니다. 필요하면 `className`으로 다시 지정하세요.
+ */
+export const List = forwardRef<HTMLElement, ListProps>(
+  (
+    {
+      as: Component = 'ul',
+      className,
+      children,
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+      ...rest
+    },
+    ref,
+  ) => {
+    const listClassName = clsx(
+      'List',
+      getSpacingPropsClassNames({
+        p,
+        px,
+        py,
+        pt,
+        pr,
+        pb,
+        pl,
+        m,
+        mx,
+        my,
+        mt,
+        mr,
+        mb,
+        ml,
+      }),
+      className,
+    );
+
+    return (
+      <Component ref={ref as Ref<never>} className={listClassName} {...rest}>
+        {children}
+      </Component>
+    );
+  },
+);
+
+List.displayName = 'List';
+
+/**
+ * - `li`를 추상화한 ListItem 컴포넌트입니다.
+ * - 반드시 `List` 컴포넌트 안에서 사용해야 합니다.
+ */
+export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
+  (
+    {
+      className,
+      children,
+      p,
+      px,
+      py,
+      pt,
+      pr,
+      pb,
+      pl,
+      m,
+      mx,
+      my,
+      mt,
+      mr,
+      mb,
+      ml,
+      ...rest
+    },
+    ref,
+  ) => {
+    const listItemClassName = clsx(
+      getSpacingPropsClassNames({
+        p,
+        px,
+        py,
+        pt,
+        pr,
+        pb,
+        pl,
+        m,
+        mx,
+        my,
+        mt,
+        mr,
+        mb,
+        ml,
+      }),
+      className,
+    );
+
+    return (
+      <li ref={ref} className={listItemClassName} {...rest}>
+        {children}
+      </li>
+    );
+  },
+);
+
+ListItem.displayName = 'ListItem';

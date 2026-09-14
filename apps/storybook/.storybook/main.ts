@@ -29,6 +29,9 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-vitest'),
   ],
   framework: getAbsolutePath('@storybook/react-vite'),
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+  },
 
   async viteFinal(config) {
     return mergeConfig(config, {
@@ -44,6 +47,7 @@ const config: StorybookConfig = {
             '../../../packages/tokens/dist/css/font-cdn.css',
           ),
           '@mumukji/ui': join(__dirname, '../../../packages/ui/src'),
+          '@': join(__dirname, '../../../packages/ui/src'),
         },
       },
     });

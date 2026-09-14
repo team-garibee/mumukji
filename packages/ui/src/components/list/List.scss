@@ -1,0 +1,5 @@
+@use '@/styles/reset' as reset;
+
+.List {
+  @include reset.reset-list;
+}

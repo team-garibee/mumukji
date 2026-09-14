@@ -3,7 +3,14 @@ import { GridList } from '../story-ui/GridList';
 import { StackList } from '../story-ui/StackList';
 import styles from '../story-ui/story.module.scss';
 import { TypoTokenCard } from '../story-ui/TypoTokenCard';
-import { borderWidth, color, radius, shadow, spacing } from './semantics';
+import {
+  borderWidth,
+  color,
+  radius,
+  shadow,
+  spacing,
+  zIndex,
+} from './semantics';
 
 const meta: Meta = {
   title: 'Tokens/Semantic',
@@ -422,6 +429,49 @@ export const Shadow: StoryObj = {
           labels: [key, token.primitive],
         }))}
       />
+    </div>
+  ),
+};
+
+export const ZIndex: StoryObj = {
+  name: 'Z-index',
+  render: () => (
+    <div className={styles.colorList}>
+      <StackList title='Z-index'>
+        <div
+          style={{
+            position: 'relative',
+            height: Object.keys(zIndex).length * 28 + 56,
+            width: 260,
+          }}>
+          {Object.entries(zIndex).map(([key, token], i) => (
+            <div
+              key={key}
+              style={{
+                position: 'absolute',
+                top: i * 28,
+                left: i * 20,
+                width: 220,
+                zIndex: Number(token.value),
+                background: `hsl(228, 60%, ${52 + i * 5}%)`,
+                borderRadius: 8,
+                padding: '14px 16px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                color: '#fff',
+                fontSize: 13,
+                fontWeight: 600,
+                boxShadow: '0px 4px 12px rgba(0,0,0,0.15)',
+              }}>
+              <span>{key}</span>
+              <span style={{ opacity: 0.7, fontSize: 12 }}>
+                {token.primitive}
+              </span>
+            </div>
+          ))}
+        </div>
+      </StackList>
     </div>
   ),
 };

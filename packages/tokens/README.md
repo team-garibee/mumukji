@@ -37,11 +37,11 @@ pnpm add @mumukji/tokens
 이후 `var(--토큰명)` 형식으로 사용할 수 있습니다.
 
 ```css
-.button {
-  background-color: var(--color-vermilion-500);
-  font-size: var(--font-size-16);
-  padding: var(--spacing-16);
-  border-radius: var(--radius-8);
+.heading {
+  font-family: var(--font-family-default);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-140);
 }
 ```
 
@@ -79,11 +79,13 @@ pnpm add @mumukji/tokens
 | `--font-weight-`  | 폰트 굵기 (300 ~ 800)                     |
 | `--font-family-`  | 폰트 패밀리                               |
 | `--line-height-`  | 줄 높이 (100, 140, 160)                   |
-| `--spacing-`      | 간격 (4 ~ 64, px)                         |
-| `--radius-`       | 보더 라디우스 (0 ~ full, px)              |
-| `--border-width-` | 보더 두께 (1, 2, px)                      |
+| `--spacing-`      | 간격 (0 ~ 64, px)                         |
+| `--radius-`       | 모서리 둥글기 (4 ~ full, px)              |
+| `--border-width-` | 테두리 두께 (1, 2, px)                    |
 | `--shadow-`       | 그림자 (100 ~ 400)                        |
-| `--opacity-`      | 투명도 (0.1 ~ 1)                          |
+| `--opacity-`      | 투명도 (0 ~ 1)                            |
+| `--z-index-`      | 쌓임 순서 (100 ~ 500)                     |
+| `--breakpoint-`   | 반응형 분기점 (360, 480)                  |
 
 ---
 

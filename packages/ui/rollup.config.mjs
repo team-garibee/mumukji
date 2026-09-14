@@ -3,6 +3,43 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
+import preserveDirectives from 'rollup-preserve-directives';
+import alias from '@rollup/plugin-alias';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const srcDir = path.resolve(__dirname, 'src');
+const typesDir = path.resolve(__dirname, 'dist/types');
+
+const sourceAliasOptions = {
+  entries: [{ find: '@', replacement: srcDir }],
+};
+
+const declarationAliasOptions = {
+  entries: [{ find: '@', replacement: typesDir }],
+};
+
+const sassAliasLoader = {
+  name: 'sass-alias',
+  test: /\.(sass|scss)$/,
+  process({ code }) {
+    return {
+      code: code.replace(
+        /(['"])@\/([^'"]+)\1/g,
+        (_match, quote, importPath) => {
+          return `${quote}${path.resolve(srcDir, importPath)}${quote}`;
+        },
+      ),
+    };
+  },
+};
+
+const createPostcssOptions = () => ({
+  autoModules: true,
+  use: ['sass', 'sass-alias'],
+  loaders: [sassAliasLoader],
+});
 
 export default [
   {
@@ -18,14 +55,15 @@ export default [
       },
     ],
     plugins: [
+      alias(sourceAliasOptions),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        autoModules: true,
+        ...createPostcssOptions(),
         extract: true,
-        use: ['sass'],
       }),
+      preserveDirectives(),
     ],
   },
   {
@@ -41,21 +79,22 @@ export default [
       },
     ],
     plugins: [
+      alias(sourceAliasOptions),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        autoModules: true,
+        ...createPostcssOptions(),
         extract: false,
         inject: false,
-        use: ['sass'],
       }),
+      preserveDirectives(),
     ],
   },
   {
     input: 'dist/types/index.d.ts',
     external: [/\.s?css$/, '@mumukji/tokens/semantic-css'],
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
+    plugins: [alias(declarationAliasOptions), dts()],
   },
 ];
