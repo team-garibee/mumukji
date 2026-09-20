@@ -31,7 +31,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       )}>
       <input ref={ref} type='checkbox' disabled={disabled} {...props} />
       <span className={styles.CheckboxControl} aria-hidden='true'>
-        <IconCheck />
+        <IconCheck size={16} />
       </span>
       <span className='typo-label-md'>{children}</span>
     </label>
