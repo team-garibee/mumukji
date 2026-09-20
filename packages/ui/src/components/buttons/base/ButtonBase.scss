@@ -3,3 +3,21 @@
 .ButtonBase {
   @include reset.reset-button;
 }
+
+.ButtonContentIcon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+
+  :where(svg) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.ButtonContentLabel {
+  min-width: 0;
+}
