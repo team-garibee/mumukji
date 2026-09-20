@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 import { ButtonBase, type ButtonBaseProps } from '../base/ButtonBase';
+import { ButtonContent } from '../base/ButtonContent';
 import {
-  ActionButtonContent,
   getActionButtonClassName,
   type ActionButtonStyleProps,
-} from './ActionButtonContent';
+} from './actionButtonVariants';
 
 export type ActionButtonProps = ActionButtonStyleProps & ButtonBaseProps;
 
@@ -37,9 +37,9 @@ export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
         size,
       })}
       {...props}>
-      <ActionButtonContent icon={icon} iconPosition={iconPosition}>
+      <ButtonContent icon={icon} iconPosition={iconPosition}>
         {children}
-      </ActionButtonContent>
+      </ButtonContent>
     </ButtonBase>
   ),
 );
