@@ -1,7 +1,7 @@
 .FloatingButton {
   display: inline-flex;
   position: fixed;
-  z-index: var(--z-index-200);
+  z-index: var(--z-index-floating);
   right: var(--spacing-md);
   bottom: var(--spacing-lg);
   align-items: center;
