@@ -1,5 +1,6 @@
 .Checkbox {
   display: inline-flex;
+  position: relative;
   align-items: center;
   width: fit-content;
   color: var(--color-fg-neutral-muted);
@@ -74,9 +75,4 @@
   border-radius: var(--radius-xs);
   background-color: var(--color-bg-layer-container);
   color: transparent;
-
-  > svg {
-    width: 16px;
-    height: 16px;
-  }
 }
