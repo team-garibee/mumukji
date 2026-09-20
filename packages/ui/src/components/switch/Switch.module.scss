@@ -33,8 +33,22 @@
     --switch-selected-label-color: var(--color-fg-neutral-muted);
   }
 
+  &:not(:disabled):is(:hover, :active) {
+    .SwitchTrack {
+      background-color: var(--switch-track-pressed-color);
+    }
+  }
+
   &:disabled {
     cursor: not-allowed;
+
+    .SwitchTrack {
+      background-color: var(--color-bg-disabled);
+    }
+
+    .SwitchLabel {
+      color: var(--color-fg-disabled);
+    }
   }
 }
 
@@ -70,20 +84,4 @@
   transform: translateX(
     calc(var(--switch-thumb-travel) - var(--switch-track-padding) * 2)
   );
-}
-
-.Switch:not(:disabled):is(:hover, :active) {
-  .SwitchTrack {
-    background-color: var(--switch-track-pressed-color);
-  }
-}
-
-.Switch:disabled {
-  .SwitchTrack {
-    background-color: var(--color-bg-disabled);
-  }
-
-  .SwitchLabel {
-    color: var(--color-fg-disabled);
-  }
 }
