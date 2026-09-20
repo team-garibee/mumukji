@@ -5,12 +5,12 @@ import {
   type ForwardRefRenderFunction,
   type ReactElement,
 } from 'react';
+import { ButtonContent } from '../base/ButtonContent';
 import { LinkBase, type LinkBaseProps } from '../base/LinkBase';
 import {
-  FloatingButtonContent,
   getFloatingButtonClassName,
   type FloatingButtonStyleProps,
-} from './FloatingButtonContent';
+} from './floatingButtonVariants';
 
 export type FloatingLinkProps<T extends ElementType = 'a'> =
   FloatingButtonStyleProps &
@@ -47,9 +47,9 @@ const FloatingLinkRender = <T extends ElementType = 'a'>(
       size,
     })}
     {...(props as LinkBaseProps<T>)}>
-    <FloatingButtonContent icon={icon} iconPosition={iconPosition}>
+    <ButtonContent icon={icon} iconPosition={iconPosition}>
       {children}
-    </FloatingButtonContent>
+    </ButtonContent>
   </LinkBase>
 );
 

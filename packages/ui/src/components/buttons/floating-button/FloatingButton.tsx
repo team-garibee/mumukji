@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 import { ButtonBase, type ButtonBaseProps } from '../base/ButtonBase';
+import { ButtonContent } from '../base/ButtonContent';
 import {
-  FloatingButtonContent,
   getFloatingButtonClassName,
   type FloatingButtonStyleProps,
-} from './FloatingButtonContent';
+} from './floatingButtonVariants';
 
 export type FloatingButtonProps = FloatingButtonStyleProps & ButtonBaseProps;
 
@@ -38,9 +38,9 @@ export const FloatingButton = forwardRef<
         size,
       })}
       {...props}>
-      <FloatingButtonContent icon={icon} iconPosition={iconPosition}>
+      <ButtonContent icon={icon} iconPosition={iconPosition}>
         {children}
-      </FloatingButtonContent>
+      </ButtonContent>
     </ButtonBase>
   ),
 );

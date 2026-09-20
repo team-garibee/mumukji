@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import type { ButtonIconPosition } from '../base/ButtonContent';
 import styles from './FloatingButton.module.scss';
 
 export type FloatingButtonVariant = 'solid' | 'outline';
 export type FloatingButtonSize = 'lg' | 'md' | 'sm' | 'xs';
-export type FloatingButtonIconPosition = 'left' | 'right';
+export type FloatingButtonIconPosition = ButtonIconPosition;
 
 export interface FloatingButtonStyleProps {
   variant?: FloatingButtonVariant;
@@ -36,29 +37,3 @@ export function getFloatingButtonClassName({
     className,
   );
 }
-
-export const FloatingButtonContent = ({
-  children,
-  icon,
-  iconPosition = 'left',
-}: Pick<FloatingButtonStyleProps, 'icon' | 'iconPosition'> & {
-  children: ReactNode;
-}) => {
-  const hasIcon = icon !== null && icon !== undefined;
-
-  return (
-    <>
-      {hasIcon && iconPosition === 'left' && (
-        <span className={styles.FloatingButtonIcon} aria-hidden='true'>
-          {icon}
-        </span>
-      )}
-      <span className={styles.FloatingButtonLabel}>{children}</span>
-      {hasIcon && iconPosition === 'right' && (
-        <span className={styles.FloatingButtonIcon} aria-hidden='true'>
-          {icon}
-        </span>
-      )}
-    </>
-  );
-};

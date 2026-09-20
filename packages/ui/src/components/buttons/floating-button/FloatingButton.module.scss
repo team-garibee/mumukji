@@ -25,28 +25,28 @@
 
   &-lg {
     --floating-button-padding-x: var(--spacing-3xl);
-    --floating-button-icon-size: 20px;
+    --button-icon-size: 20px;
 
     height: 64px;
   }
 
   &-md {
     --floating-button-padding-x: var(--spacing-xl);
-    --floating-button-icon-size: 20px;
+    --button-icon-size: 20px;
 
     height: 56px;
   }
 
   &-sm {
     --floating-button-padding-x: var(--spacing-lg);
-    --floating-button-icon-size: 16px;
+    --button-icon-size: 16px;
 
     height: 40px;
   }
 
   &-xs {
     --floating-button-padding-x: var(--spacing-md);
-    --floating-button-icon-size: 16px;
+    --button-icon-size: 16px;
 
     height: 32px;
   }
@@ -72,22 +72,4 @@
   &-outline:active {
     --floating-button-background-color: var(--color-bg-neutral-subtle-pressed);
   }
-}
-
-.FloatingButtonIcon {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: var(--floating-button-icon-size);
-  height: var(--floating-button-icon-size);
-
-  :where(svg) {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.FloatingButtonLabel {
-  min-width: 0;
 }
