@@ -57,3 +57,5 @@ export type {
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
 export type { ImageOwnProps, ImageProps } from '@/components/image/Image';
 export { Image } from '@/components/image/Image';
+export type { SwitchProps, SwitchTone } from '@/components/switch/Switch';
+export { Switch } from '@/components/switch/Switch';
