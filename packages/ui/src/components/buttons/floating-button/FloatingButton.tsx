@@ -2,23 +2,25 @@ import { forwardRef } from 'react';
 import { ButtonBase, type ButtonBaseProps } from '../base/ButtonBase';
 import { ButtonContent } from '../base/ButtonContent';
 import {
-  getActionButtonClassName,
-  type ActionButtonStyleProps,
-} from './actionButtonVariants';
+  getFloatingButtonClassName,
+  type FloatingButtonStyleProps,
+} from './floatingButtonVariants';
 
-export type ActionButtonProps = ActionButtonStyleProps & ButtonBaseProps;
+export type FloatingButtonProps = FloatingButtonStyleProps & ButtonBaseProps;
 
 /**
- * 사용자의 동작을 실행하는 기본 button 컴포넌트입니다.
- * `isLoading`일 때 포커스를 유지한 채 클릭이 차단되고 로딩 텍스트를 표시합니다.
+ * 화면 위에 떠 있는 캡슐(pill) 형태의 버튼입니다.
+ * position: fixed로 화면 우측 하단에 고정되며, 위치는 컴포넌트가 직접 관리합니다.
  */
-export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
+export const FloatingButton = forwardRef<
+  HTMLButtonElement,
+  FloatingButtonProps
+>(
   (
     {
       className,
       children,
       variant = 'solid',
-      tone = 'brand',
       size = 'lg',
       icon,
       iconPosition = 'left',
@@ -30,10 +32,9 @@ export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
     <ButtonBase
       ref={ref}
       onClick={onClick}
-      className={getActionButtonClassName({
+      className={getFloatingButtonClassName({
         className,
         variant,
-        tone,
         size,
       })}
       {...props}>
@@ -44,4 +45,4 @@ export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
   ),
 );
 
-ActionButton.displayName = 'ActionButton';
+FloatingButton.displayName = 'FloatingButton';
