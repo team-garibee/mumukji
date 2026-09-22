@@ -57,3 +57,11 @@ export type {
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
 export type { ImageOwnProps, ImageProps } from '@/components/image/Image';
 export { Image } from '@/components/image/Image';
+export type {
+  TypographyAs,
+  TypographyColor,
+  TypographyOwnProps,
+  TypographyProps,
+  TypographyVariant,
+} from '@/components/typography/Typography';
+export { Typography } from '@/components/typography/Typography';
