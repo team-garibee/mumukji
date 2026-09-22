@@ -361,3 +361,26 @@ export const opacity = {
     primitive: 'opacity-40',
   },
 } as const;
+
+export const zIndex = {
+  sticky: {
+    value: '100',
+    primitive: 'z-index-100',
+  },
+  floating: {
+    value: '200',
+    primitive: 'z-index-200',
+  },
+  dim: {
+    value: '300',
+    primitive: 'z-index-300',
+  },
+  dialog: {
+    value: '400',
+    primitive: 'z-index-400',
+  },
+  toast: {
+    value: '500',
+    primitive: 'z-index-500',
+  },
+} as const;
