@@ -65,3 +65,10 @@ export type {
   TypographyVariant,
 } from '@/components/typography/Typography';
 export { Typography } from '@/components/typography/Typography';
+export type {
+  IconButtonEmphasis,
+  IconButtonProps,
+  IconButtonSize,
+  IconButtonTone,
+} from '@/components/buttons/icon-button/IconButton';
+export { IconButton } from '@/components/buttons/icon-button/IconButton';
