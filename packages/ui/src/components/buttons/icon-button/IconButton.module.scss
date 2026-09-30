@@ -1,0 +1,56 @@
+.IconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  color: var(--icon-button-color, var(--color-fg-neutral));
+
+  &:not(:disabled):active,
+  &:not(:disabled):hover {
+    background-color: var(--color-bg-transparent-pressed);
+  }
+
+  &:disabled {
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  &-md {
+    --icon-button-size: 40px;
+  }
+
+  &-sm {
+    --icon-button-size: 28px;
+  }
+
+  &-xs {
+    --icon-button-size: 24px;
+  }
+
+  &-brand {
+    --icon-button-color: var(--color-fg-brand);
+  }
+
+  // neutral emphasis 단계 — tone이 neutral일 때만 적용
+  &-default {
+    --icon-button-color: var(--color-fg-neutral);
+  }
+
+  &-muted {
+    --icon-button-color: var(--color-fg-neutral-muted);
+  }
+
+  &-subtle {
+    --icon-button-color: var(--color-fg-neutral-subtle);
+  }
+
+  &-faint {
+    --icon-button-color: var(--color-fg-neutral-faint);
+  }
+}
