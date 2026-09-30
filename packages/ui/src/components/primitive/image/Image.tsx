@@ -14,8 +14,8 @@ import {
   type Ref,
   type SyntheticEvent,
 } from 'react';
-import type { MarginProps } from '../../types';
-import { getSpacingPropsClassNames } from '../../utils';
+import type { MarginProps } from '@/types';
+import { getSpacingPropsClassNames } from '@/utils';
 import './Image.scss';
 
 export type ImageOwnProps<C extends ElementType> = {
