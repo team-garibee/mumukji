@@ -21,7 +21,7 @@
   &-lg {
     --action-button-padding-x: var(--spacing-3xl);
     --action-button-border-radius: var(--radius-l);
-    --action-button-icon-size: 20px;
+    --button-icon-size: 20px;
 
     height: 64px;
   }
@@ -29,28 +29,28 @@
   &-md {
     --action-button-padding-x: var(--spacing-xl);
     --action-button-border-radius: var(--radius-m);
-    --action-button-icon-size: 20px;
+    --button-icon-size: 20px;
 
     height: 56px;
   }
 
   &-sm {
     --action-button-padding-x: var(--spacing-lg);
-    --action-button-icon-size: 16px;
+    --button-icon-size: 16px;
 
     height: 40px;
   }
 
   &-xs {
     --action-button-padding-x: var(--spacing-md);
-    --action-button-icon-size: 16px;
+    --button-icon-size: 16px;
 
     height: 32px;
   }
 
   &-2xs {
     --action-button-padding-x: var(--spacing-xs);
-    --action-button-icon-size: 12px;
+    --button-icon-size: 12px;
     --action-button-gap: var(--spacing-2xs);
 
     height: 28px;
@@ -140,22 +140,4 @@
       --action-button-background-color: var(--color-bg-transparent-pressed);
     }
   }
-}
-
-.ActionButtonIcon {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: var(--action-button-icon-size);
-  height: var(--action-button-icon-size);
-
-  :where(svg) {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.ActionButtonLabel {
-  min-width: 0;
 }

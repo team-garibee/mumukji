@@ -5,12 +5,12 @@ import {
   type ForwardRefRenderFunction,
   type ReactElement,
 } from 'react';
+import { ButtonContent } from '../base/ButtonContent';
 import { LinkBase, type LinkBaseProps } from '../base/LinkBase';
 import {
-  ActionButtonContent,
   getActionButtonClassName,
   type ActionButtonStyleProps,
-} from './ActionButtonContent';
+} from './actionButtonVariants';
 
 export type ActionLinkProps<T extends ElementType = 'a'> =
   ActionButtonStyleProps & Omit<LinkBaseProps<T>, keyof ActionButtonStyleProps>;
@@ -46,9 +46,9 @@ const ActionLinkRender = <T extends ElementType = 'a'>(
       tone,
       size,
     })}>
-    <ActionButtonContent icon={icon} iconPosition={iconPosition}>
+    <ButtonContent icon={icon} iconPosition={iconPosition}>
       {children}
-    </ActionButtonContent>
+    </ButtonContent>
   </LinkBase>
 );
 
