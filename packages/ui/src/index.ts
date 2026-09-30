@@ -29,6 +29,8 @@ export type { ActionLinkProps } from '@/components/buttons/action-button/ActionL
 export { ActionLink } from '@/components/buttons/action-button/ActionLink';
 export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
 export { ButtonBase } from '@/components/buttons/base/ButtonBase';
+export type { CategoryButtonProps } from '@/components/buttons/category-button/CategoryButton';
+export { CategoryButton } from '@/components/buttons/category-button/CategoryButton';
 export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
 export { LinkBase } from '@/components/buttons/base/LinkBase';
 export type { FloatingButtonProps } from '@/components/buttons/floating-button/FloatingButton';
