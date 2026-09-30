@@ -64,6 +64,8 @@ export type { FloatingButtonProps } from '@/components/buttons/floating-button/F
 export { FloatingButton } from '@/components/buttons/floating-button/FloatingButton';
 export type { FloatingLinkProps } from '@/components/buttons/floating-button/FloatingLink';
 export { FloatingLink } from '@/components/buttons/floating-button/FloatingLink';
+export type { CategoryButtonProps } from '@/components/buttons/category-button/CategoryButton';
+export { CategoryButton } from '@/components/buttons/category-button/CategoryButton';
 export type {
   ImageOwnProps,
   ImageProps,
