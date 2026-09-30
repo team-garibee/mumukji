@@ -31,6 +31,10 @@ export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
 export { ButtonBase } from '@/components/buttons/base/ButtonBase';
 export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
 export { LinkBase } from '@/components/buttons/base/LinkBase';
+export type { FloatingButtonProps } from '@/components/buttons/floating-button/FloatingButton';
+export { FloatingButton } from '@/components/buttons/floating-button/FloatingButton';
+export type { FloatingLinkProps } from '@/components/buttons/floating-button/FloatingLink';
+export { FloatingLink } from '@/components/buttons/floating-button/FloatingLink';
 export type {
   IconButtonEmphasis,
   IconButtonProps,
