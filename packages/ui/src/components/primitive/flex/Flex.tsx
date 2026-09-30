@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { forwardRef } from 'react';
-import { Box, type BoxProps } from '@/components/box/Box';
+import { Box, type BoxProps } from '@/components/primitive/box/Box';
 import type { GapProps } from '@/types';
 import { getGapPropsClassNames } from '@/utils';
 import './Flex.scss';
