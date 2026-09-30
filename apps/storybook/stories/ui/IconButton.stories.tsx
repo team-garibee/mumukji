@@ -26,13 +26,19 @@ const meta: Meta<typeof IconButton> = {
     emphasis: 'default',
     size: 'md',
     onClick: () => undefined,
-    loadingText: '...',
   },
   argTypes: {
     icon: {
       control: false,
       table: {
-        type: { summary: 'ReactNode' },
+        type: { summary: 'ReactElement' },
+      },
+    },
+    'aria-label': {
+      description: '텍스트가 없는 아이콘 단독 버튼이므로 필수입니다.',
+      type: { name: 'string', required: true },
+      table: {
+        type: { summary: 'string' },
       },
     },
     tone: {
@@ -51,7 +57,7 @@ const meta: Meta<typeof IconButton> = {
     loadingText: {
       control: 'text',
       table: {
-        defaultValue: { summary: "'로딩 중...'" },
+        defaultValue: { summary: "'...'" },
       },
     },
   },

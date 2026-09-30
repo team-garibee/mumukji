@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { forwardRef, type ReactNode } from 'react';
+import { cloneElement, forwardRef, type ReactElement } from 'react';
 import { ButtonBase, type ButtonBaseProps } from '../base/ButtonBase';
 import styles from './IconButton.module.scss';
 
@@ -7,9 +7,16 @@ export type IconButtonTone = 'brand' | 'neutral';
 export type IconButtonEmphasis = 'default' | 'muted' | 'subtle' | 'faint';
 export type IconButtonSize = 'md' | 'sm' | 'xs';
 
+/** 버튼 size별 아이콘 크기(px) */
+const ICON_SIZE: Record<IconButtonSize, number> = {
+  md: 24,
+  sm: 20,
+  xs: 16,
+};
+
 interface IconButtonOwnProps {
-  /** 버튼에 표시할 아이콘 */
-  icon: ReactNode;
+  /** 버튼에 표시할 아이콘 (size는 버튼 size에 맞춰 자동 적용됩니다) */
+  icon: ReactElement<{ size?: number | string }>;
   /** 버튼 색상 톤 */
   tone?: IconButtonTone;
   /** neutral 톤일 때만 적용되는 색상 강도. brand에서는 무시됩니다. */
@@ -34,6 +41,9 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       tone = 'neutral',
       emphasis = 'default',
       size = 'md',
+      'aria-label': ariaLabel,
+      // 아이콘 버튼은 스피너 도입 전까지 '로딩 중...' 대신 '...'을 기본값으로 사용
+      loadingText = '...',
       onClick,
       ...props
     },
@@ -41,6 +51,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ) => (
     <ButtonBase
       ref={ref}
+      aria-label={ariaLabel}
+      loadingText={loadingText}
       onClick={onClick}
       className={clsx(
         styles.IconButton,
@@ -50,9 +62,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         className,
       )}
       {...props}>
-      <span className={styles.IconButtonIcon} aria-hidden='true'>
-        {icon}
-      </span>
+      {cloneElement(icon, { size: ICON_SIZE[size] })}
     </ButtonBase>
   ),
 );
