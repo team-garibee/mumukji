@@ -19,29 +19,32 @@ export type {
 } from '@/types';
 export type { SpacingClassPrefix } from '@/utils';
 
-export type { BoxAs, BoxProps } from '@/components/box/Box';
-export { Box } from '@/components/box/Box';
+export type { BoxAs, BoxProps } from '@/components/primitive/box/Box';
+export { Box } from '@/components/primitive/box/Box';
 export type {
   FlexAlign,
   FlexJustify,
   FlexProps,
   FlexWrap,
-} from '@/components/flex/Flex';
-export { Flex } from '@/components/flex/Flex';
-export type { GridProps } from '@/components/grid/Grid';
-export { Grid } from '@/components/grid/Grid';
-export type { SectionAs, SectionProps } from '@/components/section/Section';
-export { Section } from '@/components/section/Section';
+} from '@/components/primitive/flex/Flex';
+export { Flex } from '@/components/primitive/flex/Flex';
+export type { GridProps } from '@/components/primitive/grid/Grid';
+export { Grid } from '@/components/primitive/grid/Grid';
+export type {
+  SectionAs,
+  SectionProps,
+} from '@/components/primitive/section/Section';
+export { Section } from '@/components/primitive/section/Section';
 export type {
   ListAs,
   ListProps,
   ListItemProps,
   OrderedListProps,
   UnorderedListProps,
-} from '@/components/list/List';
-export { List, ListItem } from '@/components/list/List';
-export type { FormProps } from '@/components/form/Form';
-export { Form } from '@/components/form/Form';
+} from '@/components/primitive/list/List';
+export { List, ListItem } from '@/components/primitive/list/List';
+export type { FormProps } from '@/components/primitive/form/Form';
+export { Form } from '@/components/primitive/form/Form';
 export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
 export { Checkbox } from '@/components/controls/checkbox/Checkbox';
 export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
@@ -57,13 +60,16 @@ export type {
   ReactionButtonTone,
 } from '@/components/buttons/reaction-button/ReactionButton';
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
-export type { ImageOwnProps, ImageProps } from '@/components/image/Image';
-export { Image } from '@/components/image/Image';
+export type {
+  ImageOwnProps,
+  ImageProps,
+} from '@/components/primitive/image/Image';
+export { Image } from '@/components/primitive/image/Image';
 export type {
   TypographyAs,
   TypographyColor,
   TypographyOwnProps,
   TypographyProps,
   TypographyVariant,
-} from '@/components/typography/Typography';
-export { Typography } from '@/components/typography/Typography';
+} from '@/components/primitive/typography/Typography';
+export { Typography } from '@/components/primitive/typography/Typography';
