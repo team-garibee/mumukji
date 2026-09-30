@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import type { ButtonIconPosition } from '../base/ButtonContent';
 import styles from './ActionButton.module.scss';
 
 export type ActionButtonVariant = 'solid' | 'outline' | 'ghost';
 export type ActionButtonTone = 'brand' | 'interactive' | 'negative' | 'neutral';
 export type ActionButtonSize = '2xs' | 'xs' | 'sm' | 'md' | 'lg';
-export type ActionButtonIconPosition = 'left' | 'right';
+export type ActionButtonIconPosition = ButtonIconPosition;
 
 export interface ActionButtonStyleProps {
   variant?: ActionButtonVariant;
@@ -44,29 +45,3 @@ export function getActionButtonClassName({
     className,
   );
 }
-
-export const ActionButtonContent = ({
-  children,
-  icon,
-  iconPosition = 'left',
-}: Pick<ActionButtonStyleProps, 'icon' | 'iconPosition'> & {
-  children: ReactNode;
-}) => {
-  const hasIcon = icon !== null && icon !== undefined;
-
-  return (
-    <>
-      {hasIcon && iconPosition === 'left' && (
-        <span className={styles.ActionButtonIcon} aria-hidden='true'>
-          {icon}
-        </span>
-      )}
-      <span className={styles.ActionButtonLabel}>{children}</span>
-      {hasIcon && iconPosition === 'right' && (
-        <span className={styles.ActionButtonIcon} aria-hidden='true'>
-          {icon}
-        </span>
-      )}
-    </>
-  );
-};
