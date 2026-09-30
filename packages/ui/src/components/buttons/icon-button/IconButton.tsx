@@ -22,8 +22,8 @@ interface IconButtonOwnProps {
   /** neutral 톤일 때만 적용되는 색상 강도. brand에서는 무시됩니다. */
   emphasis?: IconButtonEmphasis;
   size?: IconButtonSize;
-  /** 텍스트가 없는 아이콘 단독 버튼이므로 필수입니다. */
-  'aria-label': string;
+  /** 텍스트가 없는 아이콘 단독 버튼이므로 접근성을 위해 지정하는 것을 권장합니다. */
+  'aria-label'?: string;
 }
 
 export type IconButtonProps = IconButtonOwnProps &

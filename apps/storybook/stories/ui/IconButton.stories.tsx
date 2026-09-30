@@ -35,8 +35,8 @@ const meta: Meta<typeof IconButton> = {
       },
     },
     'aria-label': {
-      description: '텍스트가 없는 아이콘 단독 버튼이므로 필수입니다.',
-      type: { name: 'string', required: true },
+      description:
+        '텍스트가 없는 아이콘 단독 버튼이므로 접근성을 위해 지정하는 것을 권장합니다.',
       table: {
         type: { summary: 'string' },
       },
