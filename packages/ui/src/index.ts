@@ -53,6 +53,12 @@ export { ReactionButton } from '@/components/buttons/reaction-button/ReactionBut
 // controls
 export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
 export { Checkbox } from '@/components/controls/checkbox/Checkbox';
+export type {
+  InputProps,
+  InputState,
+  InputStyle,
+} from '@/components/controls/input/Input';
+export { Input } from '@/components/controls/input/Input';
 
 // primitive
 export type { BoxAs, BoxProps } from '@/components/primitive/box/Box';

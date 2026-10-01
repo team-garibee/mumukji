@@ -1,0 +1,84 @@
+.InputRoot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-4);
+}
+
+.Input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-12) var(--spacing-16);
+  transition:
+    border-color 100ms ease-out,
+    background-color 100ms ease-out;
+  border: 1px solid var(--input-border-color, var(--color-stroke-neutral));
+  border-radius: var(--radius-8);
+  background-color: var(--input-background-color, transparent);
+  color: var(--color-fg-neutral);
+  gap: var(--spacing-8);
+
+  // style: underline — 위·좌·우 테두리 제거, radius 없음
+  &-underline {
+    border-bottom: 1px solid;
+    border-radius: 0;
+    border-color: transparent transparent
+      var(--input-border-color, var(--color-stroke-neutral));
+  }
+
+  // state: focused / typing
+  &-focused,
+  &-typing {
+    --input-border-color: var(--color-stroke-interactive-solid);
+  }
+
+  // state: error
+  &-error {
+    --input-border-color: var(--color-stroke-negative-solid);
+  }
+
+  // state: disabled
+  &-disabled {
+    --input-border-color: var(--color-stroke-disabled);
+    --input-background-color: var(--color-bg-disabled);
+    --input-muted-color: var(--color-fg-disabled);
+
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+}
+
+.InputField {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+
+  &::placeholder {
+    color: var(--color-fg-placeholder);
+  }
+
+  &:disabled::placeholder {
+    color: var(--color-fg-disabled);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.InputClearButton {
+  flex: 0 0 auto;
+}
+
+.InputCounter {
+  flex: 0 0 auto;
+  color: var(--input-muted-color, var(--color-fg-neutral-subtle));
+}
+
+.InputErrorMessage {
+  margin: 0;
+  color: var(--color-fg-negative);
+}
