@@ -7,10 +7,13 @@
   );
 
   display: inline-flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-2xs);
+  width: fit-content;
   cursor: pointer;
+  gap: var(--spacing-2xs);
+  user-select: none;
 
   // 선택 해제 (tone 공통)
   --switch-track-color: var(--color-bg-neutral-weak);
@@ -33,29 +36,51 @@
     --switch-selected-label-color: var(--color-fg-neutral-muted);
   }
 
-  &:not(:disabled):is(:hover, :active) {
-    .SwitchTrack {
-      background-color: var(--switch-track-pressed-color);
-    }
+  > input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    white-space: nowrap;
+    clip-path: inset(50%);
   }
 
-  &:disabled {
-    cursor: not-allowed;
+  > input:checked ~ * {
+    --switch-track-color: var(--switch-selected-track-color);
+    --switch-track-pressed-color: var(--switch-selected-track-pressed-color);
+    --switch-label-color: var(--switch-selected-label-color);
+  }
 
-    .SwitchTrack {
-      background-color: var(--color-bg-disabled);
-    }
+  &:is(:hover, :active) > input:not(:disabled) ~ .SwitchTrack {
+    background-color: var(--switch-track-pressed-color);
+  }
 
-    .SwitchLabel {
-      color: var(--color-fg-disabled);
-    }
+  > input:focus-visible ~ .SwitchTrack {
+    outline: var(--border-width-strong) solid
+      var(--color-stroke-interactive-solid);
+    outline-offset: var(--spacing-3xs);
+  }
+
+  > input:checked ~ .SwitchTrack .SwitchThumb {
+    transform: translateX(
+      calc(var(--switch-thumb-travel) - var(--switch-track-padding) * 2)
+    );
+  }
+
+  > input:disabled ~ .SwitchTrack {
+    background-color: var(--color-bg-disabled);
+  }
+
+  > input:disabled ~ .SwitchLabel {
+    color: var(--color-fg-disabled);
   }
 }
 
-.SwitchSelected {
-  --switch-track-color: var(--switch-selected-track-color);
-  --switch-track-pressed-color: var(--switch-selected-track-pressed-color);
-  --switch-label-color: var(--switch-selected-label-color);
+.SwitchDisabled {
+  cursor: not-allowed;
 }
 
 .SwitchLabel {
@@ -78,10 +103,4 @@
   transition: transform 100ms ease-out;
   border-radius: var(--radius-full);
   background-color: var(--color-fg-on-solid);
-}
-
-.SwitchSelected .SwitchThumb {
-  transform: translateX(
-    calc(var(--switch-thumb-travel) - var(--switch-track-padding) * 2)
-  );
 }
