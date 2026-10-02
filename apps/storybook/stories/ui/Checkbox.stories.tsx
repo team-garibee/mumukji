@@ -19,9 +19,24 @@ const meta: Meta<typeof Checkbox> = {
     name: 'checkbox-example',
   },
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    checked: { control: 'boolean' },
+    children: {
+      control: 'text',
+      type: { name: 'other', value: 'ReactNode', required: true },
+      table: { type: { summary: 'ReactNode' } },
+    },
+    className: { control: 'text', type: 'string' },
+    name: { control: 'text', type: 'string' },
+    disabled: { control: 'boolean', type: 'boolean' },
+    defaultChecked: {
+      control: 'boolean',
+      type: 'boolean',
+      description: '비제어 체크박스의 초기 선택 상태입니다.',
+    },
+    checked: {
+      control: false,
+      type: 'boolean',
+      description: '제어할 때 onChange와 함께 사용합니다.',
+    },
   },
 };
 
