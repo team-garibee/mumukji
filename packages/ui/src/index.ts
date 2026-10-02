@@ -47,6 +47,11 @@ export type { FormProps } from '@/components/primitive/form/Form';
 export { Form } from '@/components/primitive/form/Form';
 export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
 export { Checkbox } from '@/components/controls/checkbox/Checkbox';
+export type {
+  SwitchProps,
+  SwitchTone,
+} from '@/components/controls/switch/Switch';
+export { Switch } from '@/components/controls/switch/Switch';
 export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
 export { ButtonBase } from '@/components/buttons/base/ButtonBase';
 export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
