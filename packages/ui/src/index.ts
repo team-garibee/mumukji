@@ -22,43 +22,6 @@ export {
 } from '@/utils';
 export type { SpacingClassPrefix } from '@/utils';
 
-// buttons
-export type { ActionButtonProps } from '@/components/buttons/action-button/ActionButton';
-export { ActionButton } from '@/components/buttons/action-button/ActionButton';
-export type { ActionLinkProps } from '@/components/buttons/action-button/ActionLink';
-export { ActionLink } from '@/components/buttons/action-button/ActionLink';
-export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
-export { ButtonBase } from '@/components/buttons/base/ButtonBase';
-export type { CategoryButtonProps } from '@/components/buttons/category-button/CategoryButton';
-export { CategoryButton } from '@/components/buttons/category-button/CategoryButton';
-export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
-export { LinkBase } from '@/components/buttons/base/LinkBase';
-export type { FloatingButtonProps } from '@/components/buttons/floating-button/FloatingButton';
-export { FloatingButton } from '@/components/buttons/floating-button/FloatingButton';
-export type { FloatingLinkProps } from '@/components/buttons/floating-button/FloatingLink';
-export { FloatingLink } from '@/components/buttons/floating-button/FloatingLink';
-export type {
-  IconButtonEmphasis,
-  IconButtonProps,
-  IconButtonSize,
-  IconButtonTone,
-} from '@/components/buttons/icon-button/IconButton';
-export { IconButton } from '@/components/buttons/icon-button/IconButton';
-export type {
-  ReactionButtonProps,
-  ReactionButtonTone,
-} from '@/components/buttons/reaction-button/ReactionButton';
-export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
-
-// controls
-export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
-export { Checkbox } from '@/components/controls/checkbox/Checkbox';
-export type {
-  SwitchProps,
-  SwitchTone,
-} from '@/components/controls/switch/Switch';
-export { Switch } from '@/components/controls/switch/Switch';
-
 // primitive
 export type { BoxAs, BoxProps } from '@/components/primitive/box/Box';
 export { Box } from '@/components/primitive/box/Box';
@@ -99,3 +62,40 @@ export type {
   TypographyVariant,
 } from '@/components/primitive/typography/Typography';
 export { Typography } from '@/components/primitive/typography/Typography';
+
+// buttons
+export type { ActionButtonProps } from '@/components/buttons/action-button/ActionButton';
+export { ActionButton } from '@/components/buttons/action-button/ActionButton';
+export type { ActionLinkProps } from '@/components/buttons/action-button/ActionLink';
+export { ActionLink } from '@/components/buttons/action-button/ActionLink';
+export type { ButtonBaseProps } from '@/components/buttons/base/ButtonBase';
+export { ButtonBase } from '@/components/buttons/base/ButtonBase';
+export type { CategoryButtonProps } from '@/components/buttons/category-button/CategoryButton';
+export { CategoryButton } from '@/components/buttons/category-button/CategoryButton';
+export type { LinkBaseProps } from '@/components/buttons/base/LinkBase';
+export { LinkBase } from '@/components/buttons/base/LinkBase';
+export type { FloatingButtonProps } from '@/components/buttons/floating-button/FloatingButton';
+export { FloatingButton } from '@/components/buttons/floating-button/FloatingButton';
+export type { FloatingLinkProps } from '@/components/buttons/floating-button/FloatingLink';
+export { FloatingLink } from '@/components/buttons/floating-button/FloatingLink';
+export type {
+  IconButtonEmphasis,
+  IconButtonProps,
+  IconButtonSize,
+  IconButtonTone,
+} from '@/components/buttons/icon-button/IconButton';
+export { IconButton } from '@/components/buttons/icon-button/IconButton';
+export type {
+  ReactionButtonProps,
+  ReactionButtonTone,
+} from '@/components/buttons/reaction-button/ReactionButton';
+export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
+
+// controls
+export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
+export { Checkbox } from '@/components/controls/checkbox/Checkbox';
+export type {
+  SwitchProps,
+  SwitchTone,
+} from '@/components/controls/switch/Switch';
+export { Switch } from '@/components/controls/switch/Switch';
