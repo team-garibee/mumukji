@@ -1,0 +1,6 @@
+.Dimmed {
+  position: fixed;
+  z-index: var(--z-index-dim);
+  inset: 0;
+  background-color: var(--color-bg-overlay-dim);
+}
