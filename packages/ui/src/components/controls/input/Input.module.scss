@@ -1,0 +1,79 @@
+.InputRoot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-2xs);
+}
+
+.Input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition:
+    border-color 100ms ease-out,
+    background-color 100ms ease-out;
+  border: var(--border-width-regular) solid
+    var(--input-border-color, var(--color-stroke-neutral-weak));
+  border-radius: var(--radius-s);
+  background-color: var(--input-background-color, transparent);
+  color: var(--color-fg-neutral);
+  gap: var(--spacing-xs);
+
+  &-underline {
+    border-width: 0 0 var(--border-width-regular) 0;
+    border-radius: 0;
+    border-color: transparent transparent
+      var(--input-border-color, var(--color-stroke-neutral-weak));
+  }
+
+  &:focus-within {
+    --input-border-color: var(--color-stroke-interactive-solid);
+  }
+
+  &-error {
+    --input-border-color: var(--color-stroke-negative-solid);
+  }
+
+  &:has(.InputField:disabled) {
+    --input-border-color: var(--color-stroke-neutral-weak);
+    --input-background-color: var(--color-bg-disabled);
+
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+}
+
+.InputField {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  caret-color: var(--color-bg-interactive-solid);
+
+  &::placeholder {
+    color: var(--color-fg-placeholder);
+  }
+
+  &:disabled::placeholder {
+    color: var(--color-fg-disabled);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.InputClearButton {
+  flex: 0 0 auto;
+}
+
+.InputCounter {
+  flex: 0 0 auto;
+}
+
+.InputErrorMessage {
+  margin: 0;
+  padding-left: var(--spacing-md);
+}
