@@ -14,6 +14,7 @@ import {
   type ReactNode,
 } from 'react';
 import { IconButton } from '../../buttons/icon-button/IconButton';
+import { Typography } from '../../primitive/typography/Typography';
 import styles from './Input.module.scss';
 
 export type InputVariant = 'outline' | 'underline';
@@ -149,18 +150,25 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             />
           )}
 
-          <span className={clsx(styles.InputCounter, 'typo-label-sm')}>
+          <Typography
+            as='span'
+            variant='label-sm'
+            color='fg-placeholder'
+            className={styles.InputCounter}>
             {currentLength}/{maxLength}
-          </span>
+          </Typography>
         </div>
 
         {error && errorMessage && (
-          <p
+          <Typography
+            as='p'
+            variant='caption-md'
+            color='fg-negative'
             id={errorMessageId}
-            className={clsx(styles.InputErrorMessage, 'typo-caption-md')}
+            className={styles.InputErrorMessage}
             role='alert'>
             {errorMessage}
-          </p>
+          </Typography>
         )}
       </div>
     );
