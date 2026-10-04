@@ -15,7 +15,6 @@ export const Dimmed = forwardRef<HTMLDivElement, DimmedProps>(
       ref={ref}
       className={clsx(styles.Dimmed, className)}
       aria-hidden='true'
-      tabIndex={-1}
     />
   ),
 );
