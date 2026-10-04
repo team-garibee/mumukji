@@ -55,8 +55,7 @@ export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
 export { Checkbox } from '@/components/controls/checkbox/Checkbox';
 export type {
   InputProps,
-  InputState,
-  InputStyle,
+  InputVariant,
 } from '@/components/controls/input/Input';
 export { Input } from '@/components/controls/input/Input';
 

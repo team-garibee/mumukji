@@ -1,6 +1,6 @@
 'use client';
 
-import { IconClose } from '@mumukji/icons';
+import { IconCloseCircleFilled } from '@mumukji/icons';
 import clsx from 'clsx';
 import {
   forwardRef,
@@ -9,7 +9,6 @@ import {
   useState,
   type ChangeEvent,
   type ComponentPropsWithoutRef,
-  type FocusEvent,
   type ForwardedRef,
   type MutableRefObject,
   type ReactNode,
@@ -17,28 +16,18 @@ import {
 import { IconButton } from '../../buttons/icon-button/IconButton';
 import styles from './Input.module.scss';
 
-export type InputStyle = 'outline' | 'underline';
+export type InputVariant = 'outline' | 'underline';
 
-export type InputState =
-  | 'default'
-  | 'focused'
-  | 'typing'
-  | 'error'
-  | 'completed'
-  | 'disabled';
-
-interface InputOwnProps extends Omit<
-  ComponentPropsWithoutRef<'input'>,
-  'size' | 'style'
-> {
-  style?: InputStyle;
+interface InputOwnProps extends ComponentPropsWithoutRef<'input'> {
+  /** outline / underline. 네이티브 style(CSS) 속성과 겹치지 않도록 variant로 명명합니다. */
+  variant?: InputVariant;
   /**
-   * 상태를 외부에서 강제로 지정합니다. 생략하면 focus·입력 여부·disabled로
-   * 자동 계산됩니다(default / focused / typing). `error` · `completed`는
-   * 외부 검증 로직에서만 판단할 수 있으므로 직접 지정해서 사용합니다.
+   * default / focused / typing / disabled는 각각 CSS(:focus-within,
+   * :placeholder-shown, :disabled)로 처리되는 시각적 상태라 컴포넌트가 별도로
+   * 관리하지 않습니다. error만 외부 검증 로직에서만 판단 가능하므로
+   * prop으로 직접 지정합니다.
    */
-  state?: InputState;
-  maxLength?: number;
+  error?: boolean;
   errorMessage?: ReactNode;
   /** X(clear) 버튼 aria-label. 기본값: '입력값 지우기' */
   clearButtonLabel?: string;
@@ -63,17 +52,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
-      style = 'outline',
-      state,
+      variant = 'outline',
+      error = false,
       value,
       defaultValue,
       maxLength = 20,
       disabled = false,
+      readOnly = false,
       errorMessage,
       clearButtonLabel = '입력값 지우기',
       onClear,
-      onFocus,
-      onBlur,
       onChange,
       id,
       'aria-describedby': ariaDescribedBy,
@@ -86,27 +74,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const errorMessageId = `${inputId}-error`;
 
     const innerRef = useRef<HTMLInputElement>(null);
-    const [isFocused, setIsFocused] = useState(false);
 
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState(defaultValue ?? '');
     const currentValue = isControlled ? value : internalValue;
     const currentLength = String(currentValue ?? '').length;
     const hasValue = currentLength > 0;
-
-    const isDisabled = disabled || state === 'disabled';
-    // blur 상태에서는 값 유무와 상관없이 default 테두리로 돌아온다.
-    // (값이 있는 채로 blur된 상태를 구분해야 하면 state="completed"를 직접 지정한다.)
-    const autoState: InputState = isFocused
-      ? hasValue
-        ? 'typing'
-        : 'focused'
-      : 'default';
-    const resolvedState: InputState = isDisabled
-      ? 'disabled'
-      : (state ?? autoState);
-
-    const isError = resolvedState === 'error';
+    // readOnly인 값은 지울 수 없어야 하므로 clear 버튼을 표출하지 않는다.
+    const showClearButton = hasValue && !disabled && !readOnly;
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       if (!isControlled) {
@@ -115,23 +90,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange?.(event);
     };
 
-    const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
-      setIsFocused(true);
-      onFocus?.(event);
-    };
-
-    const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-      setIsFocused(false);
-      onBlur?.(event);
-    };
-
     const handleClear = () => {
-      if (isDisabled) {
+      if (disabled || readOnly) {
         return;
       }
 
-      // controlled/uncontrolled 갱신 로직을 handleChange에 그대로 위임한다.
-      handleChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+      // 가짜 ChangeEvent를 만들어 onChange를 호출하지 않는다. 실제 입력은
+      // onChange로, clear는 onClear로만 전달한다 — controlled 사용 시
+      // 값 초기화는 onClear를 받은 쪽에서 처리한다.
+      if (!isControlled) {
+        setInternalValue('');
+      }
       innerRef.current?.focus();
       onClear?.();
     };
@@ -141,55 +110,54 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={clsx(
             styles.Input,
-            styles[`Input-${style}`],
-            styles[`Input-${resolvedState}`],
+            styles[`Input-${variant}`],
+            error && styles['Input-error'],
             className,
-          )}>
+          )}
+          data-variant={variant}>
           <input
             ref={(node) => {
               innerRef.current = node;
               setRef(ref, node);
             }}
             id={inputId}
-            className={clsx(styles.InputField, 'typo-body-md')}
+            className={clsx(styles.InputField, 'typo-label-md')}
             value={currentValue}
             maxLength={maxLength}
-            disabled={isDisabled}
-            aria-invalid={isError || undefined}
+            disabled={disabled}
+            readOnly={readOnly}
+            aria-invalid={error || undefined}
             aria-describedby={
-              isError && errorMessage
+              error && errorMessage
                 ? [errorMessageId, ariaDescribedBy].filter(Boolean).join(' ')
                 : ariaDescribedBy
             }
             onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             {...rest}
           />
 
-          {hasValue && (
+          {showClearButton && (
             <IconButton
               type='button'
               className={styles.InputClearButton}
-              icon={<IconClose />}
+              icon={<IconCloseCircleFilled />}
               aria-label={clearButtonLabel}
-              size='xs'
+              size='sm'
               tone='neutral'
               emphasis='subtle'
-              disabled={isDisabled}
               onClick={handleClear}
             />
           )}
 
-          <span className={clsx(styles.InputCounter, 'typo-caption-sm')}>
+          <span className={clsx(styles.InputCounter, 'typo-label-sm')}>
             {currentLength}/{maxLength}
           </span>
         </div>
 
-        {isError && errorMessage && (
+        {error && errorMessage && (
           <p
             id={errorMessageId}
-            className={clsx(styles.InputErrorMessage, 'typo-caption-sm')}
+            className={clsx(styles.InputErrorMessage, 'typo-caption-md')}
             role='alert'>
             {errorMessage}
           </p>
