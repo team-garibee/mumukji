@@ -1,0 +1,33 @@
+@use '@/styles/reset' as reset;
+
+.Chip:where(button) {
+  @include reset.reset-button;
+}
+
+.Chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-s);
+  background-color: var(--color-bg-highlight-weak);
+  color: var(--color-fg-highlight);
+  gap: var(--spacing-2xs);
+  white-space: nowrap;
+
+  &:is(button):not(:disabled):active,
+  &:is(button):not(:disabled):hover {
+    background-color: var(--color-bg-highlight-muted);
+  }
+
+  &:is(button):disabled {
+    background-color: var(--color-bg-disabled);
+    color: var(--color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  > svg {
+    flex: 0 0 auto;
+  }
+}
