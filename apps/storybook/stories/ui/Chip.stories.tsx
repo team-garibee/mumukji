@@ -1,6 +1,6 @@
 import { Chip } from '@mumukji/ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useId, useRef } from 'react';
+import { useId, useRef, useState } from 'react';
 
 const meta: Meta<typeof Chip> = {
   title: 'UI/03. Controls/Chip',
@@ -57,19 +57,28 @@ export const DropdownDisabled: Story = {
 const BottomSheetExample = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const sheetId = useId();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <Chip
         suffix='dropdown'
         aria-controls={sheetId}
-        onClick={() => dialogRef.current?.showModal()}>
+        aria-expanded={isOpen}
+        onClick={() => {
+          if (!dialogRef.current) {
+            return;
+          }
+          dialogRef.current.showModal();
+          setIsOpen(true);
+        }}>
         종류 선택
       </Chip>
       <dialog
         ref={dialogRef}
         id={sheetId}
         aria-label='종류 선택'
+        onClose={() => setIsOpen(false)}
         style={{
           position: 'fixed',
           top: 'auto',
