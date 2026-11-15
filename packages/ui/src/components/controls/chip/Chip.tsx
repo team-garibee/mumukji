@@ -6,8 +6,8 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import styles from './Chip.module.scss';
 import { ButtonBase } from '@/components/buttons/base/ButtonBase';
+import styles from '@/components/controls/chip/Chip.module.scss';
 
 interface ChipCommonProps {
   children: ReactNode;
