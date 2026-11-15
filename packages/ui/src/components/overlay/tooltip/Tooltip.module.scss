@@ -30,6 +30,11 @@ $tooltip-arrow-box-width: $tooltip-arrow-width + $tooltip-arrow-overlap-spread;
   background-color: var(--tooltip-bg-color);
   color: var(--tooltip-fg-color);
 
+  // 꼬리(::before)와 말풍선을 합친 모양을 따라 그림자를 주기 위해 box-shadow 대신 drop-shadow 사용
+  // shadow/s4와 같은 값. drop-shadow()는 그림자를 하나씩만 받아서 2겹 토큰을 그대로 쓸 수 없음
+  filter: drop-shadow(0 12px 40px var(--color-alpha-black-10))
+    drop-shadow(0 0 6px var(--color-alpha-black-10));
+
   &::before {
     content: '';
     position: absolute;
