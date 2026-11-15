@@ -1,0 +1,24 @@
+.Tooltip {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  width: fit-content;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-s);
+  background-color: var(--tooltip-bg-color);
+  color: var(--tooltip-fg-color);
+
+  &-interactive {
+    --tooltip-bg-color: var(--color-bg-informative-solid);
+    --tooltip-fg-color: var(--color-fg-on-solid);
+  }
+
+  &-neutral {
+    --tooltip-bg-color: var(--color-bg-layer-container);
+    --tooltip-fg-color: var(--color-fg-neutral-muted);
+  }
+}
+
+.TooltipContent {
+  min-width: 0;
+}
