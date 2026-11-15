@@ -23,12 +23,22 @@ $tooltip-arrow-box-width: $tooltip-arrow-width + $tooltip-arrow-overlap-spread;
 $tooltip-close-button-size: 24px;
 $tooltip-close-icon-size: 16px;
 
+// 말풍선 최대 크기 (padding 포함)
+$tooltip-max-width: 280px;
+
+// 피그마 최대 높이 160px을 넘지 않는 줄 수: (160px - 상하 padding 16px) / 줄 높이 16.8px ≈ 8.57
+// 높이로 자르면 줄 중간이 잘려서 줄 수 기준으로 말줄임 처리
+// 줄 높이(1lh)는 빌드 시점에 알 수 없어 계산 결과를 직접 적음
+// TODO: 툴팁 문구의 최대 글자 수가 정해지면 이 값은 수정될 수 있음
+$tooltip-max-lines: 8;
+
 .Tooltip {
   display: inline-flex;
   position: relative;
   align-items: flex-start;
   gap: var(--spacing-sm);
   width: fit-content;
+  max-width: $tooltip-max-width;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-s);
   background-color: var(--tooltip-bg-color);
@@ -123,7 +133,17 @@ $tooltip-close-icon-size: 16px;
 }
 
 .TooltipContent {
-  min-width: 0;
+  display: -webkit-box;
+  overflow: hidden;
+
+  // 한국어도 단어 단위로 줄바꿈하고, 띄어쓰기 없이 긴 문자열만 강제로 끊어 넘침 방지
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+
+  // 최대 줄 수를 넘으면 마지막 줄 끝에 말줄임 표시
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $tooltip-max-lines;
+  line-clamp: $tooltip-max-lines;
 }
 
 // 첫 줄 높이만큼의 칸 안에서 가운데 정렬해, 여러 줄이어도 닫기 버튼이 첫 줄에 고정되게 함
