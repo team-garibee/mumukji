@@ -48,14 +48,13 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       ref={ref}
       className={clsx(
         styles.Tooltip,
+        'typo-caption-md',
         styles[`Tooltip-${tone}`],
         styles[`Tooltip-arrow-${arrowPlacement}`],
         className,
       )}
       {...props}>
-      <span className={clsx(styles.TooltipContent, 'typo-caption-md')}>
-        {children}
-      </span>
+      <span className={styles.TooltipContent}>{children}</span>
     </div>
   ),
 );

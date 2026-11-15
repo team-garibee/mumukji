@@ -1,5 +1,15 @@
 .Tooltip {
+  --tooltip-arrow-length: 8px;
+  --tooltip-arrow-width: 16px;
+
+  // 말풍선 가장자리에서 꼬리 가까운 쪽 끝까지 거리 (꼬리 중심까지는 16px)
+  --tooltip-arrow-inset: 8px;
+
+  // 배율에 따라 꼬리와 말풍선 사이에 생기는 틈을 막기 위해 안쪽으로 겹치는 정도
+  --tooltip-arrow-overlap: 1px;
+
   display: inline-flex;
+  position: relative;
   align-items: flex-start;
   gap: var(--spacing-sm);
   width: fit-content;
@@ -7,6 +17,12 @@
   border-radius: var(--radius-s);
   background-color: var(--tooltip-bg-color);
   color: var(--tooltip-fg-color);
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--tooltip-bg-color);
+  }
 
   &-interactive {
     --tooltip-bg-color: var(--color-bg-informative-solid);
@@ -16,6 +32,89 @@
   &-neutral {
     --tooltip-bg-color: var(--color-bg-layer-container);
     --tooltip-fg-color: var(--color-fg-neutral-muted);
+  }
+
+  // 좌우 꼬리: 말풍선이 세로로 길어져도 첫 줄 텍스트 높이에 고정
+  &-arrow-left::before,
+  &-arrow-right::before {
+    top: calc(var(--spacing-xs) + (1lh - var(--tooltip-arrow-width)) / 2);
+    width: calc(var(--tooltip-arrow-length) + var(--tooltip-arrow-overlap));
+    height: var(--tooltip-arrow-width);
+  }
+
+  &-arrow-left::before {
+    right: calc(100% - var(--tooltip-arrow-overlap));
+    clip-path: polygon(
+      0 50%,
+      var(--tooltip-arrow-length) 0,
+      100% 0,
+      100% 100%,
+      var(--tooltip-arrow-length) 100%
+    );
+  }
+
+  &-arrow-right::before {
+    left: calc(100% - var(--tooltip-arrow-overlap));
+    clip-path: polygon(
+      0 0,
+      var(--tooltip-arrow-overlap) 0,
+      100% 50%,
+      var(--tooltip-arrow-overlap) 100%,
+      0 100%
+    );
+  }
+
+  // 상하 꼬리
+  &-arrow-top-left::before,
+  &-arrow-top-center::before,
+  &-arrow-top-right::before,
+  &-arrow-bottom-left::before,
+  &-arrow-bottom-center::before,
+  &-arrow-bottom-right::before {
+    width: var(--tooltip-arrow-width);
+    height: calc(var(--tooltip-arrow-length) + var(--tooltip-arrow-overlap));
+  }
+
+  &-arrow-top-left::before,
+  &-arrow-top-center::before,
+  &-arrow-top-right::before {
+    bottom: calc(100% - var(--tooltip-arrow-overlap));
+    clip-path: polygon(
+      50% 0,
+      100% var(--tooltip-arrow-length),
+      100% 100%,
+      0 100%,
+      0 var(--tooltip-arrow-length)
+    );
+  }
+
+  &-arrow-bottom-left::before,
+  &-arrow-bottom-center::before,
+  &-arrow-bottom-right::before {
+    top: calc(100% - var(--tooltip-arrow-overlap));
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% var(--tooltip-arrow-overlap),
+      50% 100%,
+      0 var(--tooltip-arrow-overlap)
+    );
+  }
+
+  &-arrow-top-left::before,
+  &-arrow-bottom-left::before {
+    left: var(--tooltip-arrow-inset);
+  }
+
+  &-arrow-top-center::before,
+  &-arrow-bottom-center::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-arrow-top-right::before,
+  &-arrow-bottom-right::before {
+    right: var(--tooltip-arrow-inset);
   }
 }
 
