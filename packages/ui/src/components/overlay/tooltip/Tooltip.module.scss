@@ -19,6 +19,10 @@ $tooltip-arrow-overlap-spread: $tooltip-arrow-overlap * $tooltip-arrow-spread;
 $tooltip-arrow-box-length: $tooltip-arrow-length + $tooltip-arrow-overlap;
 $tooltip-arrow-box-width: $tooltip-arrow-width + $tooltip-arrow-overlap-spread;
 
+// 닫기 버튼: IconButton xs 크기와 그 안의 아이콘 크기
+$tooltip-close-button-size: 24px;
+$tooltip-close-icon-size: 16px;
+
 .Tooltip {
   display: inline-flex;
   position: relative;
@@ -44,6 +48,12 @@ $tooltip-arrow-box-width: $tooltip-arrow-width + $tooltip-arrow-overlap-spread;
   &-interactive {
     --tooltip-bg-color: var(--color-bg-informative-solid);
     --tooltip-fg-color: var(--color-fg-on-solid);
+
+    // IconButton에 없는 색이라 덮어씀 (neutral은 emphasis="subtle"로 처리)
+    // 클래스 2개로 IconButton emphasis 클래스보다 우선순위를 높임
+    .TooltipClose {
+      --icon-button-color: var(--color-fg-on-solid);
+    }
   }
 
   &-neutral {
@@ -114,4 +124,18 @@ $tooltip-arrow-box-width: $tooltip-arrow-width + $tooltip-arrow-overlap-spread;
 
 .TooltipContent {
   min-width: 0;
+}
+
+// 첫 줄 높이만큼의 칸 안에서 가운데 정렬해, 여러 줄이어도 닫기 버튼이 첫 줄에 고정되게 함
+.TooltipCloseSlot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 1lh;
+}
+
+// IconButton xs(24px) 안의 아이콘(16px)만 레이아웃을 차지하도록 남는 여백을 상쇄
+// 누를 수 있는 영역과 hover 배경은 24px 그대로 유지됨
+.TooltipClose {
+  margin: math.div($tooltip-close-button-size - $tooltip-close-icon-size, -2);
 }

@@ -1,9 +1,11 @@
+import { IconClose } from '@mumukji/icons';
 import clsx from 'clsx';
 import {
   forwardRef,
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from 'react';
+import { IconButton } from '../../buttons/icon-button/IconButton';
 import styles from './Tooltip.module.scss';
 
 export type TooltipTone = 'interactive' | 'neutral';
@@ -23,6 +25,7 @@ interface TooltipOwnProps {
   children: ReactNode;
   tone?: TooltipTone;
   arrowPlacement?: TooltipArrowPlacement;
+  onClose?: () => void;
 }
 
 export type TooltipProps = TooltipOwnProps &
@@ -40,6 +43,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       className,
       tone = 'interactive',
       arrowPlacement = 'left',
+      onClose,
       ...props
     },
     ref,
@@ -55,6 +59,17 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       )}
       {...props}>
       <span className={styles.TooltipContent}>{children}</span>
+      {onClose && (
+        <span className={styles.TooltipCloseSlot}>
+          <IconButton
+            className={styles.TooltipClose}
+            icon={<IconClose />}
+            size='xs'
+            emphasis='subtle'
+            onClick={onClose}
+          />
+        </span>
+      )}
     </div>
   ),
 );
