@@ -92,6 +92,8 @@ export type {
 export { ReactionButton } from '@/components/buttons/reaction-button/ReactionButton';
 
 // controls
+export type { DropdownItemProps } from '@/components/controls/dropdown-item/DropdownItem';
+export { DropdownItem } from '@/components/controls/dropdown-item/DropdownItem';
 export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
 export { Checkbox } from '@/components/controls/checkbox/Checkbox';
 export type {
