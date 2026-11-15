@@ -1,9 +1,3 @@
-@use '@/styles/reset' as reset;
-
-.Chip:where(button) {
-  @include reset.reset-button;
-}
-
 .Chip {
   display: inline-flex;
   align-items: center;
