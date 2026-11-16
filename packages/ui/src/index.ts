@@ -94,6 +94,8 @@ export { ReactionButton } from '@/components/buttons/reaction-button/ReactionBut
 // controls
 export type { CheckboxProps } from '@/components/controls/checkbox/Checkbox';
 export { Checkbox } from '@/components/controls/checkbox/Checkbox';
+export type { ChipProps } from '@/components/controls/chip/Chip';
+export { Chip } from '@/components/controls/chip/Chip';
 export type {
   SwitchProps,
   SwitchTone,

@@ -45,6 +45,7 @@ export const baseConfig = [
         {
           selector: 'variable',
           format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+          leadingUnderscore: 'allow',
         },
         {
           selector: 'function',
