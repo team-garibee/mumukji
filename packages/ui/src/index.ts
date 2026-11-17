@@ -101,3 +101,11 @@ export type {
   SwitchTone,
 } from '@/components/controls/switch/Switch';
 export { Switch } from '@/components/controls/switch/Switch';
+
+// overlay
+export type {
+  TooltipArrowPlacement,
+  TooltipProps,
+  TooltipTone,
+} from '@/components/overlay/tooltip/Tooltip';
+export { Tooltip } from '@/components/overlay/tooltip/Tooltip';

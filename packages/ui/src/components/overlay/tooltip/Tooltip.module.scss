@@ -1,0 +1,161 @@
+@use 'sass:math';
+
+// 꼬리 크기: length는 말풍선 밖으로 튀어나온 길이, width는 밑변 폭
+$tooltip-arrow-length: 8px;
+$tooltip-arrow-width: 16px;
+
+// 말풍선 가장자리에서 꼬리 밑변 가까운 쪽 끝까지 거리 (꼬리 중심까지는 24px)
+$tooltip-arrow-inset: 16px;
+
+// 배율에 따라 꼬리와 말풍선 사이에 생기는 틈을 막기 위해 안쪽으로 겹치는 정도
+$tooltip-arrow-overlap: 1px;
+
+// 길이가 1px 늘어날 때 밑변이 양쪽 합쳐 넓어지는 양 (빗변 2개 × 밑변 절반 ÷ 길이)
+$tooltip-arrow-spread: math.div($tooltip-arrow-width, $tooltip-arrow-length);
+$tooltip-arrow-overlap-spread: $tooltip-arrow-overlap * $tooltip-arrow-spread;
+
+// 겹침만큼 빗변을 그대로 연장한 꼬리 박스 크기
+// length는 밑변 쪽으로만 늘어나고, width는 빗변 기울기를 따라 양쪽으로 벌어짐
+$tooltip-arrow-box-length: $tooltip-arrow-length + $tooltip-arrow-overlap;
+$tooltip-arrow-box-width: $tooltip-arrow-width + $tooltip-arrow-overlap-spread;
+
+// 닫기 버튼: IconButton xs 크기와 그 안의 아이콘 크기
+$tooltip-close-button-size: 24px;
+$tooltip-close-icon-size: 16px;
+
+// 말풍선 최대 크기 (padding 포함)
+$tooltip-max-width: 280px;
+
+// 피그마 최대 높이 160px을 넘지 않는 줄 수: (160px - 상하 padding 16px) / 줄 높이 16.8px ≈ 8.57
+// 높이로 자르면 줄 중간이 잘려서 줄 수 기준으로 말줄임 처리
+// 줄 높이(1lh)는 빌드 시점에 알 수 없어 계산 결과를 직접 적음
+// TODO: 툴팁 문구의 최대 글자 수가 정해지면 이 값은 수정될 수 있음
+$tooltip-max-lines: 8;
+
+.Tooltip {
+  display: inline-flex;
+  position: relative;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  width: fit-content;
+  max-width: $tooltip-max-width;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-s);
+  background-color: var(--tooltip-bg-color);
+  color: var(--tooltip-fg-color);
+
+  // 꼬리(::before)와 말풍선을 합친 모양을 따라 그림자를 주기 위해 box-shadow 대신 drop-shadow 사용
+  // shadow/s4와 같은 값. drop-shadow()는 그림자를 하나씩만 받아서 2겹 토큰을 그대로 쓸 수 없음
+  filter: drop-shadow(0 12px 40px var(--color-alpha-black-10))
+    drop-shadow(0 0 6px var(--color-alpha-black-10));
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--tooltip-bg-color);
+  }
+
+  &-interactive {
+    --tooltip-bg-color: var(--color-bg-informative-solid);
+    --tooltip-fg-color: var(--color-fg-on-solid);
+
+    // IconButton에 없는 색이라 덮어씀 (neutral은 emphasis="subtle"로 처리)
+    // 클래스 2개로 IconButton emphasis 클래스보다 우선순위를 높임
+    .TooltipClose {
+      --icon-button-color: var(--color-fg-on-solid);
+    }
+  }
+
+  &-neutral {
+    --tooltip-bg-color: var(--color-bg-layer-container);
+    --tooltip-fg-color: var(--color-fg-neutral-muted);
+  }
+
+  // 좌우 꼬리: 말풍선이 세로로 길어져도 첫 줄 텍스트 높이에 고정
+  &-arrow-left::before,
+  &-arrow-right::before {
+    // 겹침만큼 넓어진 밑변 기준으로 계산해도 꼬리 중심은 첫 줄 가운데에 유지됨
+    top: calc(var(--spacing-xs) + (1lh - $tooltip-arrow-box-width) / 2);
+    width: $tooltip-arrow-box-length;
+    height: $tooltip-arrow-box-width;
+  }
+
+  &-arrow-left::before {
+    right: calc(100% - $tooltip-arrow-overlap);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+
+  &-arrow-right::before {
+    left: calc(100% - $tooltip-arrow-overlap);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+
+  // 상하 꼬리
+  &-arrow-top-left::before,
+  &-arrow-top-center::before,
+  &-arrow-top-right::before,
+  &-arrow-bottom-left::before,
+  &-arrow-bottom-center::before,
+  &-arrow-bottom-right::before {
+    width: $tooltip-arrow-box-width;
+    height: $tooltip-arrow-box-length;
+  }
+
+  &-arrow-top-left::before,
+  &-arrow-top-center::before,
+  &-arrow-top-right::before {
+    bottom: calc(100% - $tooltip-arrow-overlap);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  &-arrow-bottom-left::before,
+  &-arrow-bottom-center::before,
+  &-arrow-bottom-right::before {
+    top: calc(100% - $tooltip-arrow-overlap);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+
+  &-arrow-top-left::before,
+  &-arrow-bottom-left::before {
+    left: $tooltip-arrow-inset - $tooltip-arrow-overlap;
+  }
+
+  &-arrow-top-center::before,
+  &-arrow-bottom-center::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-arrow-top-right::before,
+  &-arrow-bottom-right::before {
+    right: $tooltip-arrow-inset - $tooltip-arrow-overlap;
+  }
+}
+
+.TooltipContent {
+  display: -webkit-box;
+  overflow: hidden;
+
+  // 한국어도 단어 단위로 줄바꿈하고, 띄어쓰기 없이 긴 문자열만 강제로 끊어 넘침 방지
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+
+  // 최대 줄 수를 넘으면 마지막 줄 끝에 말줄임 표시
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $tooltip-max-lines;
+  line-clamp: $tooltip-max-lines;
+}
+
+// 첫 줄 높이만큼의 칸 안에서 가운데 정렬해, 여러 줄이어도 닫기 버튼이 첫 줄에 고정되게 함
+.TooltipCloseSlot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 1lh;
+}
+
+// IconButton xs(24px) 안의 아이콘(16px)만 레이아웃을 차지하도록 남는 여백을 상쇄
+// 누를 수 있는 영역과 hover 배경은 24px 그대로 유지됨
+.TooltipClose {
+  margin: math.div($tooltip-close-button-size - $tooltip-close-icon-size, -2);
+}
